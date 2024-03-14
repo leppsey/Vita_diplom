@@ -1,0 +1,264 @@
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Membrane.db
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.exe
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.deps.json
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.runtimeconfig.json
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.pdb
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.xml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\EntityFramework.SqlServer.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\EntityFramework.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\EntityFrameworkCore.Scaffolding.Handlebars.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Handlebars.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\HandyControl.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.barcodes.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.forms.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.io.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.kernel.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.layout.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.pdfa.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.sign.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.styledxmlparser.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.svg.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.commons.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\JetBrains.Annotations.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\LiveCharts.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Data.Sqlite.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.DotNet.PlatformAbstractions.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.Design.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Sqlite.Design.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyModel.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PropertyChanged.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\SQLitePCLRaw.batteries_v2.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\SQLitePCLRaw.core.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\SQLitePCLRaw.provider.e_sqlite3.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\System.Data.SQLite.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\System.Data.SQLite.EF6.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\System.Data.SQLite.Linq.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\ru\EntityFramework.SqlServer.resources.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\ru\EntityFramework.resources.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\ru\HandyControl.resources.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-x64\native\libsqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\osx-x64\native\libsqlite3.dylib
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win7-x64\native\sqlite3.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win7-x86\native\sqlite3.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\alpine-x64\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-arm\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-armel\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-mips64\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-s390x\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-x64\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-x86\native\libe_sqlite3.so
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\osx-arm64\native\libe_sqlite3.dylib
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-arm\native\e_sqlite3.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x64\native\e_sqlite3.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x86\native\e_sqlite3.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaAPI.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaAPI.pdb
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaAPI.xml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaAPI.dll.config
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.csproj.AssemblyReference.cache
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\LoginControl.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MainWindow.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\App.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\CreateMaterialWindow.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\CreatePropertyWindow.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\LoginControl.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MainAdminControl.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MainWindow.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MaterialEditWindow.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MaterialExplorerControl.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\ObjectPropertiesControl.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\ResearcherControl.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\SelectPropertiesWindow.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UnitCreateWindow.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UserEditWindow.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UserExplorerControl.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\App.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf_MarkupCompile.cache
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf_MarkupCompile.lref
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\CreateMaterialWindow.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\CreatePropertyWindow.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MainAdminControl.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MaterialEditWindow.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MaterialExplorerControl.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\ObjectPropertiesControl.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\ResearcherControl.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\SelectPropertiesWindow.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UnitCreateWindow.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UserEditWindow.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UserExplorerControl.baml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.g.resources
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.GeneratedMSBuildEditorConfig.editorconfig
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.AssemblyInfoInputs.cache
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.AssemblyInfo.cs
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.csproj.CoreCompileInputs.cache
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.csproj.CopyComplete
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\refint\PlenkaWpf.dll
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.xml
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.pdb
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.genruntimeconfig.cache
+D:\download\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\ref\PlenkaWpf.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Membrane.db
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.exe
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.deps.json
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.runtimeconfig.json
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.pdb
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaWpf.xml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\EntityFramework.SqlServer.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\EntityFramework.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\EntityFrameworkCore.Scaffolding.Handlebars.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Handlebars.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\HandyControl.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.barcodes.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.forms.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.io.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.kernel.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.layout.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.pdfa.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.sign.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.styledxmlparser.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.svg.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\itext.commons.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\JetBrains.Annotations.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\LiveCharts.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\LiveCharts.Wpf.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Data.Sqlite.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Sqlite.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.EntityFrameworkCore.Sqlite.Design.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.DependencyModel.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Options.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Extensions.Primitives.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\Microsoft.Xaml.Behaviors.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\BouncyCastle.Crypto.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PropertyChanged.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\SQLitePCLRaw.batteries_v2.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\SQLitePCLRaw.core.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\SQLitePCLRaw.provider.e_sqlite3.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\System.Data.SQLite.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\System.Data.SQLite.EF6.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\System.Data.SQLite.Linq.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\ru\EntityFramework.SqlServer.resources.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\ru\EntityFramework.resources.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\ru\HandyControl.resources.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-x64\native\libsqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\osx-x64\native\libsqlite3.dylib
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win7-x64\native\sqlite3.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win7-x86\native\sqlite3.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\alpine-x64\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-arm\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-arm64\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-armel\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-mips64\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-musl-x64\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-s390x\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-x64\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-x86\native\libe_sqlite3.so
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\osx-arm64\native\libe_sqlite3.dylib
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\osx-x64\native\libe_sqlite3.dylib
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-arm\native\e_sqlite3.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-arm64\native\e_sqlite3.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x64\native\e_sqlite3.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaAPI.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaAPI.pdb
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaAPI.xml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\bin\Debug\net6.0-windows\PlenkaAPI.dll.config
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.csproj.AssemblyReference.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\LoginControl.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MainWindow.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\App.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\CreateMaterialWindow.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\CreatePropertyWindow.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\LoginControl.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MainAdminControl.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MainWindow.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MaterialEditWindow.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MaterialExplorerControl.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\ObjectPropertiesControl.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\ResearcherControl.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\SelectPropertiesWindow.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UnitCreateWindow.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UserEditWindow.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UserExplorerControl.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf_MarkupCompile.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf_MarkupCompile.lref
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\CreateMaterialWindow.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\CreatePropertyWindow.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MainAdminControl.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MaterialEditWindow.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\MaterialExplorerControl.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\ObjectPropertiesControl.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\ResearcherControl.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\SelectPropertiesWindow.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UnitCreateWindow.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UserEditWindow.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\View\UserExplorerControl.baml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.g.resources
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.AssemblyInfoInputs.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.AssemblyInfo.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.csproj.CoreCompileInputs.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.csproj.CopyComplete
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\refint\PlenkaWpf.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.xml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.pdb
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\PlenkaWpf.genruntimeconfig.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaWpf\obj\Debug\net6.0-windows\ref\PlenkaWpf.dll

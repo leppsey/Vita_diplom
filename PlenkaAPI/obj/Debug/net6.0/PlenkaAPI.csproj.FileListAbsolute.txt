@@ -1,0 +1,38 @@
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\Membrane.db
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.dll.config
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.deps.json
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.runtimeconfig.json
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.dll
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.pdb
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.xml
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.csproj.AssemblyReference.cache
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.AssemblyInfoInputs.cache
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.AssemblyInfo.cs
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.csproj.CoreCompileInputs.cache
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.csproj.Fody.CopyLocal.cache
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.dll
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\refint\PlenkaAPI.dll
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.xml
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.pdb
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.genruntimeconfig.cache
+D:\download\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\ref\PlenkaAPI.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\Membrane.db
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.dll.config
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.deps.json
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.runtimeconfig.json
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.pdb
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\bin\Debug\net6.0\PlenkaAPI.xml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.csproj.AssemblyReference.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.AssemblyInfoInputs.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.AssemblyInfo.cs
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.csproj.CoreCompileInputs.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.csproj.Fody.CopyLocal.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\refint\PlenkaAPI.dll
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.xml
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.pdb
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\PlenkaAPI.genruntimeconfig.cache
+C:\Users\pc\Desktop\РПК Чупахина, Вишняков, Емонаков\Plenka-master\Plenka-master\PlenkaAPI\obj\Debug\net6.0\ref\PlenkaAPI.dll
