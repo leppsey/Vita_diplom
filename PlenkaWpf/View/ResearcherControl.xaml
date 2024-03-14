@@ -72,21 +72,21 @@
                                          IsInertiaEnabled="True" Background="{StaticResource Style2}" Grid.RowSpan="2">
                             <hc:ElementGroup Width="560" Margin="0,0,9,0">
                                 <Expander ExpandDirection="Down" Header="Техническое задание"
-     IsExpanded="True" HeaderTemplate="{StaticResource expanderHeader}"
-     Background="{StaticResource Style1}" Width="560">
+                                          IsExpanded="True" HeaderTemplate="{StaticResource expanderHeader}"
+                                          Background="{StaticResource Style1}" Width="560">
                                     <hc:ElementGroup>
                                         <Border Background="{StaticResource Style2}">
                                             <hc:Divider Content="Параметры установки"
-                 Background="{StaticResource DangerBrush}" Margin="0 5" />
+                                                        Background="{StaticResource DangerBrush}" Margin="0 5" />
                                         </Border>
                                         <hc:ElementGroup Background="{StaticResource Style3}">
                                             <hc:TextBox hc:TitleElement.Title="Производительность, тыс. т/год"
-                 hc:TitleElement.TitlePlacement="Left" Margin="10 5"
-                 hc:TitleElement.TitleWidth="450"
-                 ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource TextBoxInError}"
-                 HorizontalAlignment="Stretch"  Text="6008">
-                                               
+                                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
+                                                        hc:TitleElement.TitleWidth="450"
+                                                        ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Style="{StaticResource TextBoxInError}"
+                                                        HorizontalAlignment="Stretch" Text="6008">
+
                                                 <!--<Binding Path="Step" NotifyOnValidationError="True"
                      UpdateSourceTrigger="PropertyChanged" Delay="1000">
                                                     <Binding.ValidationRules>
@@ -95,17 +95,17 @@
                                                 </Binding>-->
                                             </hc:TextBox>
                                         </hc:ElementGroup>
-                                        <Border Background="{StaticResource Style2}"/>
+                                        <Border Background="{StaticResource Style2}" />
                                         <StackPanel Background="{StaticResource Style3}">
 
 
                                             <hc:TextBox
-                 hc:TitleElement.Title="Энергопотребление, кВт"
-                 hc:TitleElement.TitlePlacement="Left" Margin="10 5"
-                 hc:TitleElement.TitleWidth="450"
-                 ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 Style="{StaticResource TextBoxInError}"
-                 HorizontalAlignment="Stretch"
+                                                hc:TitleElement.Title="Энергопотребление, кВт"
+                                                hc:TitleElement.TitlePlacement="Left" Margin="10 5"
+                                                hc:TitleElement.TitleWidth="450"
+                                                ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                Style="{StaticResource TextBoxInError}"
+                                                HorizontalAlignment="Stretch"
                                                 Text="44000">
                                                 <!--<Binding Path="HeatCoef" NotifyOnValidationError="True"
                      UpdateSourceTrigger="PropertyChanged" Delay="1000">
@@ -138,19 +138,21 @@
                                         <StackPanel Background="{StaticResource Style3}">
                                             <hc:ElementGroup Background="{StaticResource Style3}">
                                                 <hc:ComboBox Margin="10 10" ItemsSource="{Binding Materials}"
-                 SelectedItem="{Binding Material}" DisplayMemberPath="ObName" />
+                                                             SelectedItem="{Binding Material}"
+                                                             DisplayMemberPath="ObName" />
                                             </hc:ElementGroup>
                                             <Border Background="{StaticResource Style2}">
                                                 <hc:Divider Content="Катализатор"
-                Background="{StaticResource Style2}" Margin="0 5" />
+                                                            Background="{StaticResource Style2}" Margin="0 5" />
                                             </Border>
                                             <hc:ElementGroup Background="{StaticResource Style3}">
                                                 <hc:ComboBox Margin="10 10" ItemsSource="{Binding Catalists}"
-                 SelectedItem="{Binding Catalist}" DisplayMemberPath="ObName" />
+                                                             SelectedItem="{Binding Catalist}"
+                                                             DisplayMemberPath="ObName" />
                                             </hc:ElementGroup>
                                         </StackPanel>
-                                        <Border Background="{StaticResource Style2}"/>
-                                        <hc:ElementGroup Background="{StaticResource Style3}"/>
+                                        <Border Background="{StaticResource Style2}" />
+                                        <hc:ElementGroup Background="{StaticResource Style3}" />
                                         <Border Background="{StaticResource Style2}">
                                             <hc:Divider Content="Начальные значения"
                                                         Background="{StaticResource DangerBrush}" Margin="0 5" />
@@ -162,17 +164,13 @@
                                                         ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource TextBoxInError}"
                                                         HorizontalAlignment="Stretch"
-                                                        Text="850">
-                                                
-                                               
-                                            </hc:TextBox>
+                                                        Text="850" />
                                             <hc:TextBox hc:InfoElement.Title="Начальная температура,°С"
                                                         hc:InfoElement.TitlePlacement="Left" Margin="10 5"
                                                         hc:InfoElement.TitleWidth="450"
                                                         ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource TextBoxInError}"
-                                                        HorizontalAlignment="Stretch"
-                                                        >
+                                                        HorizontalAlignment="Stretch">
                                                 <hc:TextBox.Text>
                                                     <Binding Path="T0" NotifyOnValidationError="True"
                                                              UpdateSourceTrigger="PropertyChanged" Delay="1000">
@@ -182,14 +180,13 @@
                                                     </Binding>
                                                 </hc:TextBox.Text>
                                             </hc:TextBox>
-                                            
+
                                             <hc:TextBox hc:InfoElement.Title="Теплоемкость, Дж/(кг·К)"
                                                         hc:InfoElement.TitlePlacement="Left" Margin="10 5"
                                                         hc:InfoElement.TitleWidth="450"
                                                         ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource TextBoxInError}"
-                                                        HorizontalAlignment="Stretch"
-                                            >
+                                                        HorizontalAlignment="Stretch">
                                                 <hc:TextBox.Text>
                                                     <Binding Path="HeatCapacity" NotifyOnValidationError="True"
                                                              UpdateSourceTrigger="PropertyChanged" Delay="1000">
@@ -199,15 +196,14 @@
                                                     </Binding>
                                                 </hc:TextBox.Text>
                                             </hc:TextBox>
-                                            
+
                                             <hc:TextBox
                                                 hc:InfoElement.Title="Расход, кг/с"
                                                 hc:InfoElement.TitlePlacement="Left" Margin="10 5"
                                                 hc:InfoElement.TitleWidth="450"
                                                 ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Style="{StaticResource TextBoxInError}"
-                                                HorizontalAlignment="Stretch"
-                                            >
+                                                HorizontalAlignment="Stretch">
                                                 <hc:TextBox.Text>
                                                     <Binding Path="Consumption" NotifyOnValidationError="True"
                                                              UpdateSourceTrigger="PropertyChanged" Delay="1000">
@@ -217,15 +213,14 @@
                                                     </Binding>
                                                 </hc:TextBox.Text>
                                             </hc:TextBox>
-                                            
+
                                             <hc:TextBox
                                                 hc:InfoElement.Title="Плотность, кг/м3"
                                                 hc:InfoElement.TitlePlacement="Left" Margin="10 5"
                                                 hc:InfoElement.TitleWidth="450"
                                                 ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Style="{StaticResource TextBoxInError}"
-                                                HorizontalAlignment="Stretch"
-                                            >
+                                                HorizontalAlignment="Stretch">
                                                 <hc:TextBox.Text>
                                                     <Binding Path="Density" NotifyOnValidationError="True"
                                                              UpdateSourceTrigger="PropertyChanged" Delay="1000">
@@ -241,8 +236,7 @@
                                                 hc:InfoElement.TitleWidth="450"
                                                 ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Style="{StaticResource TextBoxInError}"
-                                                HorizontalAlignment="Stretch"
-                                            >
+                                                HorizontalAlignment="Stretch">
                                                 <hc:TextBox.Text>
                                                     <Binding Path="Diametr" NotifyOnValidationError="True"
                                                              UpdateSourceTrigger="PropertyChanged" Delay="1000">
@@ -252,7 +246,7 @@
                                                     </Binding>
                                                 </hc:TextBox.Text>
                                             </hc:TextBox>
-                                            
+
                                         </StackPanel>
                                     </hc:ElementGroup>
                                 </Expander>
@@ -281,7 +275,7 @@
                                                 </hc:TextBox.Text>
                                             </hc:TextBox>
                                         </hc:ElementGroup>
-                                        <Border Background="{StaticResource Style2}"/>
+                                        <Border Background="{StaticResource Style2}" />
                                         <StackPanel Background="{StaticResource Style3}">
 
 
@@ -291,8 +285,7 @@
                                                 hc:InfoElement.TitleWidth="450"
                                                 ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                 Style="{StaticResource TextBoxInError}"
-                                                HorizontalAlignment="Stretch"
-                                                >
+                                                HorizontalAlignment="Stretch">
                                                 <hc:TextBox.Text>
                                                     <Binding Path="Length" NotifyOnValidationError="True"
                                                              UpdateSourceTrigger="PropertyChanged" Delay="1000">
@@ -301,9 +294,9 @@
                                                         </Binding.ValidationRules>
                                                     </Binding>
                                                 </hc:TextBox.Text>
-                                                
+
                                             </hc:TextBox>
-                                            
+
 
                                         </StackPanel>
                                     </hc:ElementGroup>
@@ -311,10 +304,11 @@
                             </hc:ElementGroup>
                         </hc:ScrollViewer>
                         <Button Grid.Row="2"
-                                Background="{StaticResource Style3}" Width="150" Height="50" Click="Button_Click" >
+                                Background="{StaticResource Style3}" Width="150" Height="50" Click="Button_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="pack://application:,,,/resources/icons/graph.png"
-                                       RenderOptions.BitmapScalingMode="HighQuality" Width="15" Height="15" Margin="0,0,5,0" />
+                                       RenderOptions.BitmapScalingMode="HighQuality" Width="15" Height="15"
+                                       Margin="0,0,5,0" />
                                 <TextBlock Text="Рассчитать" FontSize="15" />
                             </StackPanel>
                         </Button>
@@ -346,7 +340,7 @@
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </TabItem>
-                    
+
                     <TabItem Header="График распределения температуры" Background="{StaticResource Style2}">
                         <lvc:CartesianChart x:Name="tempChart1"
                                             LegendLocation="None" Series="{Binding TSeries}"
@@ -369,8 +363,9 @@
                             </lvc:CartesianChart.AxisY>
                         </lvc:CartesianChart>
                     </TabItem>
-                    
-                    <TabItem Header="Модель реактора" Background="{StaticResource Style2}" Height="31" VerticalAlignment="Bottom">
+
+                    <TabItem Header="Модель реактора" Background="{StaticResource Style2}" Height="31"
+                             VerticalAlignment="Bottom">
                         <Image Source="pack://application:,,,/resources/images/image123.png" />
                     </TabItem>
                     <TabItem Header="Результаты вычислений" Background="{StaticResource Style2}">
@@ -418,10 +413,6 @@
                             </Border>
 
 
-
-
-
-
                             <Border Grid.Row="0" Grid.Column="2" Background="{StaticResource Style2}">
                                 <hc:Divider Content="Критериальные показатели"
                                             Margin="0 5" />
@@ -435,11 +426,10 @@
                                                 hc:InfoElement.TitlePlacement="Left" Margin="10 5"
                                                 hc:InfoElement.TitleWidth="240"
                                                 Text="{Binding MathClass.Results.OKT, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                HorizontalAlignment="Stretch" 
-                                                />
-                                    <Border Grid.Row="0" Grid.Column="0" Background="{StaticResource Style2}">
+                                                HorizontalAlignment="Stretch" />
+                                    <Border Background="{StaticResource Style2}">
                                         <hc:Divider Content="Показатели экономичности"
-                                            Margin="0 5" />
+                                                    Margin="0 5" />
                                     </Border>
 
                                     <hc:TextBox hc:InfoElement.Title="Время расчёта, мс"

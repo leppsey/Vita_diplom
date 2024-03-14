@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
-using static System.Math;
 
 
 namespace PlenkaAPI
@@ -67,7 +66,7 @@ namespace PlenkaAPI
         public double D { get; init; } // Нада
         public double P { get; init; } // Нада
 
-        public double Heat_cap { get; init; } // Нада
+        public double HeatCap { get; init; } // Нада
         public double T0 { get; init; } // Нада
     }
 
@@ -117,7 +116,7 @@ namespace PlenkaAPI
             // var tay = Step;
             var h = Step;
             // var tN = (int)Round(t / tay,0);
-            var hN = (int)Round(L / h, 0);
+            var hN = (int)Math.Round(L / h, 0);
             double[] K =
             {
                 0.039, 0.01, 0.009, 0.005, 0.031, 0.001, 0.012, 0.015, 0.017, 0.035, 0.001, 0.06, 0.06, 0.031, 0.035,
@@ -138,23 +137,23 @@ namespace PlenkaAPI
             C0[4] = 4.52;
             C0[5] = 1.06;
             C0[6] = 0.92;
-            double[] okt_numbers = { 61.7, 92.3, 24.8, 66.0, 75.0, 91.1, 91.8 };
+            double[] oktNumbers = { 61.7, 92.3, 24.8, 66.0, 75.0, 91.1, 91.8 };
             // var C_temp = new double[7,tN,hN];
-            var C_temp = new double[7, hN + 1];
+            var cTemp = new double[7, hN + 1];
             var r = new double[7];
             var v = 4 * G / (P * 3.14 * D * D);
             var x = h;
             var cordCs = new List<CordC>();
-            var Ttemp = T0;
+            var tTemp = T0;
             cordCs.Add(new CordC
             {
                 Cord = 0, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], C5 = C0[4], C6 = C0[5], C7 = C0[6], T = T0
             });
-            for (int reactor = 0; reactor < 1; reactor++)
+            for (var reactor = 0; reactor < 1; reactor++)
             {
-                for (int i = 0; i < 7; i++)
+                for (var i = 0; i < 7; i++)
                 {
-                    C_temp[i, 0] = C0[i];
+                    cTemp[i, 0] = C0[i];
                 }
 
                 for (var k = 1; k <= hN; k++)
@@ -167,11 +166,11 @@ namespace PlenkaAPI
                     r[4] = K[4] * C0[2] - K[5] * C0[4] - K[10] * C0[4] + K[11] * C0[5] - K[12] * C0[4] + K[13] * C0[6];
                     r[5] = K[6] * C0[3] - K[7] * C0[5] + K[10] * C0[4] - K[11] * C0[5] + K[15] * C0[6] - K[14] * C0[5];
                     r[6] = K[8] * C0[3] - K[9] * C0[6] + K[12] * C0[4] - K[13] * C0[6] + K[14] * C0[5] - K[15] * C0[6];
-                    for (int i = 0; i < 7; i++)
+                    for (var i = 0; i < 7; i++)
                     {
                         // C_temp[i, k] = Round(h*r[i]/v + C_temp[i, k - 1],2);
-                        C_temp[i, k] = h * r[i] / v + C_temp[i, k - 1];
-                        C0[i] = C_temp[i, k];
+                        cTemp[i, k] = h * r[i] / v + cTemp[i, k - 1];
+                        C0[i] = cTemp[i, k];
                     }
 
                     var sum = K[0] * C0[0] * H[0] +
@@ -190,35 +189,37 @@ namespace PlenkaAPI
                               K[13] * H[13] * C0[6] +
                               K[14] * H[14] * C0[5] +
                               K[15] * H[15] * C0[6];
-                    Ttemp = h * sum / (v * P * Heat_cap) + Ttemp;
+                    tTemp = h * sum / (v * P * Heat_cap) + tTemp;
 
                     cordCs.Add(new CordC
                     {
                         Cord = x, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], C5 = C0[4], C6 = C0[5], C7 = C0[6],
-                        T = Ttemp
+                        T = tTemp
                     });
                     x += h;
                 }
             }
 
-            var okt_number = 0.0;
-            for (int i = 0; i < 7; i++)
+            var oktNumber = 0d;
+            for (var i = 0; i < 7; i++)
             {
-                okt_number += okt_numbers[i] * C0[i] / 100;
+                oktNumber += oktNumbers[i] * C0[i] / 100;
             }
 
             sw.Stop();
 
             Results = new CalculationResults
-                { CordCs = cordCs, MathTimer = sw, OKT = Round(okt_number, 2) };
+                { CordCs = cordCs, MathTimer = sw, OKT = Math.Round(oktNumber, 2) };
         }
 
 
+        //todo rename
         public void Modeling(double d, double l, double Q, double cAin, double T, double k01, double ea1, double k02,
             double ea2, double deltaX0, double ku, double eMax, double qMax)
         {
             if (ku < 0)
             {
+                //todo change todo to messagebox
                 Console.WriteLine("Сеточное число Куранта должно быть больше нуля");
             }
 
@@ -227,15 +228,15 @@ namespace PlenkaAPI
                 Console.WriteLine("Сеточное число Куранта должно быть меньше 1");
             }
 
-            double s = (PI * Pow(d, 2)) / 4;
-            double u = (Q * Pow(10, -3)) / s;
-            double tR = l / u;
-            double teta = 2 * tR;
-            double k1 = k01 * Exp(-ea1 / (8.31 * (T + 273)));
-            double k2 = k02 * Exp(-ea2 / (8.31 * (T + 273)));
-            double q = 0;
-            double eps = 2 * eMax;
-            double deltaT = 0, deltaX = 0, CBmax = 0;
+            var s = (Math.PI * Math.Pow(d, 2)) / 4;
+            var u = (Q * Math.Pow(10, -3)) / s;
+            var tR = l / u;
+            var teta = 2 * tR;
+            var k1 = k01 * Math.Exp(-ea1 / (8.31 * (T + 273)));
+            var k2 = k02 * Math.Exp(-ea2 / (8.31 * (T + 273)));
+            var q = 0d;
+            var eps = 2 * eMax;
+            double deltaT = 0d, deltaX = 0d, CBmax = 0d;
             var CB1 = new double[2, 2];
             var x = new double[2];
             var t = new double[2];
@@ -249,8 +250,8 @@ namespace PlenkaAPI
                 {
                     deltaX = deltaX0;
                     deltaT = ku * deltaX / u;
-                    M = (int)Round(l / deltaX, 0);
-                    N = (int)Round(teta / deltaT, 0);
+                    M = (int)Math.Round(l / deltaX, 0);
+                    N = (int)Math.Round(teta / deltaT, 0);
                 }
                 else
                 {
@@ -264,23 +265,23 @@ namespace PlenkaAPI
                 CB = new double[N, M];
                 x = new double[M];
                 t = new double[N];
-                for (int i = 0; i < M; i++)
+                for (var i = 0; i < M; i++)
                 {
                     x[i] = (i - 1) * deltaX;
                     CA[0, i] = 0;
                     CB[0, i] = 0;
                 }
 
-                for (int j = 1; j < N; j++)
+                for (var j = 1; j < N; j++)
                 {
                     t[j] = (j - 1) * deltaT;
                     CA[j, 0] = cAin;
                     CB[j, 0] = 0;
                 }
 
-                for (int j = 0; j < N - 1; j++)
+                for (var j = 0; j < N - 1; j++)
                 {
-                    for (int i = 1; i < M; i++)
+                    for (var i = 1; i < M; i++)
                     {
                         CA[j + 1, i] = -ku * (CA[j, i] - CA[j, i - 1]) + (1 - k1 * deltaT) * CA[j, i] +
                                        k2 * deltaT * CB[j, i];
@@ -293,23 +294,23 @@ namespace PlenkaAPI
                 if (q != 0)
                 {
                     var sum = 0.0;
-                    for (int j = 0; j < N1; j++)
+                    for (var j = 0; j < N1; j++)
                     {
-                        for (int i = 0; i < M1; i++)
+                        for (var i = 0; i < M1; i++)
                         {
-                            sum += Pow(CB[2 * j, 2 * i] - CB1[j, i], 2);
+                            sum += Math.Pow(CB[2 * j, 2 * i] - CB1[j, i], 2);
                         }
                     }
 
-                    eA = Sqrt((sum / (M1 * N1)));
+                    eA = Math.Sqrt((sum / (M1 * N1)));
                     CBmax = CB.Cast<double>().Max();
                     eps = (eA / CBmax) * 100;
                 }
 
                 CB1 = new double[N, M];
-                for (int j = 0; j < N; j++)
+                for (var j = 0; j < N; j++)
                 {
-                    for (int i = 0; i < M; i++)
+                    for (var i = 0; i < M; i++)
                     {
                         CB1[j, i] = CB[j, i];
                     }
@@ -385,7 +386,7 @@ namespace PlenkaAPI
 
         private double Heat_cap
         {
-            get { return Cp.Heat_cap; }
+            get { return Cp.HeatCap; }
         }
 
         // private double T0
