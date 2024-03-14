@@ -518,7 +518,7 @@ namespace PlenkaWpf.VM
                         L = (double) Length,
                         G = (double) Consumption,
                         P = (double) Density,
-                        Heat_cap = (double) HeatCapacity,
+                        HeatCap = (double) HeatCapacity,
                         
                         T0 = (double) T0,
                         // C = (double) SpecifiсHeatCapacity,
