@@ -134,9 +134,9 @@ public partial class ResearcherControl : UserControl, IСhangeableControl
 
         if (res == true)
         {
-            if ((DataContext as ResearcherControlVM).IsCalculated)
+            if ((Task1Control.DataContext as ResearcherControlTask1VM).IsCalculated)
             {
-                var tempChartBitMap = ChartToBitmap(tempChart);
+                var tempChartBitMap = ChartToBitmap(Task1Control.tempChart);
 
                 //var nChartBitMap = ChartToBitmap(nChart);
 
@@ -150,26 +150,6 @@ public partial class ResearcherControl : UserControl, IСhangeableControl
         }
     }
 
-    private void Button_Click(object sender, RoutedEventArgs e) // нарушение mvvm
-    {
-        if (!IsValid(MainGrid))
-            MessageBox.Show("Невозможно произвести расчёт, есть ошибки ввода данных", "Ошибка!", MessageBoxButton.OK,
-                MessageBoxImage.Error);
-        else
-            (DataContext as ResearcherControlVM).CalcCommand.Execute(null);
-    }
-
-
-    private bool IsValid(DependencyObject obj)
-    {
-        // The dependency object is valid if it has no errors and all
-        // of its children (that are dependency objects) are error-free.
-        return !Validation.GetHasError(obj) &&
-               LogicalTreeHelper.GetChildren(obj)
-                   .OfType<DependencyObject>()
-                   .All(IsValid);
-    }
-
     private void Validation_OnError(object? sender, ValidationErrorEventArgs e)
     {
         //throw new NotImplementedException();
@@ -180,7 +160,8 @@ public partial class ResearcherControl : UserControl, IСhangeableControl
         OnChangingRequest(new LoginControl());
     }
 
-    private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+    private void Button_Click(object sender, RoutedEventArgs e)
     {
+        throw new NotImplementedException();
     }
 }

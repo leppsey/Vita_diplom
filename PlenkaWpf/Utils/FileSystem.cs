@@ -8,6 +8,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 
 using PlenkaAPI;
+using PlenkaAPI.Task1;
 
 
 namespace PlenkaWpf.Utils
@@ -56,11 +57,11 @@ namespace PlenkaWpf.Utils
         /// <param name="path">Путь к файлу</param>
         /// <param name="tempBitmap">График температуры</param>
         /// <param name="nBitMap">График вязкости</param>
-        /// <param name="mathModel">Результаты расчетов и начальные параметры</param>
+        /// <param name="task1MathModel">Результаты расчетов и начальные параметры</param>
         public static void
-            ExportPdf(string path, byte[] tempBitmap, byte[] nBitMap, MathClass mathModel) // todo Переписать
+            ExportPdf(string path, byte[] tempBitmap, byte[] nBitMap, Task1MathClass task1MathModel) // todo Переписать
         {
-             var results = mathModel.Results;
+             var results = task1MathModel.Results;
             // var writer = new PdfWriter(path);
             // var pdf = new PdfDocument(writer);
             // var document = new Document(pdf);
