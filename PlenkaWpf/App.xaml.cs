@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using PlenkaAPI.Data;
 
 
 namespace PlenkaWpf
@@ -8,5 +9,9 @@ namespace PlenkaWpf
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            DbContextSingleton.GetInstance().Database.EnsureCreated();
+        }
     }
 }

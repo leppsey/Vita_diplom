@@ -1,16 +1,26 @@
-﻿using PropertyChanged;
+namespace PlenkaAPI.Models;
 
-
-namespace PlenkaAPI.Models
+/// <summary>
+/// Пользователь
+/// </summary>
+public class User
 {
-    [AddINotifyPropertyChangedInterface]
-    public class User
-    {
-        public long UserId { get; set; }
-        public string UserName { get; set; }
-        public string UserPassword { get; set; }
-        public long UserTypeId { get; set; }
-
-        public virtual UserType UserType { get; set; }
-    }
+    public int UserId { get; set; }
+    /// <summary>
+    /// Имя пользователя
+    /// </summary>
+    public string Name { get; set; }
+    /// <summary>
+    /// Пароль
+    /// </summary>
+    // todo to hashed
+    public string Password { get; set; }
+    /// <summary>
+    /// Логин
+    /// </summary>
+    public string Login { get; set; }
+    /// <summary>
+    /// Роль
+    /// </summary>
+    public string Role { get; set; }
 }
