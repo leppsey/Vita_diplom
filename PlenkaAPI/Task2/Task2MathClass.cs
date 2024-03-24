@@ -78,12 +78,19 @@ public class Task2MathClass
 
             for (var j = 0; j < N - 1; j++)
             {
-                for (var i = 1; i < M; i++)
+                for (var i = 0; i < M - 1; i++)
                 {
-                    CA[j + 1, i] = -ku * (CA[j, i] - CA[j, i - 1]) + (1 - k1 * deltaT) * CA[j, i] +
-                                   k2 * deltaT * CB[j, i];
-                    CB[j + 1, i] = -ku * (CB[j, i] - CB[j, i - 1]) + (1 - k2 * deltaT) * CB[j, i] +
-                                   k1 * deltaT * CA[j, i];
+                    CA[j + 1, i + 1] =
+                        (CA[j, i + 1] * (1 - ku - 0.5 * k1 * deltaT) + CA[j, i] * (1 - ku - 0.5 * k1 * deltaT) +
+                         CA[j + 1, i] * (-1 + ku - 0.5 * k1 * deltaT)+0.5 * k2 * deltaT*(CB[j+1,i]+CB[j+1,i+1]+CB[j,i+1]+CB[j,i])) / (1 + ku + 0.5 * k1 * deltaT);
+                        
+                    CB[j + 1, i + 1] =
+                        (CB[j, i + 1] * (1 - ku - 0.5 * k2 * deltaT) + CB[j, i] * (1 - ku - 0.5 * k2 * deltaT) +
+                         CB[j + 1, i] * (-1 + ku - 0.5 * k2 * deltaT)+0.5 * k2 * deltaT*(CA[j+1,i]+CA[j+1,i+1]+CA[j,i+1]+CA[j,i])) / (1 + ku + 0.5 * k2 * deltaT);
+                    // CA[j + 1, i] = -ku * (CA[j, i] - CA[j, i - 1]) + (1 - k1 * deltaT) * CA[j, i] +
+                    //                k2 * deltaT * CB[j, i];
+                    // CB[j + 1, i] = -ku * (CB[j, i] - CB[j, i - 1]) + (1 - k2 * deltaT) * CB[j, i] +
+                    //                k1 * deltaT * CA[j, i];
                 }
             }
 
