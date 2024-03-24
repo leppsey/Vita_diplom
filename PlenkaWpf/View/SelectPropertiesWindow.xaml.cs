@@ -10,13 +10,13 @@ namespace PlenkaWpf.View
     /// </summary>
     public partial class SelectPropertiesWindow
     {
-        public SelectPropertiesWindow(ObjectType ot)
-        {
-            InitializeComponent();
-            var vm = new SelectPropertiesWindowVM(ot);
-            DataContext = vm;
-            vm.ClosingRequest += (sender, e) => Close();
-        }
+        // public SelectPropertiesWindow(ObjectType ot)
+        // {
+        //     InitializeComponent();
+        //     var vm = new SelectPropertiesWindowVM(ot);
+        //     DataContext = vm;
+        //     vm.ClosingRequest += (sender, e) => Close();
+        // }
 
         private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {

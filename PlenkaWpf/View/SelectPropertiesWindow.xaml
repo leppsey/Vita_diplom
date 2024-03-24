@@ -23,7 +23,7 @@
 
     </hc:Window.NonClientAreaContent>
     <Window.Resources>
-        <vm:ObjectInListConverter x:Key="ObjectInListConverter" />
+        <!-- <vm:ObjectInListConverter x:Key="ObjectInListConverter" /> -->
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

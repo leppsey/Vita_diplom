@@ -14,7 +14,7 @@ public class Pipeline
     /// </summary>
     public DateTime DateOfCommissioning { get; set; }
     /// <summary>
-    /// Длинна
+    /// Длина
     /// </summary>
     public double Length { get; set; }
     /// <summary>

@@ -16,21 +16,21 @@ namespace PlenkaWpf.View
         public MaterialExplorerControl()
         {
             InitializeComponent();
-            DataContext = new MaterialExplorerControlVm();
+            // DataContext = new MaterialExplorerControlVm();
         }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var win = new MaterialEditWindow((DataContext as MaterialExplorerControlVm).SelectedMemObject);
-            win.ShowDialog();
+            // var win = new MaterialEditWindow((DataContext as MaterialExplorerControlVm).SelectedMemObject);
+            // win.ShowDialog();
         }
 
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var win = new MaterialEditWindow(new MembraneObject());
-            win.ShowDialog();
+            // var win = new MaterialEditWindow(new MembraneObject());
+            // win.ShowDialog();
         }
     }
 }

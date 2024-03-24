@@ -14,21 +14,21 @@ namespace PlenkaWpf.VM
 {
     public class UnitCreateWindowVM : ViewModelBase
     {
-        public Unit Unit { get; set; } = new Unit();
+        // public Unit Unit { get; set; } = new Unit();
         private RelayCommand _saveUnit;
 
-        public RelayCommand SaveUnit
-        {
-            get
-            {
-                return _saveUnit ??= new RelayCommand(o =>
-                {
-                    DbContextSingleton.GetInstance().Units.Add(Unit);
-                    DbContextSingleton.GetInstance().SaveChanges();
-                    OnClosingRequest();
-                },_=> !string.IsNullOrEmpty(Unit.UnitName));
-            }
-        }
+        // public RelayCommand SaveUnit
+        // {
+        //     get
+        //     {
+        //         return _saveUnit ??= new RelayCommand(o =>
+        //         {
+        //             DbContextSingleton.GetInstance().Units.Add(Unit);
+        //             DbContextSingleton.GetInstance().SaveChanges();
+        //             OnClosingRequest();
+        //         },_=> !string.IsNullOrEmpty(Unit.UnitName));
+        //     }
+        // }
 
         private RelayCommand _exitCommand;
 

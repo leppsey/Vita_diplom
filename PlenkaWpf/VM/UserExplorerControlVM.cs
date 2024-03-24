@@ -23,7 +23,7 @@ namespace PlenkaWpf.VM
         {
             _db = DbContextSingleton.GetInstance();
             Users = _db.Users.Local.ToObservableCollection();
-            UserTypes = _db.UserTypes.Local.ToObservableCollection();
+            // UserTypes = _db.UserTypes.Local.ToObservableCollection();
         }
 
     #endregion
@@ -36,7 +36,7 @@ namespace PlenkaWpf.VM
         private readonly MembraneContext _db;
         public User SelectedUser { get; set; }
         public ObservableCollection<User> Users { get; set; }
-        public ObservableCollection<UserType> UserTypes { get; set; }
+        // public ObservableCollection<UserType> UserTypes { get; set; }
 
     #endregion
 
@@ -86,7 +86,7 @@ namespace PlenkaWpf.VM
             {
                 return _deleteUser ??= new RelayCommand(o =>
                 {
-                    if (MessageBox.Show($"Вы действительно хотите удалить пользователя {SelectedUser.UserName}?",
+                    if (MessageBox.Show($"Вы действительно хотите удалить пользователя {SelectedUser.Login}?",
                                         "Удаление пользователя", MessageBoxButton.YesNo, MessageBoxImage.Warning) ==
                         MessageBoxResult.Yes)
                     {

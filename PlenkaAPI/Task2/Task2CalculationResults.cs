@@ -1,6 +1,6 @@
 namespace PlenkaAPI.Task2;
 
-public struct Task2CalculationResults
+public record struct Task2CalculationResults
 {
     public double S { get; set; }
     public double U { get; set; }

@@ -10,12 +10,12 @@ namespace PlenkaWpf.View
     /// </summary>
     public partial class MaterialEditWindow
     {
-        public MaterialEditWindow(MembraneObject material)
-        {
-            InitializeComponent();
-            var vm = new MaterialEditWindowVm(material);
-            DataContext = vm;
-            vm.ClosingRequest += (sender, e) => Close();
-        }
+        // public MaterialEditWindow(MembraneObject material)
+        // {
+        //     InitializeComponent();
+        //     var vm = new MaterialEditWindowVm(material);
+        //     DataContext = vm;
+        //     vm.ClosingRequest += (sender, e) => Close();
+        // }
     }
 }

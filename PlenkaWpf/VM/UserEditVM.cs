@@ -16,20 +16,20 @@ namespace PlenkaWpf.VM
 
     #region Constructors
 
-        public UserEditVM(User tempUser)
-        {
-            TempUser = new User
-            {
-                UserId = tempUser.UserId,
-                UserName = tempUser.UserName,
-                UserPassword = tempUser.UserPassword,
-                UserType = tempUser.UserType,
-            };
-
-            EditingUser = tempUser;
-            Db = DbContextSingleton.GetInstance();
-            UserTypes = Db.UserTypes.Local.ToObservableCollection();
-        }
+        // public UserEditVM(User tempUser)
+        // {
+        //     TempUser = new User
+        //     {
+        //         UserId = tempUser.UserId,
+        //         UserName = tempUser.UserName,
+        //         UserPassword = tempUser.UserPassword,
+        //         UserType = tempUser.UserType,
+        //     };
+        //
+        //     EditingUser = tempUser;
+        //     Db = DbContextSingleton.GetInstance();
+        //     UserTypes = Db.UserTypes.Local.ToObservableCollection();
+        // }
 
     #endregion
 
@@ -38,7 +38,7 @@ namespace PlenkaWpf.VM
 
     #region Properties
 
-        public ObservableCollection<UserType> UserTypes { get; set; }
+        // public ObservableCollection<UserType> UserTypes { get; set; }
         public User TempUser { get; set; }
         public User EditingUser { get; set; }
 
@@ -60,18 +60,18 @@ namespace PlenkaWpf.VM
             {
                 return _saveUser ??= new RelayCommand(o =>
                 {
-                    EditingUser.UserId = TempUser.UserId;
-                    EditingUser.UserName = TempUser.UserName;
-                    EditingUser.UserPassword = TempUser.UserPassword;
-                    EditingUser.UserType = TempUser.UserType;
-
-                    if (!Db.Users.Contains(EditingUser))
-                    {
-                        Db.Users.Add(EditingUser);
-                    }
-
-                    Db.SaveChanges();
-                    OnClosingRequest();
+                    // EditingUser.UserId = TempUser.UserId;
+                    // EditingUser.UserName = TempUser.UserName;
+                    // EditingUser.UserPassword = TempUser.UserPassword;
+                    // EditingUser.UserType = TempUser.UserType;
+                    //
+                    // if (!Db.Users.Contains(EditingUser))
+                    // {
+                    //     Db.Users.Add(EditingUser);
+                    // }
+                    //
+                    // Db.SaveChanges();
+                    // OnClosingRequest();
                 });
             }
         }

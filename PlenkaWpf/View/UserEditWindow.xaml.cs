@@ -13,9 +13,9 @@ namespace PlenkaWpf.View
         public UserEditWindow(User user)
         {
             InitializeComponent();
-            var vm = new UserEditVM(user);
-            DataContext = vm;
-            vm.ClosingRequest += (sender, e) => Close();
+            // var vm = new UserEditVM(user);
+            // DataContext = vm;
+            // vm.ClosingRequest += (sender, e) => Close();
         }
     }
 }

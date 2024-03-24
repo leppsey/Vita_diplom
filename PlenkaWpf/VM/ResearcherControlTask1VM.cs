@@ -20,16 +20,16 @@ public class ResearcherControlTask1VM: ViewModelBase
     public ResearcherControlTask1VM()
     {
          //Materials = DbContextSingleton.GetInstance().MembraneObjects.Where(o => o.Type.TypeName == "Материал").ToList();
-            Materials = new List<MembraneObject> { new MembraneObject() {ObName="Бензиновая фракция" } };
-            //Material = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Полистирол");
-            Material = Materials.First();
-            //Canals = DbContextSingleton.GetInstance().MembraneObjects.Where(o => o.Type.TypeName == "Канал").ToList();
-            Reactors = new List<MembraneObject> { new MembraneObject() { ObName = "ЛК-2Б" } };
-            //Canal = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Канал");
-            Reactor = Reactors.First();
-            Catalists = new List<MembraneObject> { new MembraneObject() { ObName = "ATIS-2L" } };
-            //Canal = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Канал");
-            Catalist = Catalists.First();
+            // Materials = new List<MembraneObject> { new MembraneObject() {ObName="Бензиновая фракция" } };
+            // //Material = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Полистирол");
+            // Material = Materials.First();
+            // //Canals = DbContextSingleton.GetInstance().MembraneObjects.Where(o => o.Type.TypeName == "Канал").ToList();
+            // Reactors = new List<MembraneObject> { new MembraneObject() { ObName = "ЛК-2Б" } };
+            // //Canal = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Канал");
+            // Reactor = Reactors.First();
+            // Catalists = new List<MembraneObject> { new MembraneObject() { ObName = "ATIS-2L" } };
+            // //Canal = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Канал");
+            // Catalist = Catalists.First();
             Length = 80.0;
             Consumption = 9.7;
             Diametr = 3.0;
@@ -122,9 +122,9 @@ public class ResearcherControlTask1VM: ViewModelBase
         /// <summary>
         ///     Доступные материалы
         /// </summary>
-        public List<MembraneObject> Materials { get; set; }
-        public List<MembraneObject> Reactors { get; set; }
-        public List<MembraneObject> Catalists { get; set; }
+        // public List<MembraneObject> Materials { get; set; }
+        // public List<MembraneObject> Reactors { get; set; }
+        // public List<MembraneObject> Catalists { get; set; }
 
 
         #region CanalProps
@@ -132,22 +132,22 @@ public class ResearcherControlTask1VM: ViewModelBase
         /// <summary>
         ///     Текущий канал
         /// </summary>
-        private MembraneObject _canal;
-
-        public MembraneObject Reactor
-        {
-            get
-            {
-                return _canal;
-            }
-            set
-            {
-                _canal = value;
-                // OnPropertyChanged(nameof(Length));
-                // OnPropertyChanged(nameof(Width));
-                // OnPropertyChanged(nameof(Depth));
-            }
-        }
+        // private MembraneObject _canal;
+        //
+        // public MembraneObject Reactor
+        // {
+        //     get
+        //     {
+        //         return _canal;
+        //     }
+        //     set
+        //     {
+        //         _canal = value;
+        //         // OnPropertyChanged(nameof(Length));
+        //         // OnPropertyChanged(nameof(Width));
+        //         // OnPropertyChanged(nameof(Depth));
+        //     }
+        // }
 
         /// <summary>
         ///     Длина канала
@@ -198,45 +198,45 @@ public class ResearcherControlTask1VM: ViewModelBase
         // }
 
         #endregion
-        private MembraneObject _catalist;
-
-        /// <summary>
-        ///     Выбранный материал
-        /// </summary>
-        public MembraneObject Catalist
-        {
-            get
-            {
-                return _catalist;
-            }
-            set
-            {
-                _catalist = value;
-
-                OnPropertyChanged();
-
-            }
-        }
+        // private MembraneObject _catalist;
+        //
+        // /// <summary>
+        // ///     Выбранный материал
+        // /// </summary>
+        // public MembraneObject Catalist
+        // {
+        //     get
+        //     {
+        //         return _catalist;
+        //     }
+        //     set
+        //     {
+        //         _catalist = value;
+        //
+        //         OnPropertyChanged();
+        //
+        //     }
+        // }
 
 
         #region MaterialProps
 
-        private MembraneObject _material;
-
-        /// <summary>
-        ///     Выбранный материал
-        /// </summary>
-        public MembraneObject Material
-        {
-            get
-            {
-                return _material;
-            }
-            set
-            {
-                _material = value;
-            }
-        }
+        // private MembraneObject _material;
+        //
+        // /// <summary>
+        // ///     Выбранный материал
+        // /// </summary>
+        // public MembraneObject Material
+        // {
+        //     get
+        //     {
+        //         return _material;
+        //     }
+        //     set
+        //     {
+        //         _material = value;
+        //     }
+        // }
 
         private object _null;
 
@@ -500,7 +500,7 @@ public class ResearcherControlTask1VM: ViewModelBase
 
                     var cp = new Task1CalculationParameters
                     {
-                        MaterialName = Material.ObName,
+                        // MaterialName = Material.ObName,
                         // W = (double) Width,
                         D = (double) Diametr,
                         L = (double) Length,

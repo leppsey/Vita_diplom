@@ -11,9 +11,9 @@ namespace PlenkaWpf.View
         public CreateMaterialWindow()
         {
             InitializeComponent();
-            var vm = new CreateMaterialVM();
-            DataContext = vm;
-            vm.ClosingRequest += (sender, e) => Close();
+            // var vm = new CreateMaterialVM();
+            // DataContext = vm;
+            // vm.ClosingRequest += (sender, e) => Close();
         }
     }
 }

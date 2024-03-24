@@ -48,13 +48,13 @@ namespace PlenkaWpf.View
 
             try
             {
-                var user = con.Users.First(u => u.UserName == userName && u.UserPassword == password);
-                if (user.UserType.UserTypeName == "Администратор")
+                var user = con.Users.First(u => u.Login == userName && u.Password == password);
+                if (user.Role == "Администратор")
                 {
                     OnChangingRequest(new MainAdminControl());
                 }
 
-                if (user.UserType.UserTypeName == "Исследователь")
+                if (user.Role == "Исследователь")
                 {
                     OnChangingRequest(new ResearcherControl());
                 }

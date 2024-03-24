@@ -7,7 +7,8 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:plenkaWpf="clr-namespace:PlenkaWpf"
-
+             xmlns:vm="clr-namespace:PlenkaWpf.VM"
+             d:DataContext="{d:DesignInstance vm:ResearcherControlTask1VM}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>

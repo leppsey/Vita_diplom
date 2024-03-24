@@ -13,8 +13,8 @@ namespace PlenkaWpf.View
         public ObjectPropertiesControl()
         {
             InitializeComponent();
-            var vm = new ObjectPropertiesControlVM();
-            DataContext = vm;
+            // var vm = new ObjectPropertiesControlVM();
+            // DataContext = vm;
         }
     }
 }

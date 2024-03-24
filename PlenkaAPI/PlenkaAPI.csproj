@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <None Update="Membrane.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
