@@ -36,19 +36,19 @@ public class ResearcherControlTask2VM: ViewModelBase
 
                 var cp = new Task2CalculationParameters
                 {
-                    d = (double)d,
-                    l = (double)l,
-                    Q = (double)Q,
-                    cAin = (double)cAin,
-                    T = (double)T,
-                    k01 = (double)k01,
-                    ea1 = (double)ea1,
-                    k02 = (double)k02,
-                    ea2 = (double)ea2,
-                    deltaX0 = (double)deltaX0,
-                    ku = (double)ku,
-                    eMax = (double)eMax,
-                    qMax = (double)qMax
+                    d = d ?? 0,
+                    l = l ?? 0,
+                    Q = Q ?? 0,
+                    cAin = cAin ?? 0,
+                    T = T ?? 0,
+                    k01 = k01 ?? 0,
+                    ea1 = ea1 ?? 0,
+                    k02 = k02 ?? 0,
+                    ea2 = ea2 ?? 0,
+                    deltaX0 = deltaX0 ?? 0,
+                    ku = ku ?? 0,
+                    eMax = eMax ?? 0,
+                    qMax = qMax ?? 0
                 };
                 var math = new Task2MathClass(cp);
                 var res = math.Calculate();

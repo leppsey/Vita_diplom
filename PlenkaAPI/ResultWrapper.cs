@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace PlenkaAPI;
 
@@ -16,14 +17,12 @@ public class ResultWrapper<T>
             Result = result,
         };
     }
-    public static ResultWrapper<T> WithError(string message)
+    public static ResultWrapper<T> WithError(params string[] messages)
     {
+        var validationErrors = messages.Select(message => new ValidationResult(message)).ToList();
         return new ResultWrapper<T>()
         {
-            ValidationResults = new List<ValidationResult>()
-            {
-                new(message)
-            }
+            ValidationResults = validationErrors
         };
     }
 }

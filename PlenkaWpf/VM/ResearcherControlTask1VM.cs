@@ -19,17 +19,13 @@ public class ResearcherControlTask1VM: ViewModelBase
 {
     public ResearcherControlTask1VM()
     {
-         //Materials = DbContextSingleton.GetInstance().MembraneObjects.Where(o => o.Type.TypeName == "Материал").ToList();
-            // Materials = new List<MembraneObject> { new MembraneObject() {ObName="Бензиновая фракция" } };
-            // //Material = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Полистирол");
-            // Material = Materials.First();
-            // //Canals = DbContextSingleton.GetInstance().MembraneObjects.Where(o => o.Type.TypeName == "Канал").ToList();
-            // Reactors = new List<MembraneObject> { new MembraneObject() { ObName = "ЛК-2Б" } };
-            // //Canal = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Канал");
-            // Reactor = Reactors.First();
-            // Catalists = new List<MembraneObject> { new MembraneObject() { ObName = "ATIS-2L" } };
-            // //Canal = DbContextSingleton.GetInstance().MembraneObjects.First(v => v.ObName == "Канал");
-            // Catalist = Catalists.First();
+            RawMaterials = new List<RawMaterial> { new () {Name= "Бензиновая фракция" } };
+            SelectedRawMaterial = RawMaterials.First();
+            Installations = new List<Installation> { new () { Name = "ЛК-2Б" } };
+            SelectedInstallation = Installations.First();
+            Catalysts = new List<Catalyst> { new () { Name = "ATIS-2L" } };
+            SelectedCatalyst = Catalysts.First();
+            
             Length = 80.0;
             Consumption = 9.7;
             Diametr = 3.0;
@@ -119,12 +115,13 @@ public class ResearcherControlTask1VM: ViewModelBase
 
     #region Properties
 
-        /// <summary>
-        ///     Доступные материалы
-        /// </summary>
-        // public List<MembraneObject> Materials { get; set; }
-        // public List<MembraneObject> Reactors { get; set; }
-        // public List<MembraneObject> Catalists { get; set; }
+        public List<Installation> Installations { get; set; }
+
+        public Installation SelectedInstallation { get; set; }
+        public List<Catalyst> Catalysts { get; set; }
+        public Catalyst SelectedCatalyst { get; set; }
+        public List<RawMaterial> RawMaterials { get; set; }
+        public RawMaterial SelectedRawMaterial { get; set; }
 
 
         #region CanalProps
@@ -284,9 +281,9 @@ public class ResearcherControlTask1VM: ViewModelBase
         {
             get
             {
-                if (Task1MathClass != null)
+                if (MathClass != null)
                 {
-                    return Task1MathClass.Results.CordCs;
+                    return MathClass.Results.CordCs;
                 }
 
                 return null;
@@ -365,17 +362,17 @@ public class ResearcherControlTask1VM: ViewModelBase
             }
         }
 
-        private Task1MathClass _task1MathClass;
+        private MathClass _mathClass;
 
-        public Task1MathClass Task1MathClass
+        public MathClass MathClass
         {
             get
             {
-                return _task1MathClass;
+                return _mathClass;
             }
             set
             {
-                _task1MathClass = value;
+                _mathClass = value;
                 OnPropertyChanged();
             }
         }    
@@ -397,15 +394,15 @@ public class ResearcherControlTask1VM: ViewModelBase
 
         private void UpdateInterfaceElelemts()
         {
-            var x = Task1MathClass.Results.CordCs.Select(x => x.Cord).ToList();
-            var c1 = Task1MathClass.Results.CordCs.Select(x => x.C1).ToList();
-            var c2 = Task1MathClass.Results.CordCs.Select(x => x.C2).ToList();
-            var c3 = Task1MathClass.Results.CordCs.Select(x => x.C3).ToList();
-            var c4 = Task1MathClass.Results.CordCs.Select(x => x.C4).ToList();
-            var c5 = Task1MathClass.Results.CordCs.Select(x => x.C5).ToList();
-            var c6 = Task1MathClass.Results.CordCs.Select(x => x.C6).ToList();
-            var c7 = Task1MathClass.Results.CordCs.Select(x => x.C7).ToList();
-            var t = Task1MathClass.Results.CordCs.Select(x => x.T).ToList();
+            var x = MathClass.Results.CordCs.Select(x => x.Cord).ToList();
+            var c1 = MathClass.Results.CordCs.Select(x => x.C1).ToList();
+            var c2 = MathClass.Results.CordCs.Select(x => x.C2).ToList();
+            var c3 = MathClass.Results.CordCs.Select(x => x.C3).ToList();
+            var c4 = MathClass.Results.CordCs.Select(x => x.C4).ToList();
+            var c5 = MathClass.Results.CordCs.Select(x => x.C5).ToList();
+            var c6 = MathClass.Results.CordCs.Select(x => x.C6).ToList();
+            var c7 = MathClass.Results.CordCs.Select(x => x.C7).ToList();
+            var t = MathClass.Results.CordCs.Select(x => x.T).ToList();
 
             UpdateLineSeriesByCordAndValue(С1LineSerie, x, c1);
             UpdateLineSeriesByCordAndValue(С2LineSerie, x, c2);
@@ -498,7 +495,7 @@ public class ResearcherControlTask1VM: ViewModelBase
                 {
                     IsCalculated = true;
 
-                    var cp = new Task1CalculationParameters
+                    var cp = new CalculationParameters
                     {
                         // MaterialName = Material.ObName,
                         // W = (double) Width,
@@ -512,9 +509,9 @@ public class ResearcherControlTask1VM: ViewModelBase
                         Step = (double) Step,
                     };
 
-                    Task1MathClass = new Task1MathClass(cp);
-                    Task1MathClass.Calculate();
-                    OnPropertyChanged(nameof(Task1MathClass));
+                    MathClass = new MathClass(cp);
+                    MathClass.Calculate();
+                    OnPropertyChanged(nameof(MathClass));
                     UpdateInterfaceElelemts();
                 });
             }

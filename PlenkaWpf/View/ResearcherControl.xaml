@@ -49,10 +49,10 @@
 
     <Grid Background="{StaticResource Style3}" x:Name="MainGrid">
         <TabControl>
-            <TabItem Header="ОКОШКО 1">
+            <TabItem Header="Проектирование">
               <view:ResearcherControlTask1 x:Name="Task1Control"/>
             </TabItem>
-            <TabItem Header="ОКОШКО 2">
+            <TabItem Header="Математическая модель">
               <view:ResearcherControlTask2 x:Name="Task2Control"/>
             </TabItem>
         </TabControl>

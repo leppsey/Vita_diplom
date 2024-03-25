@@ -6,9 +6,12 @@ using System.Linq;
 
 namespace PlenkaAPI.Task1;
 
-public class Task1MathClass // todo как-то красиво переписать все это
+/// <summary>
+/// 
+/// </summary>
+public class MathClass // todo как-то красиво переписать все это
 {
-    public Task1MathClass(Task1CalculationParameters cp)
+    public MathClass(CalculationParameters cp)
     {
         Cp = cp;
     }
@@ -16,7 +19,7 @@ public class Task1MathClass // todo как-то красиво переписа�
     /// <summary>
     ///     Результаты вычислений
     /// </summary>
-    public Task1CalculationResults Results { get; private set; }
+    public CalculationResults Results { get; private set; }
 
     private int GetDecimalDigitsCount(double number)
     {
@@ -129,7 +132,7 @@ public class Task1MathClass // todo как-то красиво переписа�
 
         sw.Stop();
 
-        Results = new Task1CalculationResults
+        Results = new CalculationResults
             { CordCs = cordCs, MathTimer = sw, OKT = Math.Round(oktNumber, 2) };
     }
 
@@ -139,7 +142,7 @@ public class Task1MathClass // todo как-то красиво переписа�
 
     #region Parameters
 
-    public Task1CalculationParameters Cp { get; init; }
+    public CalculationParameters Cp { get; init; }
 
     private double L => Cp.L;
 

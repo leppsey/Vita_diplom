@@ -1,6 +1,6 @@
 namespace PlenkaAPI;
 
-public struct Task1CalculationParameters
+public struct CalculationParameters
 {
     public string MaterialName { get; init; }
     public double Step { get; init; } // Нада

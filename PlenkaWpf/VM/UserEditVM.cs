@@ -42,7 +42,7 @@ namespace PlenkaWpf.VM
         public User TempUser { get; set; }
         public User EditingUser { get; set; }
 
-        private MembraneContext Db { get; }
+        private IsomerizationContext Db { get; }
 
     #endregion
 

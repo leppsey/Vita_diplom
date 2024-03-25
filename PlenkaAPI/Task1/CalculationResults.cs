@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace PlenkaAPI;
 
-public struct Task1CalculationResults
+public struct CalculationResults
 {
     public List<CordC> CordCs { get; init; }
 

@@ -7,9 +7,12 @@ using PlenkaAPI.Models;
 
 namespace PlenkaAPI.Data
 {
-    public class MembraneContext : DbContext
+    /// <summary>
+    /// Класс для взаимодействия с базой данных
+    /// </summary>
+    public class IsomerizationContext : DbContext
     {
-        public MembraneContext()
+        public IsomerizationContext()
         {
             Catalysts.Load();
             DimIsomerizations.Load();
@@ -20,7 +23,7 @@ namespace PlenkaAPI.Data
             Users.Load();
         }
 
-        public MembraneContext(DbContextOptions<MembraneContext> options)
+        public IsomerizationContext(DbContextOptions<IsomerizationContext> options)
             : base(options)
         {
         }

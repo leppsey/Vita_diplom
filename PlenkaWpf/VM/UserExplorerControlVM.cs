@@ -33,7 +33,7 @@ namespace PlenkaWpf.VM
 
     #region Properties
 
-        private readonly MembraneContext _db;
+        private readonly IsomerizationContext _db;
         public User SelectedUser { get; set; }
         public ObservableCollection<User> Users { get; set; }
         // public ObservableCollection<UserType> UserTypes { get; set; }

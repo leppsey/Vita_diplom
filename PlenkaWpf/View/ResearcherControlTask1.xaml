@@ -10,7 +10,7 @@
              xmlns:vm="clr-namespace:PlenkaWpf.VM"
              d:DataContext="{d:DesignInstance vm:ResearcherControlTask1VM}"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="800" d:DesignWidth="1500">
     <UserControl.Resources>
         <Style x:Key="TextBoxInError" BasedOn="{StaticResource {x:Type hc:TextBox}}" TargetType="{x:Type hc:TextBox}">
             <Style.Triggers>
@@ -97,8 +97,8 @@
                                                                 Margin="0 5" />
                                                 </Border>
                                                 <hc:ElementGroup Background="{StaticResource Style3}">
-                                                    <hc:ComboBox Margin="10 10" ItemsSource="{Binding Reactors}" Text="hui"
-                                                                 SelectedItem="{Binding Reactor}" DisplayMemberPath="ObName" />
+                                                    <hc:ComboBox Margin="10 10" ItemsSource="{Binding Installations}" Text="hui"
+                                                                 SelectedItem="{Binding SelectedInstallation}" DisplayMemberPath="Name" />
                                                 </hc:ElementGroup>
                                                 <Border Background="{StaticResource Style2}">
                                                     <hc:Divider Content="Сырье"
@@ -106,18 +106,18 @@
                                                 </Border>
                                                 <StackPanel Background="{StaticResource Style3}">
                                                     <hc:ElementGroup Background="{StaticResource Style3}">
-                                                        <hc:ComboBox Margin="10 10" ItemsSource="{Binding Materials}"
-                                                                     SelectedItem="{Binding Material}"
-                                                                     DisplayMemberPath="ObName" />
+                                                        <hc:ComboBox Margin="10 10" ItemsSource="{Binding RawMaterials}"
+                                                                     SelectedItem="{Binding SelectedRawMaterial}"
+                                                                     DisplayMemberPath="Name" />
                                                     </hc:ElementGroup>
                                                     <Border Background="{StaticResource Style2}">
                                                         <hc:Divider Content="Катализатор"
                                                                     Background="{StaticResource Style2}" Margin="0 5" />
                                                     </Border>
                                                     <hc:ElementGroup Background="{StaticResource Style3}">
-                                                        <hc:ComboBox Margin="10 10" ItemsSource="{Binding Catalists}"
-                                                                     SelectedItem="{Binding Catalist}"
-                                                                     DisplayMemberPath="ObName" />
+                                                        <hc:ComboBox Margin="10 10" ItemsSource="{Binding Catalysts}"
+                                                                     SelectedItem="{Binding SelectedCatalyst}"
+                                                                     DisplayMemberPath="Name" />
                                                     </hc:ElementGroup>
                                                 </StackPanel>
                                                 <Border Background="{StaticResource Style2}" />
@@ -338,9 +338,9 @@
                             <TabItem Header="Результаты вычислений" Background="{StaticResource Style2}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1500" />
-                                        <ColumnDefinition Width="1" />
-                                        <ColumnDefinition />
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="1"/>
+                                        <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
 
                                     <Grid.RowDefinitions>
@@ -356,20 +356,19 @@
 
 
                                     <DataGrid Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False"
-                                              ItemsSource="{Binding Task1MathClass.Results.CordCs}" SelectionMode="Single"
+                                              ItemsSource="{Binding MathClass.Results.CordCs}" SelectionMode="Single"
                                               CanUserAddRows="False"
                                               IsReadOnly="True" Background="{StaticResource Style3}">
                                         <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Длина реактора, м"
-                                                                Binding="{Binding Cord}" />
-                                            <DataGridTextColumn Header="С1, %" Binding="{Binding C1}" />
-                                            <DataGridTextColumn Header="С2, %" Binding="{Binding C2}" />
-                                            <DataGridTextColumn Header="С3, %" Binding="{Binding C3}" />
-                                            <DataGridTextColumn Header="С4, %" Binding="{Binding C4}" />
-                                            <DataGridTextColumn Header="С5, %" Binding="{Binding C5}" />
-                                            <DataGridTextColumn Header="С6, %" Binding="{Binding C6}" />
-                                            <DataGridTextColumn Header="С7, %" Binding="{Binding C7}" />
-                                            <DataGridTextColumn Header="T, C" Binding="{Binding T}" />
+                                            <DataGridTextColumn Header="Длина реактора, м" Binding="{Binding Cord, StringFormat=F2}" />
+                                            <DataGridTextColumn Header="С1, %" Binding="{Binding C1, StringFormat=F2}" />
+                                            <DataGridTextColumn Header="С2, %" Binding="{Binding C2, StringFormat=F2}" />
+                                            <DataGridTextColumn Header="С3, %" Binding="{Binding C3, StringFormat=F2}" />
+                                            <DataGridTextColumn Header="С4, %" Binding="{Binding C4, StringFormat=F2}" />
+                                            <DataGridTextColumn Header="С5, %" Binding="{Binding C5, StringFormat=F2}" />
+                                            <DataGridTextColumn Header="С6, %" Binding="{Binding C6, StringFormat=F2}" />
+                                            <DataGridTextColumn Header="С7, %" Binding="{Binding C7, StringFormat=F2}" />
+                                            <DataGridTextColumn Header="T, C" Binding="{Binding T, StringFormat=F2}" />
                                         </DataGrid.Columns>
                                     </DataGrid>
 
@@ -392,7 +391,7 @@
                                                         IsReadOnly="True"
                                                         hc:InfoElement.TitlePlacement="Left" Margin="10 5"
                                                         hc:InfoElement.TitleWidth="240"
-                                                        Text="{Binding Task1MathClass.Results.OKT, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Text="{Binding MathClass.Results.OKT, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                         HorizontalAlignment="Stretch" />
                                             <Border Background="{StaticResource Style2}">
                                                 <hc:Divider Content="Показатели экономичности"
@@ -403,7 +402,7 @@
                                                         IsReadOnly="True"
                                                         hc:InfoElement.TitlePlacement="Left" Margin="10 5"
                                                         hc:InfoElement.TitleWidth="240"
-                                                        Text="{Binding Task1MathClass.Results.MathTimer.ElapsedMilliseconds, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        Text="{Binding MathClass.Results.MathTimer.ElapsedMilliseconds, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                         HorizontalAlignment="Stretch" />
                                             <hc:TextBox hc:InfoElement.Title="Используемая RAM, МБ"
                                                         IsReadOnly="True"

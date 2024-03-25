@@ -42,12 +42,12 @@
             <TabItem Header="Редактирование объектов" Background="{StaticResource Style2}">
                 <view:MaterialExplorerControl />
             </TabItem>
-            <TabItem Header="Редактирование пользователей" Background="{StaticResource Style2}">
-                <view:UserExplorerControl />
-            </TabItem>
-            <TabItem Header="Редактирование типов объектов" Background="{StaticResource Style2}">
-                <view:ObjectPropertiesControl />
-            </TabItem>
+            <!-- <TabItem Header="Редактирование пользователей" Background="{StaticResource Style2}"> -->
+            <!--     <view:UserExplorerControl /> -->
+            <!-- </TabItem> -->
+            <!-- <TabItem Header="Редактирование типов объектов" Background="{StaticResource Style2}"> -->
+            <!--     <view:ObjectPropertiesControl /> -->
+            <!-- </TabItem> -->
         </TabControl>
     </Grid>
 </UserControl>

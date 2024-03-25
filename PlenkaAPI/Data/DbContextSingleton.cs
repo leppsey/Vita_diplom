@@ -2,12 +2,12 @@ namespace PlenkaAPI.Data
 {
     public static class DbContextSingleton
     {
-        private static MembraneContext _instance;
+        private static IsomerizationContext _instance;
 
         private static readonly object SyncRoot = new();
 
 
-        public static MembraneContext GetInstance()
+        public static IsomerizationContext GetInstance()
         {
             if (_instance == null)
             {
@@ -15,7 +15,7 @@ namespace PlenkaAPI.Data
                 {
                     if (_instance == null)
                     {
-                        _instance = new MembraneContext();
+                        _instance = new IsomerizationContext();
                     }
                 }
             }

@@ -30,7 +30,7 @@ public partial class ResearcherControl : UserControl, IСhangeableControl
     }
 
     public WindowState PreferedWindowState { get; set; } = WindowState.Maximized;
-    public string WindowTitle { get; set; } = "Vita Diplom";
+    public string WindowTitle { get; set; } = "Программный комплекс для технологического проектирования установок изомеризации";
     public double? PreferedHeight { get; set; }
     public double? PreferedWidth { get; set; }
     public event IСhangeableControl.ChangingRequestHandler ChangingRequest;

@@ -15,16 +15,31 @@ public class Task2MathClass
     }
     public ResultWrapper<Task2CalculationResults> Calculate()
     {
+        var validationErrors = new List<string>();
         if (ku < 0)
         {
-            return ResultWrapper<Task2CalculationResults>.WithError("Сеточное число Куранта должно быть больше нуля");
+            validationErrors.Add("Сеточное число Куранта должно быть больше нуля");
         }
 
         if (ku >= 1)
         {
-            return ResultWrapper<Task2CalculationResults>.WithError("Сеточное число Куранта должно быть меньше 1");
+            validationErrors.Add("Сеточное число Куранта должно быть меньше 1");
         }
 
+        if (d<=0)
+        {
+            validationErrors.Add("d должен быть больше 0");
+        }
+        if (Q<=0)
+        {
+            validationErrors.Add("Q должен быть больше 0");
+        }
+
+        if (validationErrors.Any())
+        {
+            return ResultWrapper<Task2CalculationResults>.WithError(validationErrors.ToArray());
+        }
+        
         var s = (Math.PI * Math.Pow(d, 2)) / 4;
         var u = (Q * Math.Pow(10, -3)) / s;
         var tR = l / u;

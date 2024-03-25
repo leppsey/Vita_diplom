@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <NoWin32Manifest>true</NoWin32Manifest>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
