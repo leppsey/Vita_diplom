@@ -1,8 +1,9 @@
 using System;
+using DAL;
 
 namespace Isomerization.Domain.Models;
 
-public class Catalyst
+public class Catalyst: ValidatableViewModel<CatalystValidator>
 {
     public int CatalystId { get; set; }
     public string Type { get; set; }

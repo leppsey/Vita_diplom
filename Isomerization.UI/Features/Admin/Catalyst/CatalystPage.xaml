@@ -1,0 +1,64 @@
+<Page x:Class="Isomerization.UI.Features.Admin.CatalystPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Isomerization.UI.Features.Admin"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:shared="clr-namespace:Isomerization.UI.Shared"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance local:CatalystPageVM}"
+      Title="CatalystPage">
+        <Grid Margin="30,30,30,0">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+        <shared:LabeledControlPresenter HeaderText="Катализаторы" HeaderFontSize="24">
+            <DataGrid 
+                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  Style="{DynamicResource DataGridStyle1}"
+                  ItemsSource="{Binding Catalysts}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Тип" Binding="{Binding Path=Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Активность" Binding="{Binding Path=Activity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Норма загрузки" Binding="{Binding Path=LoadingRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Температура реакции" Binding="{Binding Path=TemperatureReaction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <!-- <DataGridTextColumn Header="Время эксплуатации" Binding="{Binding Path=OperatingTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" /> -->
+                <DataGridTextColumn Header="Срок службы" Binding="{Binding Path=ServiceLife, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Дата ввода в эксплуатацию" Binding="{Binding Path=DateOfCommissioning, Mode=TwoWay,StringFormat=\{0:dd.MM.yy\}, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Дата вывода из эксплуатации" Binding="{Binding Path=DateOfDecommissioning, Mode=TwoWay,StringFormat=\{0:dd.MM.yy\}, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTemplateColumn  IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <ui:Button 
+                                           Icon="{ui:SymbolIcon Edit16}"
+                                           Appearance="Info"
+                                        CommandParameter="{Binding}"
+                                        Command="{Binding Path=ViewModel.EditEmployee,
+                                        RelativeSource={RelativeSource Mode=FindAncestor,
+                                        AncestorType={x:Type local:CatalystPage}}}" />
+                                <ui:Button Margin="5 0 0 0" 
+                                           Icon="{ui:SymbolIcon Delete16}"
+                                           Appearance="Danger"
+                                           CommandParameter="{Binding}"
+                                           Command="{Binding Path=ViewModel.DeleteEmployee,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type local:CatalystPage}}}" />
+                            </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        </shared:LabeledControlPresenter>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <ui:Button Content="Добавить катализатор" Appearance="Success" Icon="Add16" Command="{Binding ViewModel.AddEmployee}"/>
+        </StackPanel>
+    </Grid>
+
+</Page>

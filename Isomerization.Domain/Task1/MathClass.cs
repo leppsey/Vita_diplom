@@ -7,10 +7,14 @@ using System.Linq;
 namespace Isomerization.Domain.Task1;
 
 /// <summary>
-/// 
+/// Математический класс
 /// </summary>
 public class MathClass // todo как-то красиво переписать все это
 {
+    /// <summary>
+    /// Конструктор класса
+    /// </summary>
+    /// <param name="cp">Параметры для вычислений</param>
     public MathClass(CalculationParameters cp)
     {
         Cp = cp;

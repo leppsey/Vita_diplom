@@ -1,0 +1,21 @@
+﻿<Application x:Class="Isomerization.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Isomerization.UI"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemesDictionary Theme="Light" />
+                <ui:ControlsDictionary />
+                <ResourceDictionary Source="Shared/LabeledControlPresenter.xaml"/>
+                <ResourceDictionary Source="Shared/GalleryNavigationPresenter.xaml"/>
+                <ResourceDictionary Source="Shared/DataGridStyle.xaml"/>
+                
+                <ResourceDictionary Source="Shared/Styles/DatagridStyle.xaml"/>
+                <ResourceDictionary Source="Shared/Styles/ValidatableFrameworkElement.xaml"/>
+                <ResourceDictionary Source="Shared/Styles/MenuItemWhiteForeground.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -10,6 +10,7 @@
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="EntityFramework.ru" Version="6.2.0" />
     <PackageReference Include="EntityFrameworkCore.Scaffolding.Handlebars" Version="6.0.3" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.4" />
     <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
@@ -32,7 +33,7 @@
 
   <ItemGroup>
     <None Update="Membrane.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Update="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -49,6 +50,9 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Models\CatalystValidator.cs">
+      <DependentUpon>Catalyst.cs</DependentUpon>
     </Compile>
   </ItemGroup>
 

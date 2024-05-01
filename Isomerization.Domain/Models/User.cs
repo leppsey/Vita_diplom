@@ -22,5 +22,6 @@ public class User
     /// <summary>
     /// Роль
     /// </summary>
-    public string Role { get; set; }
+    public virtual UserRole UserRole{ get; set; }
+    public int UserRoleId{ get; set; }
 }

@@ -12,13 +12,15 @@ namespace Isomerization.Domain.Data
     {
         public IsomerizationContext()
         {
-            Catalysts.Load();
-            DimIsomerizations.Load();
-            Installations.Load();
-            Kinetics.Load();
-            Pipelines.Load();
-            RawMaterials.Load();
-            Users.Load();
+            // Database.EnsureCreated();
+            // Catalysts.Load();
+            // DimIsomerizations.Load();
+            // Installations.Load();
+            // Kinetics.Load();
+            // Pipelines.Load();
+            // RawMaterials.Load();
+            // Users.Load();
+            // UserRoles.Load();
         }
 
         public IsomerizationContext(DbContextOptions<IsomerizationContext> options)
@@ -33,6 +35,7 @@ namespace Isomerization.Domain.Data
         public virtual DbSet<Pipeline> Pipelines { get; set; }
         public virtual DbSet<RawMaterial> RawMaterials { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserRole> UserRoles { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
