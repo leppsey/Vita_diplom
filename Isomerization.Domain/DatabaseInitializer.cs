@@ -221,7 +221,7 @@ public class DatabaseInitializer
             new()
             {
                 Reaction‎=7,
-                PreExponentialFactor‎=,
+                PreExponentialFactor‎=10000,
                 EnergyActivation‎=100,
                 Kineticscol‎=,
             },
