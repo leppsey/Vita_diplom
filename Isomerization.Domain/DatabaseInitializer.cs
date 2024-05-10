@@ -134,14 +134,14 @@ public class DatabaseInitializer
         {
             new()
             {
-                Type = "Тип установки 1",
-                Name = "Название установки 1",
+                Type = "Реакторный блок",
+                Name = "ЛК-2Б ООО КИНЕФ",
                 Diameter = 5,
                 Height = 8,
                 Length = 12,
                 Performance = 123,
                 Pressure = 354,
-                Status = "Статус установки 1",
+                Status = "в работе",
                 Temperature = 654,
                 Volume = 351,
                 EnergyConsumption = 743,
@@ -151,14 +151,14 @@ public class DatabaseInitializer
             },
             new()
             {
-                Type = "Тип установки 2",
-                Name = "Название установки 2",
+                Type = "Реакторный блок",
+                Name = "ПГИ-434 ОАО Газпромнефтехим",
                 Diameter = 4,
                 Height = 2,
                 Length = 5,
                 Performance = 531,
                 Pressure = 865,
-                Status = "Статус установки 2",
+                Status = "В работе",
                 Temperature = 25,
                 Volume = 56,
                 EnergyConsumption = 92,
@@ -171,6 +171,65 @@ public class DatabaseInitializer
         
         #endregion
 
+        #region RawMaterial
+
+        var defaultRawMaterial = new List<RawMaterial>()
+        {
+            new()
+            {
+               Name=Стабильный гидрогенизат-1,
+               Consumption=0.3,
+                Compound=13000,
+                Density=0.650,
+                HeatCapacity=2100,
+                Viscosity=0.0001,
+                SulfurContent=0.1,
+                OctaneRating=80,
+            },
+            
+            new()
+            {
+               Name=Стабильный гидрогенизат-2,
+               Consumption=0.4,
+                Compound=20000,
+                Density=0.660,
+                HeatCapacity=2150,
+                Viscosity=0.0005,
+                SulfurContent=0.05,
+                OctaneRating=84,
+            },
+            new()
+            {
+               Name=Стабильный гидрогенизат-3,
+               Consumption=0.4,
+                Compound=18000,
+                Density=0.660,
+                HeatCapacity=2000,
+                Viscosity=0.0002,
+                SulfurContent=0.01,
+                OctaneRating=86,
+            },
+        };
+        context.AddRange(defaultRawMaterial);
+        
+        #endregion
+
+        #region Kinetic
+
+        var defaultKinetic = new List<Kinetic>()
+        {
+            new()
+            {
+                Reaction‎=7,
+                PreExponentialFactor‎=,
+                EnergyActivation‎=100,
+                Kineticscol‎=,
+            },
+            
+        };
+        context.AddRange(defaultKinetic);
+        
+        #endregion
         context.SaveChanges();
     }
 }
