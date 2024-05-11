@@ -54,6 +54,24 @@
     <Compile Update="Models\CatalystValidator.cs">
       <DependentUpon>Catalyst.cs</DependentUpon>
     </Compile>
+    <Compile Update="Models\InstallationValidator.cs">
+      <DependentUpon>Installation.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\KineticValidator.cs">
+      <DependentUpon>Kinetic.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\PipelineValidator.cs">
+      <DependentUpon>Pipeline.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\RawMaterialValidator.cs">
+      <DependentUpon>RawMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\UserValidator.cs">
+      <DependentUpon>User.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\UserRoleValidator.cs">
+      <DependentUpon>UserRole.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
