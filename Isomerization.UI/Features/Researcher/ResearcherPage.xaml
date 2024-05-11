@@ -6,19 +6,31 @@
       xmlns:local="clr-namespace:Isomerization.UI.Features"
       xmlns:shared="clr-namespace:Isomerization.UI.Shared"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:researcher="clr-namespace:Isomerization.UI.Features.Researcher"
+      xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+      xmlns:skiaSharpView="clr-namespace:LiveChartsCore.SkiaSharpView;assembly=LiveChartsCore.SkiaSharpView"
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:ResearcherPageVM}"
       d:DesignHeight="2500"
       d:DesignWidth="1200"
       Title="ResearcherPage"  >
-    <Grid Margin="30,10,30,0"> 
+    
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
+    <Grid Margin="30,10,30,0" > 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ui:PassiveScrollViewer Grid.Column="0" MinWidth="300" Margin="0,0,15,0">
-                <StackPanel>
+        <Grid Grid.Column="0" Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}}">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <ui:PassiveScrollViewer Grid.Column="0" MinWidth="300" Margin="0,0,15,0">
+                <StackPanel Margin="0,0,5,0">
                     <shared:LabeledControlPresenter HeaderText="Технологическое оборудование, сырье, катализатор"
                                                     HeaderFontSize="16"
                                                     Margin="0,7">
@@ -53,62 +65,13 @@
                                 <shared:LabeledControlPresenter HeaderTextPlacement="Left" HeaderText="Сырье C0" RightText="моль/м³">
                                     <ui:NumberBox Value="{Binding C0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
                                 </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="Начальная температура">
+                                <shared:LabeledControlPresenter HeaderTextPlacement="Left" HeaderText="Начальная температура">
                                     <ui:NumberBox Value="{Binding T0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
                                 </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="Расход сырья">
+                                <shared:LabeledControlPresenter HeaderTextPlacement="Left" HeaderText="Расход сырья">
                                     <ui:NumberBox Value="{Binding G, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
                                 </shared:LabeledControlPresenter>
                             </StackPanel>
-                        </ui:Card>
-                    </shared:LabeledControlPresenter>
-                    <shared:LabeledControlPresenter HeaderText="Система"
-                                                    HeaderFontSize="16"
-                                                    Margin="0,7">
-                        <ui:Card>
-                            <StackPanel>
-                                <RadioButton GroupName="radio_group_system"
-                                             Content="Двухкомпонентная">
-                                </RadioButton>
-                                <RadioButton GroupName="radio_group_system"
-                                             Content="Трехкомпонентная">
-                                </RadioButton>
-                                <RadioButton GroupName="radio_group_system"
-                                             Content="Четырехкомпонентная">
-                                </RadioButton>
-                            </StackPanel>
-                        </ui:Card>
-                    </shared:LabeledControlPresenter>
-                    <shared:LabeledControlPresenter HeaderText="Стехиометрические показатели"
-                                                    HeaderFontSize="16"
-                                                    Margin="0,7">
-                        <ui:Card>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                <shared:LabeledControlPresenter HeaderText="С1"
-                                    Grid.Row="0" Grid.Column="0">
-                                    <ui:NumberBox Value="{Binding C1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="С2"
-                                    Grid.Row="1" Grid.Column="0">
-                                    <ui:NumberBox Value="{Binding C2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="С3"
-                                    Grid.Row="0" Grid.Column="1">
-                                    <ui:NumberBox Value="{Binding C3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="С4"
-                                    Grid.Row="1" Grid.Column="1">
-                                    <ui:NumberBox Value="{Binding C4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>
-                            </Grid>
                         </ui:Card>
                     </shared:LabeledControlPresenter>
                     <shared:LabeledControlPresenter HeaderText="Погрешность решения"
@@ -156,55 +119,164 @@
                             </StackPanel>
                         </ui:Card>
                     </shared:LabeledControlPresenter>
-                    <ui:Button Content="Расчет" Appearance="Primary"></ui:Button>
                 </StackPanel>
-        </ui:PassiveScrollViewer>
+            </ui:PassiveScrollViewer>
+            <ui:Button Grid.Row="1"
+                       Width="150"
+                       Margin="0,0,35,0"
+                       HorizontalAlignment="Right"
+                       Content="Расчет"
+                       Appearance="Primary"
+                       Command="{Binding CalcCommand}"/>
+
+        </Grid>
         <!-- <GridSplitter Grid.Column="1" Width="10" ></GridSplitter> -->
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}}">
             <ui:TabView>
                 <TabItem>
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon Margin="0,0,6,0" Symbol="Table28"/>
-                            <TextBlock Text="Таблица" />
+                            <TextBlock Text="Обзор установки" />
                         </StackPanel>
                     </TabItem.Header>
                     <Grid>
-                        <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНА БЫТЬ КРУТАЯ ТАБЛИЦА" />
+                        <researcher:InstallationRenderControl />
+                        <!-- <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНА БЫТЬ КРУТАЯ ТАБЛИЦА" /> -->
                     </Grid>
                 </TabItem>
-                <TabItem>
+                <TabItem Visibility="{Binding IsCalculated, Converter = {StaticResource BooleanToVisibilityConverter}}">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon Margin="0,0,6,0" Symbol="Table28"/>
-                            <TextBlock Text="Основные продукты" />
+                            <TextBlock Text="График концетрации" />
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid>
-                        <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНы БЫТЬ ОСНОВНЫЕ ПРОДУКТЫ" />
-                    </Grid>
+                    <!-- <Grid> -->
+                        <lvc:CartesianChart
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            XAxes="{Binding XAxes}"
+                            YAxes="{Binding ConcentrationYAxes}"
+                            Series="{Binding CSeries}">
+                        </lvc:CartesianChart>
+                        <!-- <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНы БЫТЬ ОСНОВНЫЕ ПРОДУКТЫ" /> -->
+                    <!-- </Grid> -->
                 </TabItem>
-                <TabItem>
+                <TabItem Visibility="{Binding IsCalculated, Converter = {StaticResource BooleanToVisibilityConverter}}">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon Margin="0,0,6,0" Symbol="Table28"/>
-                            <TextBlock Text="Побочные продукты" />
+                            <TextBlock Text="График температуры" />
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid>
-                        <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНы БЫТЬ ПОБОЧНЫЕ ПРОДУКТЫ" />
-                    </Grid>
+                    <lvc:CartesianChart
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        XAxes="{Binding XAxes}"
+                        YAxes="{Binding TemperatureYAxes}"
+                        Series="{Binding TSeries}">
+                    </lvc:CartesianChart>
+
+                    <!-- <Grid> -->
+                    <!--     <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНы БЫТЬ ПОБОЧНЫЕ ПРОДУКТЫ" /> -->
+                    <!-- </Grid> -->
                 </TabItem>
-                <TabItem>
+                <TabItem Visibility="{Binding IsCalculated, Converter = {StaticResource BooleanToVisibilityConverter}}">
                     <TabItem.Header>
                         <StackPanel Orientation="Horizontal">
                             <ui:SymbolIcon Margin="0,0,6,0" Symbol="Table28"/>
-                            <TextBlock Text="Температура реакции" />
+                            <TextBlock Text="Таблица значений" />
                         </StackPanel>
                     </TabItem.Header>
-                    <Grid>
-                        <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНа БЫТЬ ТЕМПЕРАТУРА РЕАКЦИИ" />
-                    </Grid>
+                    <DataGrid Grid.Row="1" Grid.Column="0" AutoGenerateColumns="False"
+                              ItemsSource="{Binding MathClass.Results.CordCs}" SelectionMode="Single"
+                              CanUserAddRows="False"
+                              RowStyle="{DynamicResource DataGridRowStyle1}"
+                              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                              CellStyle="{DynamicResource DataGridCellStyle1}"
+                              Style="{DynamicResource DataGridStyle1}"
+                              IsReadOnly="True" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Длина реактора, м"
+                                                Binding="{Binding Cord}" />
+                            <DataGridTextColumn Header="С1, %" Binding="{Binding C1, StringFormat=F2}" />
+                            <DataGridTextColumn Header="С2, %" Binding="{Binding C2, StringFormat=F2}" />
+                            <DataGridTextColumn Header="С3, %" Binding="{Binding C3, StringFormat=F2}" />
+                            <DataGridTextColumn Header="С4, %" Binding="{Binding C4, StringFormat=F2}" />
+                            <DataGridTextColumn Header="С5, %" Binding="{Binding C5, StringFormat=F2}" />
+                            <DataGridTextColumn Header="С6, %" Binding="{Binding C6, StringFormat=F2}" />
+                            <DataGridTextColumn Header="С7, %" Binding="{Binding C7, StringFormat=F2}" />
+                            <DataGridTextColumn Header="T, C" Binding="{Binding T, StringFormat=F2}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </TabItem>
+                <TabItem Visibility="{Binding IsCalculated, Converter = {StaticResource BooleanToVisibilityConverter}}">
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <ui:SymbolIcon Margin="0,0,6,0" Symbol="Table28"/>
+                            <TextBlock Text="Результаты расчета" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel >
+                        <shared:LabeledControlPresenter 
+                            Margin="10"
+                            HeaderText="Критериальные показатели"
+                            HeaderFontSize="16">
+                            <ui:Card>
+                                <shared:LabeledControlPresenter HeaderText="Октановое число" HeaderFontSize="14">
+                                    <ui:TextBox 
+                                        IsReadOnly="True" 
+                                        Text="{Binding MathClass.Results.OKT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                </shared:LabeledControlPresenter>
+                            </ui:Card>
+                        </shared:LabeledControlPresenter>
+                        <shared:LabeledControlPresenter 
+                            Margin="10"
+                            HeaderText="Показатели экономичности"
+                            HeaderFontSize="16">
+                            <ui:Card>
+                                <StackPanel>
+                                    <shared:LabeledControlPresenter HeaderText="Время расчёта, мс" HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.MathTimer.ElapsedMilliseconds, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                    <shared:LabeledControlPresenter HeaderText="Используемая RAM, МБ" HeaderFontSize="14">
+                                        <ui:TextBox
+                                            IsReadOnly="True" 
+                                            Text="{Binding TotalMemory, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                </StackPanel>
+                            </ui:Card>
+                        </shared:LabeledControlPresenter>
+                        <!-- <hc:TextBox hc:InfoElement.Title="Октановое число" -->
+                        <!--             IsReadOnly="True" -->
+                        <!--             hc:InfoElement.TitlePlacement="Left" Margin="10 5" -->
+                        <!--             hc:InfoElement.TitleWidth="240" -->
+                        <!--             Text="{Binding MathClass.Results.OKT, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" -->
+                        <!--             HorizontalAlignment="Stretch" /> -->
+                        <!--             <Border Background="{StaticResource Style2}"> -->
+                        <!--                 <hc:Divider Content="Показатели экономичности" -->
+                        <!--                             Margin="0 5" /> -->
+                        <!--             </Border> -->
+                        <!-- -->
+                        <!--             <hc:TextBox hc:InfoElement.Title="Время расчёта, мс" -->
+                        <!--                         IsReadOnly="True" -->
+                        <!--                         hc:InfoElement.TitlePlacement="Left" Margin="10 5" -->
+                        <!--                         hc:InfoElement.TitleWidth="240" -->
+                        <!--                         Text="{Binding MathClass.Results.MathTimer.ElapsedMilliseconds, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" -->
+                        <!--                         HorizontalAlignment="Stretch" /> -->
+                        <!--             <hc:TextBox hc:InfoElement.Title="Используемая RAM, МБ" -->
+                        <!--                         IsReadOnly="True" -->
+                        <!--                         hc:InfoElement.TitlePlacement="Left" Margin="10 5" -->
+                        <!--                         hc:InfoElement.TitleWidth="240" -->
+                        <!--                         Text="{Binding TotalMemory, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" -->
+                        <!--                         HorizontalAlignment="Stretch" TextChanged="TextBox_TextChanged" /> -->
+                                </StackPanel>
+
                 </TabItem>
             </ui:TabView>
         </Grid>

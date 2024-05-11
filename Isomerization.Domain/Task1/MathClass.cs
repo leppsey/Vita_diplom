@@ -65,7 +65,6 @@ public class MathClass // todo как-то красиво переписать �
         C0[4] = 4.52;
         C0[5] = 1.06;
         C0[6] = 0.92;
-        double[] oktNumbers = { 61.7, 92.3, 24.8, 66.0, 75.0, 91.1, 91.8 };
         // var C_temp = new double[7,tN,hN];
         var cTemp = new double[7, hN + 1];
         var r = new double[7];
@@ -127,7 +126,8 @@ public class MathClass // todo как-то красиво переписать �
                 x += h;
             }
         }
-
+        
+        double[] oktNumbers = { 61.7, 92.3, 24.8, 66.0, 75.0, 91.1, 91.8 };
         var oktNumber = 0d;
         for (var i = 0; i < 7; i++)
         {

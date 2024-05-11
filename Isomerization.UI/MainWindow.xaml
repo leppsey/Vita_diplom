@@ -7,6 +7,7 @@
                   mc:Ignorable="d"
                   xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                   d:DataContext="{d:DesignInstance local:MainWindowVM}"
+                  
                   Title="MainWindow" Height="450" Width="800">
     <ui:FluentWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -17,7 +18,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <ui:NavigationView
+        <ui:NavigationView 
             x:Name="RootNavigation"
             PaneDisplayMode="Top"
             IsBackButtonVisible="Collapsed"
