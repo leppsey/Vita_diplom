@@ -16,7 +16,5 @@ public class UserValidator: AbstractValidator<User>
         RuleFor(c=>c.Login)
             .NotEmpty()
             .WithMessage("Поле не должно быть пустым");
-        
     }
-    
 }

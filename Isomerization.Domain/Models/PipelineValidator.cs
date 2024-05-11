@@ -11,29 +11,24 @@ public class PipelineValidator: AbstractValidator<Pipeline>
         
         RuleFor(c=>c.Length)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.Length)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.Width)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.Width)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.Diameter)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.Diameter)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.Material)
             .NotEmpty()
             .WithMessage("Поле не должно быть пустым");
-        
     }
-    
 }

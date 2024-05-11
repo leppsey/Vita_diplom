@@ -16,47 +16,42 @@ public class CatalystValidator: AbstractValidator<Catalyst>
         
         RuleFor(c=>c.Activity)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.Activity)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.LoadingRate)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.LoadingRate)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.TemperatureReaction)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.TemperatureReaction)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.OperatingTime)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.OperatingTime)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.ServiceLife)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.ServiceLife)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
 
         RuleFor(c=>c.DateOfDecommissioning)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
+            .WithMessage("Поле не должно быть пустым")
+            .GreaterThan(c => c.DateOfCommissioning);
+
         RuleFor(c=>c.DateOfCommissioning)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        
-        // todo DateOfDecommissioning > DateOfCommissioning проверять обязательно
-       
+            .WithMessage("Поле не должно быть пустым")
+            .LessThan(c => c.DateOfDecommissioning);
     }
 }

@@ -9,5 +9,4 @@ public class UserRoleValidator: AbstractValidator<UserRole>
             .NotEmpty()
             .WithMessage("Поле не должно быть пустым");
     }
-    
 }

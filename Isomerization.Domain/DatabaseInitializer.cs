@@ -177,37 +177,37 @@ public class DatabaseInitializer
         {
             new()
             {
-               Name=Стабильный гидрогенизат-1,
+               Name="Стабильный гидрогенизат-1",
                Consumption=0.3,
-                Compound=13000,
-                Density=0.650,
-                HeatCapacity=2100,
-                Viscosity=0.0001,
-                SulfurContent=0.1,
-                OctaneRating=80,
+               Compound=13000,
+               Density=0.650,
+               HeatCapacity=2100,
+               Viscosity=0.0001,
+               SulfurContent=0.1,
+               OctaneRating=80,
             },
             
             new()
             {
-               Name=Стабильный гидрогенизат-2,
+               Name="Стабильный гидрогенизат-2",
                Consumption=0.4,
-                Compound=20000,
-                Density=0.660,
-                HeatCapacity=2150,
-                Viscosity=0.0005,
-                SulfurContent=0.05,
-                OctaneRating=84,
+               Compound=20000,
+               Density=0.660,
+               HeatCapacity=2150,
+               Viscosity=0.0005,
+               SulfurContent=0.05,
+               OctaneRating=84,
             },
             new()
             {
-               Name=Стабильный гидрогенизат-3,
+               Name="Стабильный гидрогенизат-3",
                Consumption=0.4,
-                Compound=18000,
-                Density=0.660,
-                HeatCapacity=2000,
-                Viscosity=0.0002,
-                SulfurContent=0.01,
-                OctaneRating=86,
+               Compound=18000,
+               Density=0.660,
+               HeatCapacity=2000,
+               Viscosity=0.0002,
+               SulfurContent=0.01,
+               OctaneRating=86,
             },
         };
         context.AddRange(defaultRawMaterial);
@@ -220,10 +220,10 @@ public class DatabaseInitializer
         {
             new()
             {
-                Reaction‎=7,
-                PreExponentialFactor‎=10000,
-                EnergyActivation‎=100,
-                Kineticscol‎=,
+                Reaction="7",
+                PreExponentialFactor=10000,
+                EnergyActivation=100,
+                Kineticscol="some value",
             },
             
         };

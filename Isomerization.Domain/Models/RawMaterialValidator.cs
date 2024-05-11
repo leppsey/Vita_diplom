@@ -11,50 +11,43 @@ public class RawMaterialValidator: AbstractValidator<RawMaterial>
         
         RuleFor(c=>c.Consumption)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.Consumption)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.Compound)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.Compound)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
 
         RuleFor(c=>c.Density)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.Density)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
 
         RuleFor(c=>c.HeatCapacity)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.HeatCapacity)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.Viscosity)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.Viscosity)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.SulfurContent)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.SulfurContent)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.OctaneRating)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым");
-        RuleFor(c=>c.OctaneRating)
+            .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
 
