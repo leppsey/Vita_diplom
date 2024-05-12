@@ -1,0 +1,17 @@
+<Page x:Class="Isomerization.UI.Features.Admin.AllItemsEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Isomerization.UI.Features.Admin"
+      mc:Ignorable="d"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      d:DataContext="{d:DesignInstance local:AllItemsEditPageVM}"
+      xmlns:shared="clr-namespace:Isomerization.UI.Shared"
+      Title="AllItemsEditPage" Height="450" Width="800">
+    <Grid>
+        <shared:GalleryNavigationPresenter ItemsSource="{Binding NavigationCards}">
+            
+        </shared:GalleryNavigationPresenter>
+    </Grid>
+</Page>

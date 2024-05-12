@@ -1,0 +1,79 @@
+<Page x:Class="Isomerization.UI.Features.Researcher.InstallationSearchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Isomerization.UI.Features.Researcher"
+      xmlns:shared="clr-namespace:Isomerization.UI.Shared"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d"
+      Title="InstallationSearchPage"  
+      d:DataContext="{d:DesignInstance local:InstallationSearchPageVM}"
+      d:DesignHeight="2500"
+      d:DesignWidth="1200">
+    <Grid Margin="15">
+        <Grid.ColumnDefinitions>
+           <ColumnDefinition Width="300"/> 
+           <ColumnDefinition/> 
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Margin="15,8,0,15">
+            <shared:LabeledControlPresenter HeaderText="Критерии поиска" HeaderFontSize="24">
+                <ui:Card>
+                    <StackPanel>
+                        <shared:LabeledControlPresenter HeaderText="Производительность" HeaderFontSize="20">
+                            <StackPanel>
+                                <shared:LabeledControlPresenter HeaderText="От" RightText="т/год" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding PerformanceMin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="До" RightText="т/год" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding PerformanceMax, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                            </StackPanel>
+                        </shared:LabeledControlPresenter>
+                        <shared:LabeledControlPresenter Margin="0,15,0,0" HeaderText="Энергопотребление" HeaderFontSize="20">
+                            <StackPanel>
+                                <shared:LabeledControlPresenter HeaderText="От" RightText="Квт/ч" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding EnergyConsumptionMin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="До" RightText="Квт/ч" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding EnergyConsumptionMax, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                            </StackPanel>
+                        </shared:LabeledControlPresenter>
+                        <ui:Button HorizontalAlignment="Right"
+                                   Width="100"
+                                   Margin="0,20,0,0" 
+                                   Content="Расчет"
+                                   Appearance="Success"
+                                   Command="{Binding CalcCommand}">
+                            
+                        </ui:Button>
+                    </StackPanel>
+                </ui:Card>
+            </shared:LabeledControlPresenter>
+        </Grid>
+        <shared:LabeledControlPresenter Grid.Column="1" Margin="15,8">
+            <DataGrid
+                RowStyle="{DynamicResource DataGridRowStyle1}"
+                ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                CellStyle="{DynamicResource DataGridCellStyle1}"
+                Style="{DynamicResource DataGridStyle1}"
+                ItemsSource="{Binding FindedInstallations}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Наименование"  Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Производительность, т/год" Binding="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="Энергопотребление, Квт/ч" Binding="{Binding Path=EnergyConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </shared:LabeledControlPresenter>
+        
+    </Grid>
+</Page>

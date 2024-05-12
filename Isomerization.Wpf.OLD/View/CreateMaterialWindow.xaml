@@ -1,0 +1,45 @@
+﻿<hc:Window x:Class="Isomerization.Wpf.OLD.View.CreateMaterialWindow"
+           xmlns:hc="https://handyorg.github.io/handycontrol"
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:vm="clr-namespace:Isomerization.Wpf.OLD.VM"
+           mc:Ignorable="d"
+           Title="Добавление материала" Height="190" Width="400"
+           d:DataContext="{d:DesignInstance vm:CreateMaterialVM}"
+           NonClientAreaBackground="{StaticResource Style4}"
+           ShowTitle="False"
+           WindowStartupLocation="CenterScreen">
+    <hc:Window.NonClientAreaContent>
+        <StackPanel Orientation="Horizontal">
+            <Image Source="pack://application:,,,/resources/icons/logo.png" Height="20" Margin="3"
+                   RenderOptions.BitmapScalingMode="HighQuality" />
+            <TextBlock Text="{Binding Title,RelativeSource={RelativeSource FindAncestor,AncestorType=Window}}"
+                       Background="{Binding NonClientAreaBackground,RelativeSource={RelativeSource FindAncestor,AncestorType=Window}}"
+                       Margin="5" FontSize="14" VerticalAlignment="Stretch" />
+        </StackPanel>
+
+    </hc:Window.NonClientAreaContent>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Background="{StaticResource Style2}" Grid.RowSpan="2">
+            <hc:TextBox hc:InfoElement.Title="Название материала"
+                        Text="{Binding MembraneObject.ObName, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                        Margin="10,0,10,10" Background="{StaticResource Style3}" />
+            <hc:ComboBox ItemsSource="{Binding AllTypes}" SelectedItem="{Binding MembraneObject.Type}"
+                         DisplayMemberPath="TypeName" Margin="10,0,10,10" Background="{StaticResource Style3}" />
+        </StackPanel>
+        <Grid Grid.Row="1" Background="{StaticResource Style1}" Margin="0,10,0,0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="{StaticResource ApplyButton}" Width="100" Margin="5" hc:BorderElement.CornerRadius="10" Command="{Binding SaveMaterial}"
+                        Background="{StaticResource Style3}"/>
+                <Button Width="100" Content="{StaticResource CancelButton}" hc:BorderElement.CornerRadius="10" Margin="5" Command="{Binding CloseWindow}"
+                        Background="{StaticResource Style3}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</hc:Window>

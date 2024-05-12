@@ -1,0 +1,90 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="EntityFramework.ru" Version="6.2.0" />
+    <PackageReference Include="EntityFrameworkCore.Scaffolding.Handlebars" Version="6.0.3" />
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.4" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+    <PackageReference Include="SQLite" Version="3.13.0" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.115.5" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.115.5" />
+    <PackageReference Include="System.Data.SQLite.EF6" Version="1.0.115.5" />
+    <PackageReference Include="System.Data.SQLite.Linq" Version="1.0.115.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Membrane.db">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </None>
+    <None Update="resources\ifc.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\model338.ifc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="resources\sborka.stl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Model1.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Models\CatalystValidator.cs">
+      <DependentUpon>Catalyst.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\InstallationValidator.cs">
+      <DependentUpon>Installation.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\KineticValidator.cs">
+      <DependentUpon>Kinetic.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\PipelineValidator.cs">
+      <DependentUpon>Pipeline.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\RawMaterialValidator.cs">
+      <DependentUpon>RawMaterial.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\UserValidator.cs">
+      <DependentUpon>User.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Models\UserRoleValidator.cs">
+      <DependentUpon>UserRole.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Isomerization.Shared\Isomerization.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

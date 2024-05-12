@@ -1,0 +1,239 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Isomerization.Domain.Data;
+using Isomerization.Domain.Models;
+
+namespace Isomerization.Domain;
+
+public class DatabaseInitializer
+{
+    public static void Init(IsomerizationContext context)
+    {
+        #region UserRoles
+
+        var researcherRole = new UserRole()
+        {
+            Name = UserRoles.Researcher,
+        };        
+        context.Add(researcherRole);
+        
+        var adminRole = new UserRole()
+        {
+            Name = UserRoles.Admin,
+        };
+        context.Add(adminRole);
+        
+        #endregion
+
+        #region Users
+
+        var defaultUsers = new List<User>()
+        {
+            new()
+            {
+                UserRole = researcherRole,
+                Login = "r",
+                Password = "r",
+                Name = "Исследователь",
+            },
+            new()
+            {
+                UserRole = adminRole,
+                Login = "a",
+                Password = "a",
+                Name = "Администратор",
+            },
+        };
+        context.AddRange(defaultUsers);
+        
+        #endregion
+
+        #region Catalysts
+
+        var defaultCatalysts = new List<Catalyst>()
+        {
+            new()
+            {
+                Type = "Гетерогенный",
+                Name = "Pt/Al2O3 (Платина на алюмосиликате)",
+                Activity = 80,
+                LoadingRate = 0.5,
+                // OperatingTime = 1234,
+                ServiceLife = 5,
+                TemperatureReaction = 220,
+                DateOfCommissioning = new DateTime(year: 2022, day: 22, month: 06),
+                DateOfDecommissioning = new DateTime(year: 2027, day: 22, month: 06)
+            },
+            new()
+            {
+                Type = "Гетерогенный",
+                Name = "Pt/Zeolite (Платина на цеолите)",
+                Activity = 90,
+                LoadingRate = 0.4,
+                // OperatingTime = 1234,
+                ServiceLife = 5,
+                TemperatureReaction = 150,
+                DateOfCommissioning = new DateTime(year: 2021, day: 07, month: 06),
+                DateOfDecommissioning = new DateTime(year: 2026, day: 07, month: 06)
+            },
+            new()
+            {
+                Type = "Гетерогенный",
+                Name = "Pd/C (Палладий на углероде)",
+                Activity = 80,
+                LoadingRate = 0.3,
+                // OperatingTime = 1234,
+                ServiceLife = 6,
+                TemperatureReaction = 150,
+                DateOfCommissioning = new DateTime(year: 2023, day: 30, month: 05),
+                DateOfDecommissioning = new DateTime(year: 2029, day: 30, month: 05)
+            },
+            new()
+            {
+                Type = "Гетерогенный",
+                Name = "mordenite-based (На основе морденита)",
+                Activity = 80,
+                LoadingRate = 0.45,
+                // OperatingTime = 1234,
+                ServiceLife = 5,
+                TemperatureReaction = 180,
+                DateOfCommissioning = new DateTime(year: 2020, day: 01, month: 02),
+                DateOfDecommissioning = new DateTime(year: 2025, day: 01, month: 02)
+            },
+            new()
+            {
+                Type = "Гетерогенный",
+                Name = "ZSM-5",
+                Activity = 90,
+                LoadingRate = 0.4,
+                // OperatingTime = 1234,
+                ServiceLife = 10,
+                TemperatureReaction = 300,
+                DateOfCommissioning = new DateTime(year: 2021, day: 28, month: 02),
+                DateOfDecommissioning = new DateTime(year: 2031, day: 28, month: 02)
+            },
+            new()
+            {
+                Type = "Гомогенный",
+                Name = "Катализатор на основе комплексов рутения",
+                Activity = 90,
+                LoadingRate = 0.25,
+                // OperatingTime = 1234,
+                ServiceLife = 3,
+                TemperatureReaction = 150,
+                DateOfCommissioning = new DateTime(year: 2022, day: 30, month: 08),
+                DateOfDecommissioning = new DateTime(year: 2025, day: 30, month: 08)
+            },
+        };
+        context.AddRange(defaultCatalysts);
+        #endregion
+
+        #region Installations
+
+        var defaultInstallations = new List<Installation>()
+        {
+            new()
+            {
+                Type = "Реакторный блок",
+                Name = "ЛК-2Б ООО КИНЕФ",
+                Diameter = 5,
+                Height = 8,
+                Length = 12,
+                Performance = 123,
+                Pressure = 354,
+                Status = "в работе",
+                Temperature = 654,
+                Volume = 351,
+                EnergyConsumption = 743,
+                Width = 98,
+                DateOfCommissioning = DateTime.Now.AddYears(-2),
+                DateOfPlannedWorks = DateTime.Now.AddYears(1),
+                ModelPath = "resources/model338.ifc",
+            },
+            new()
+            {
+                Type = "Реакторный блок",
+                Name = "ПГИ-434 ОАО Газпромнефтехим",
+                Diameter = 4,
+                Height = 2,
+                Length = 5,
+                Performance = 531,
+                Pressure = 865,
+                Status = "В работе",
+                Temperature = 25,
+                Volume = 56,
+                EnergyConsumption = 92,
+                Width = 31,
+                DateOfCommissioning = DateTime.Now.AddYears(-3),
+                DateOfPlannedWorks = DateTime.Now.AddYears(2),
+                ModelPath = "resources/asm.obj",
+            },
+        };
+        context.AddRange(defaultInstallations);
+        
+        #endregion
+
+        #region RawMaterial
+
+        var defaultRawMaterial = new List<RawMaterial>()
+        {
+            new()
+            {
+               Name="Стабильный гидрогенизат-1",
+               Consumption=0.3,
+               Compound=13000,
+               Density=0.650,
+               HeatCapacity=2100,
+               Viscosity=0.0001,
+               SulfurContent=0.1,
+               OctaneRating=80,
+            },
+            
+            new()
+            {
+               Name="Стабильный гидрогенизат-2",
+               Consumption=0.4,
+               Compound=20000,
+               Density=0.660,
+               HeatCapacity=2150,
+               Viscosity=0.0005,
+               SulfurContent=0.05,
+               OctaneRating=84,
+            },
+            new()
+            {
+               Name="Стабильный гидрогенизат-3",
+               Consumption=0.4,
+               Compound=18000,
+               Density=0.660,
+               HeatCapacity=2000,
+               Viscosity=0.0002,
+               SulfurContent=0.01,
+               OctaneRating=86,
+            },
+        };
+        context.AddRange(defaultRawMaterial);
+        
+        #endregion
+
+        #region Kinetic
+
+        var defaultKinetic = new List<Kinetic>()
+        {
+            new()
+            {
+                Reaction="7",
+                PreExponentialFactor=10000,
+                EnergyActivation=100,
+                Kineticscol="some value",
+                RawMaterial = defaultRawMaterial.First(),
+            },
+            
+        };
+        context.AddRange(defaultKinetic);
+        
+        #endregion
+        context.SaveChanges();
+    }
+}
