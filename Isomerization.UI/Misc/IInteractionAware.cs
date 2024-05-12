@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace UI.Services.MyDialogService;
+﻿namespace Isomerization.UI.Misc;
 
 public interface IInteractionAware
 {

@@ -1,6 +1,6 @@
 ﻿namespace UI.Services.MyDialogService;
 
-public interface IDataHolder
+public interface IDataHolder<T>
 {
-    public object Data { get; set; }
+    public T Data { get; set; }
 }

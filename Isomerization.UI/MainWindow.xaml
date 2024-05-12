@@ -7,7 +7,7 @@
                   mc:Ignorable="d"
                   xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
                   d:DataContext="{d:DesignInstance local:MainWindowVM}"
-                  
+                  WindowState="Maximized"
                   Title="MainWindow" Height="450" Width="800">
     <ui:FluentWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
@@ -31,7 +31,7 @@
                 </Grid>
             </ui:NavigationView.ContentOverlay>
         </ui:NavigationView>
-        <ContentPresenter x:Name="RootContentDialog" Grid.Row="0" />
+        <ContentPresenter x:Name="RootContentDialog" Grid.Row="1" Grid.RowSpan="2" />
         <ui:TitleBar
             Title="Программный комплекс для технологического проектирования установок изомеризации"
             Grid.Row="0"

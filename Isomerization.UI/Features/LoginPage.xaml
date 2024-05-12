@@ -8,35 +8,40 @@
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:LoginPageVM}"
       Title="LoginPage" >
-    <Grid  Margin="0,20,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid Margin="0,40,0,0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+    <ui:Card HorizontalAlignment="Center" VerticalAlignment="Center" >
+        <Grid  Margin="20"  >
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="15" />
-                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="65" />
-                <ColumnDefinition Width="140" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" FontSize="15" Content="Логин" VerticalAlignment="Center" />
-            <Label Grid.Row="2" Grid.Column="0" FontSize="15" Content="Пароль" VerticalAlignment="Center" />
-            <ui:TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <ui:PasswordBox Grid.Row="2" Grid.Column="1"  PasswordChanged="PasswordBox_OnPasswordChanged" />
-        </Grid>
-            <StackPanel Grid.Row="1">
-            <StackPanel  Orientation="Horizontal">
-                <ui:Button  Command="{Binding EnterAdminCommand}" Margin="8,40,8,0" Width="200"
-                            Content="Войти админом" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                <ui:Button  Command="{Binding EnterResearcherCommand}" Margin="8,40,8,0" Width="200"
-                            Content="Войти исследователем" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            <TextBlock Text="Вход" FontSize="26" FontWeight="Bold"></TextBlock>
+            <Grid Margin="0,40,0,0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="15" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="65" />
+                    <ColumnDefinition Width="140" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" FontSize="15" Content="Логин" VerticalAlignment="Center" />
+                <Label Grid.Row="2" Grid.Column="0" FontSize="15" Content="Пароль" VerticalAlignment="Center" />
+                <ui:TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <ui:PasswordBox Grid.Row="2" Grid.Column="1"  PasswordChanged="PasswordBox_OnPasswordChanged" />
+            </Grid>
+            <StackPanel Grid.Row="2">
+                <!-- <StackPanel  Orientation="Horizontal"> -->
+                <!--     <ui:Button  Command="{Binding EnterAdminCommand}" Margin="8,40,8,0" Width="200" -->
+                <!--                 Content="Войти админом" VerticalAlignment="Center" HorizontalAlignment="Center" /> -->
+                <!--     <ui:Button  Command="{Binding EnterResearcherCommand}" Margin="8,40,8,0" Width="200" -->
+                <!--                 Content="Войти исследователем" VerticalAlignment="Center" HorizontalAlignment="Center" /> -->
+                <!-- </StackPanel> -->
+                <ui:Button Appearance="Info"
+                           Command="{Binding EnterCommand}" Margin="8,40,8,0" Width="200"
+                           Content="Войти" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </StackPanel>
-                <ui:Button  Command="{Binding EnterCommand}" Margin="8,40,8,0" Width="200"
-                            Content="Войти нормально" VerticalAlignment="Center" HorizontalAlignment="Center" />
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </ui:Card>
 </Page>

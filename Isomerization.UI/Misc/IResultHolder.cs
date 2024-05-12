@@ -1,6 +1,6 @@
 ﻿namespace UI.Services.MyDialogService;
 
-public interface IResultHolder
+public interface IResultHolder<T>
 {
-    public object Result { get; }
+    public T Result { get; }
 }

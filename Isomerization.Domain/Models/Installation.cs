@@ -1,8 +1,9 @@
 using System;
+using Isomerization.Shared;
 
 namespace Isomerization.Domain.Models;
 
-public class Installation
+public class Installation: ViewModelBase
 {
     public int InstallationId { get; set; }
     public string Name { get; set; }
@@ -19,4 +20,6 @@ public class Installation
     public DateTime DateOfCommissioning { get; set; }
     public DateTime DateOfPlannedWorks { get; set; }
     public string Status { get; set; }
+
+    public string ModelPath { get; set; }
 }

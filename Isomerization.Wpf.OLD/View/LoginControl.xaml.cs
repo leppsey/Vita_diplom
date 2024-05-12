@@ -46,16 +46,16 @@ namespace Isomerization.Wpf.OLD.View
 
             try
             {
-                var user = con.Users.First(u => u.Login == userName && u.Password == password);
-                if (user.Role == "Администратор")
-                {
-                    OnChangingRequest(new MainAdminControl());
-                }
+                // var user = con.Users.First(u => u.Login == userName && u.Password == password);
+                // if (user.UserRole.Name == "Администратор")
+                // {
+                    // OnChangingRequest(new MainAdminControl());
+                // }
 
-                if (user.Role == "Исследователь")
-                {
+                // if (user.UserRole.Name == "Исследователь")
+                // {
                     OnChangingRequest(new ResearcherControl());
-                }
+                // }
             }
             catch (Exception exception){
 

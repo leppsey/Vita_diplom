@@ -5,11 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 using FluentValidation;
+using Isomerization.Shared;
 
 
 namespace DAL;
 
-public abstract class ValidatableViewModel<ValidatorType>: INotifyDataErrorInfo where ValidatorType: IValidator, new()
+public abstract class ValidatableViewModel<ValidatorType>: ViewModelBase, INotifyDataErrorInfo where ValidatorType: IValidator, new()
 {
     [NotMapped]
     public ValidatorType Validator { get; set; } = new ValidatorType();

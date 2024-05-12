@@ -1,3 +1,4 @@
+using Isomerization.Shared;
 using Isomerization.UI.Services;
 
 namespace Isomerization.UI;

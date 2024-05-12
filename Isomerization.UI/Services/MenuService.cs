@@ -1,5 +1,6 @@
 using Isomerization.UI.Features;
 using Isomerization.UI.Features.Admin;
+using Isomerization.UI.Features.Researcher;
 using Wpf.Ui;
 
 namespace Isomerization.UI.Services;
@@ -27,7 +28,7 @@ public class MenuService : IMenuService
         }
         else if(_userService.CurrentUser.IsResearcher())
         {
-            _navigationService.Navigate(typeof(ResearcherPage));
+            _navigationService.Navigate(typeof(InstallationSearchPage));
         }
     }
 

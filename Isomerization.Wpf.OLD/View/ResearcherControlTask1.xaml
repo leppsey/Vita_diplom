@@ -37,8 +37,8 @@
                                     <RowDefinition Height="45*" />
                                     <RowDefinition Height="80" />
                                 </Grid.RowDefinitions>
-                                <hc:ScrollViewer Grid.Row="0" Orientation="Vertical" VerticalScrollBarVisibility="Auto"
-                                                 IsInertiaEnabled="True" Background="{StaticResource Style2}" Grid.RowSpan="2">
+                                <StackPanel Grid.Row="0"  Orientation="Vertical" 
+                                                  Background="{StaticResource Style2}" Grid.RowSpan="2">
                                     <hc:ElementGroup Width="560" Margin="0,0,9,0">
                                         <Expander ExpandDirection="Down" Header="Техническое задание"
                                                   IsExpanded="True" HeaderTemplate="{StaticResource expanderHeader}"
@@ -51,7 +51,6 @@
                                                 <hc:ElementGroup Background="{StaticResource Style3}">
                                                     <hc:TextBox hc:TitleElement.Title="Производительность, тыс. т/год"
                                                                 hc:TitleElement.TitlePlacement="Left" Margin="10 5"
-                                                                ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                 Style="{StaticResource TextBoxInError}"
                                                                 HorizontalAlignment="Stretch" Text="6008">
 
@@ -70,7 +69,6 @@
                                                     <hc:TextBox
                                                         hc:TitleElement.Title="Энергопотребление, кВт"
                                                         hc:TitleElement.TitlePlacement="Left" Margin="10 5"
-                                                        ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource TextBoxInError}"
                                                         HorizontalAlignment="Stretch"
                                                         Text="44000">
@@ -127,13 +125,11 @@
                                                 <StackPanel Background="{StaticResource Style3}">
                                                     <hc:TextBox hc:InfoElement.Title="Сырье, моль/м³"
                                                                 hc:InfoElement.TitlePlacement="Left" Margin="10 5"
-                                                                ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                 Style="{StaticResource TextBoxInError}"
                                                                 HorizontalAlignment="Stretch"
                                                                 Text="850" />
                                                     <hc:TextBox hc:InfoElement.Title="Начальная температура,°С"
                                                                 hc:InfoElement.TitlePlacement="Left" Margin="10 5"
-                                                                ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                 Style="{StaticResource TextBoxInError}"
                                                                 HorizontalAlignment="Stretch">
                                                         <hc:TextBox.Text>
@@ -148,7 +144,6 @@
 
                                                     <hc:TextBox hc:InfoElement.Title="Теплоемкость, Дж/(кг·К)"
                                                                 hc:InfoElement.TitlePlacement="Left" Margin="10 5"
-                                                                ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                 Style="{StaticResource TextBoxInError}"
                                                                 HorizontalAlignment="Stretch">
                                                         <hc:TextBox.Text>
@@ -164,7 +159,6 @@
                                                     <hc:TextBox
                                                         hc:InfoElement.Title="Расход, кг/с"
                                                         hc:InfoElement.TitlePlacement="Left" Margin="10 5"
-                                                        ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource TextBoxInError}"
                                                         HorizontalAlignment="Stretch">
                                                         <hc:TextBox.Text>
@@ -180,7 +174,6 @@
                                                     <hc:TextBox
                                                         hc:InfoElement.Title="Плотность, кг/м3"
                                                         hc:InfoElement.TitlePlacement="Left" Margin="10 5"
-                                                        ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource TextBoxInError}"
                                                         HorizontalAlignment="Stretch">
                                                         <hc:TextBox.Text>
@@ -195,7 +188,6 @@
                                                     <hc:TextBox
                                                         hc:InfoElement.Title="Диаметр реактора, м"
                                                         hc:InfoElement.TitlePlacement="Left" Margin="10 5"
-                                                        ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource TextBoxInError}"
                                                         HorizontalAlignment="Stretch">
                                                         <hc:TextBox.Text>
@@ -222,7 +214,6 @@
                                                 <hc:ElementGroup Background="{StaticResource Style3}">
                                                     <hc:TextBox hc:InfoElement.Title="Шаг расчёта, м"
                                                                 hc:InfoElement.TitlePlacement="Left" Margin="10 5"
-                                                                ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                                 Style="{StaticResource TextBoxInError}"
                                                                 HorizontalAlignment="Stretch">
                                                         <hc:TextBox.Text>
@@ -242,7 +233,6 @@
                                                     <hc:TextBox
                                                         hc:InfoElement.Title="Длина реактора, м"
                                                         hc:InfoElement.TitlePlacement="Left" Margin="10 5"
-                                                        ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                         Style="{StaticResource TextBoxInError}"
                                                         HorizontalAlignment="Stretch">
                                                         <hc:TextBox.Text>
@@ -261,7 +251,7 @@
                                             </hc:ElementGroup>
                                         </Expander>
                                     </hc:ElementGroup>
-                                </hc:ScrollViewer>
+                                </StackPanel>
                                 <Button Grid.Row="2"
                                         Background="{StaticResource Style3}" Width="150" Height="50" Click="Button_Click">
                                     <StackPanel Orientation="Horizontal">

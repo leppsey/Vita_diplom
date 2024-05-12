@@ -22,13 +22,12 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <hc:ScrollViewer Grid.Row="0" Orientation="Vertical" VerticalScrollBarVisibility="Auto"
+        <hc:ScrollViewer Grid.Row="0"  VerticalScrollBarVisibility="Auto"
                          IsInertiaEnabled="True" Background="{StaticResource Style2}" >
             <StackPanel>
                 <hc:TextBox hc:TitleElement.Title="d"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="d" NotifyOnValidationError="True" 
@@ -41,7 +40,6 @@
                 <hc:TextBox hc:TitleElement.Title="l"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="l" NotifyOnValidationError="True" 
@@ -54,7 +52,6 @@
                 <hc:TextBox hc:TitleElement.Title="Q"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="Q" NotifyOnValidationError="True" 
@@ -67,7 +64,6 @@
                 <hc:TextBox hc:TitleElement.Title="cAin"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="cAin" NotifyOnValidationError="True" 
@@ -80,7 +76,6 @@
                 <hc:TextBox hc:TitleElement.Title="T"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="T" NotifyOnValidationError="True" 
@@ -93,7 +88,6 @@
                 <hc:TextBox hc:TitleElement.Title="k01"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="k01" NotifyOnValidationError="True" 
@@ -106,7 +100,6 @@
                 <hc:TextBox hc:TitleElement.Title="ea1"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="ea1" NotifyOnValidationError="True" 
@@ -119,7 +112,6 @@
                 <hc:TextBox hc:TitleElement.Title="k02"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="k02" NotifyOnValidationError="True" 
@@ -132,7 +124,6 @@
                 <hc:TextBox hc:TitleElement.Title="ea2"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="ea2" NotifyOnValidationError="True" 
@@ -145,7 +136,6 @@
                 <hc:TextBox hc:TitleElement.Title="deltaX0"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="deltaX0" NotifyOnValidationError="True" 
@@ -158,7 +148,6 @@
                 <hc:TextBox hc:TitleElement.Title="ku"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="ku" NotifyOnValidationError="True" 
@@ -171,7 +160,6 @@
                 <hc:TextBox hc:TitleElement.Title="eMax"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="eMax" NotifyOnValidationError="True" 
@@ -184,7 +172,6 @@
                 <hc:TextBox hc:TitleElement.Title="qMax"
                                        hc:TitleElement.TitlePlacement="Left" Margin="10 5"
                                        hc:TitleElement.TitleWidth="450"
-                                       ErrorStr="{Binding Null, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Style="{StaticResource TextBoxInError}"
                                        HorizontalAlignment="Stretch">
                     <Binding Path="qMax" NotifyOnValidationError="True" 

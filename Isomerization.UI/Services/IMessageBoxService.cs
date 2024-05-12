@@ -12,3 +12,10 @@ public interface IMessageBoxService
     Task<MessageBoxResult> Show(Window window, string messageBoxText, string caption);
     Task<MessageBoxResult> Show(Window window, string messageBoxText, string caption, MessageBoxButton button);
 }
+public interface IContentMessageBoxService
+{
+    Task<MessageBoxResult> Show(string messageBoxText);
+    Task<MessageBoxResult> Show(string messageBoxText, string caption);
+    Task<MessageBoxResult> Show(string messageBoxText, string caption, MessageBoxButton button);
+    Task<MessageBoxResult> Show(string messageBoxText, MessageBoxButton button);
+}

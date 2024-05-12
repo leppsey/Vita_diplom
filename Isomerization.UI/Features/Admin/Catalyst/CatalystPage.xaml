@@ -39,14 +39,14 @@
                                            Icon="{ui:SymbolIcon Edit16}"
                                            Appearance="Info"
                                         CommandParameter="{Binding}"
-                                        Command="{Binding Path=ViewModel.EditEmployee,
+                                        Command="{Binding Path=ViewModel.EditCatalystCommand,
                                         RelativeSource={RelativeSource Mode=FindAncestor,
                                         AncestorType={x:Type local:CatalystPage}}}" />
                                 <ui:Button Margin="5 0 0 0" 
                                            Icon="{ui:SymbolIcon Delete16}"
                                            Appearance="Danger"
                                            CommandParameter="{Binding}"
-                                           Command="{Binding Path=ViewModel.DeleteEmployee,
+                                           Command="{Binding Path=ViewModel.DeleteCatalystCommand,
                                             RelativeSource={RelativeSource Mode=FindAncestor,
                                             AncestorType={x:Type local:CatalystPage}}}" />
                             </StackPanel>
@@ -57,7 +57,10 @@
         </DataGrid>
         </shared:LabeledControlPresenter>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-            <ui:Button Content="Добавить катализатор" Appearance="Success" Icon="Add16" Command="{Binding ViewModel.AddEmployee}"/>
+            <ui:Button Content="Добавить катализатор"
+                       Appearance="Success"
+                       Icon="Add16" 
+                       Command="{Binding AddCatalystCommand}"/>
         </StackPanel>
     </Grid>
 

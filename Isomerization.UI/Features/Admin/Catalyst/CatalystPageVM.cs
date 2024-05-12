@@ -1,104 +1,83 @@
 
 using System.Collections.ObjectModel;
+using Isomerization.Domain.Data;
+using Isomerization.Shared;
+using Isomerization.UI.Features.Admin.Catalyst;
+using Isomerization.UI.Misc;
+using Isomerization.UI.Services;
+using Microsoft.EntityFrameworkCore;
+using Wpf.Ui;
+using Wpf.Ui.Controls;
+using Wpf.Ui.Extensions;
+using MessageBoxButton = System.Windows.MessageBoxButton;
+using MessageBoxResult = System.Windows.MessageBoxResult;
 
 namespace Isomerization.UI.Features.Admin;
 
 public class CatalystPageVM: ViewModelBase
 {
-    public CatalystPageVM()
-    {
+    private readonly IsomerizationContext _context;
+    private readonly EditDialogService _editDialogService;
+    private readonly ISnackbarService _snackbarService;
+    private readonly IContentMessageBoxService _messageBoxService;
 
-        Catalysts = new ObservableCollection<Domain.Models.Catalyst>()
-        {
-            new()
-            {
-                Type = "Гетерогенный",
-                Name = "Pt/Al2O3 (Платина на алюмосиликате)",
-                Activity = 80,
-                LoadingRate = 0.5,
-                // OperatingTime = 1234,
-                ServiceLife = 5,
-                TemperatureReaction = 220,
-                DateOfCommissioning = new DateTime(year:2022, day: 22, month:06),
-                DateOfDecommissioning = new DateTime(year:2027, day: 22, month:06)
-            },
-            new()
-            {
-                Type = "Гетерогенный",
-                Name = "Pt/Zeolite (Платина на цеолите)",
-                Activity = 90,
-                LoadingRate = 0.4,
-                // OperatingTime = 1234,
-                ServiceLife = 5,
-                TemperatureReaction = 150,
-                DateOfCommissioning = new DateTime(year:2021, day: 07, month:06),
-                DateOfDecommissioning = new DateTime(year:2026, day: 07, month:06)
-            },
-            new()
-            {
-                Type = "Гетерогенный",
-                Name = "Pd/C (Палладий на углероде)",
-                Activity = 80,
-                LoadingRate = 0.3,
-                // OperatingTime = 1234,
-                ServiceLife = 6,
-                TemperatureReaction = 150,
-                DateOfCommissioning = new DateTime(year:2023, day: 30, month:05),
-                DateOfDecommissioning = new DateTime(year:2029, day: 30, month:05)
-            },
-            new()
-            {
-                Type = "Гетерогенный",
-                Name = "mordenite-based (На основе морденита)",
-                Activity = 80,
-                LoadingRate = 0.45,
-                // OperatingTime = 1234,
-                ServiceLife = 5,
-                TemperatureReaction = 180,
-                DateOfCommissioning = new DateTime(year:2020, day: 01, month:02),
-                DateOfDecommissioning = new DateTime(year:2025, day: 01, month:02)
-            },
-            new()
-            {
-                Type = "Гетерогенный",
-                Name = "ZSM-5",
-                Activity = 90,
-                LoadingRate = 0.4,
-                // OperatingTime = 1234,
-                ServiceLife = 10,
-                TemperatureReaction = 300,
-                DateOfCommissioning = new DateTime(year:2021, day: 28, month:02),
-                DateOfDecommissioning = new DateTime(year:2031, day: 28, month:02)
-            },
-            new()
-            {
-                Type = "Гомогенный",
-                Name = "Катализатор на основе комплексов рутения",
-                Activity = 90,
-                LoadingRate = 0.25,
-                // OperatingTime = 1234,
-                ServiceLife = 3,
-                TemperatureReaction = 150,
-                DateOfCommissioning = new DateTime(year:2022, day: 30, month:08),
-                DateOfDecommissioning = new DateTime(year:2025, day: 30, month:08)
-            },
-        };
+    public CatalystPageVM(IsomerizationContext context, EditDialogService editDialogService, ISnackbarService snackbarService, IContentMessageBoxService messageBoxService)
+    {
+        _context = context;
+        _editDialogService = editDialogService;
+        _snackbarService = snackbarService;
+        _messageBoxService = messageBoxService;
+        Catalysts = new ObservableCollection<Domain.Models.Catalyst>(context.Catalysts.ToList());
     }
     public ObservableCollection<Domain.Models.Catalyst> Catalysts { get; set; }
 
 
     private RelayCommand _editCatalystCommand;
-    public RelayCommand EditCatalystCommand => _editCatalystCommand ??= new RelayCommand(_ =>
+    public RelayCommand EditCatalystCommand => _editCatalystCommand ??= new RelayCommand(async catalyst   =>
     {
+        var res = await _editDialogService.ShowDialog<CatalystEditControl, Domain.Models.Catalyst>((Domain.Models.Catalyst)catalyst);
+        if (res is null)
+        {
+            return;
+        }
+
+        _context.Entry(res).State = EntityState.Modified;
+        _context.SaveChanges();
+        _snackbarService.Show("База данных обновлена", "Данные о катализаторе обновлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
     
     private RelayCommand _addCatalystCommand;
-    public RelayCommand AddCatalystCommand => _addCatalystCommand ??= new RelayCommand(_ =>
+    public RelayCommand AddCatalystCommand => _addCatalystCommand ??= new RelayCommand(async _ =>
     {
+        var res = await _editDialogService.ShowDialog<CatalystEditControl, Domain.Models.Catalyst>(new Domain.Models.Catalyst());
+
+        if (res is null)
+        {
+            return;
+        }
+
+        _context.Entry(res).State = EntityState.Modified;
+        _context.SaveChanges();
+        
+        _snackbarService.Show("База данных обновлена", "Данные о катализаторе добавлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
     
     private RelayCommand _deleteCatalystCommand;
-    public RelayCommand DeleteCatalystCommand => _deleteCatalystCommand ??= new RelayCommand(_ =>
+    public RelayCommand DeleteCatalystCommand => _deleteCatalystCommand ??= new RelayCommand(async catalystObj =>
     {
+        var catalyst = (Domain.Models.Catalyst)catalystObj;
+        var result = await _messageBoxService.Show(
+            $"Вы действительно хотите удалить катализатор под названием \"{catalyst.Name}\"", "Предупреждение",
+            MessageBoxButton.OKCancel);
+        if (result != MessageBoxResult.OK)
+        {
+            return;
+        }
+
+        var findedCatalyst = _context.Catalysts.Find(catalyst.CatalystId);
+        _context.Remove(findedCatalyst);
+        _context.SaveChanges();
+        Catalysts.Remove(catalyst);
+        _snackbarService.Show("База данных обновлена", "Данные о катализаторе удалены", timeout: TimeSpan.FromMilliseconds(2000));
     });
 }

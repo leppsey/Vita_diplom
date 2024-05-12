@@ -51,6 +51,7 @@
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Isomerization.Domain\Isomerization.Domain.csproj" />
+      <ProjectReference Include="..\Isomerization.Shared\Isomerization.Shared.csproj" />
     </ItemGroup>
     <ItemGroup>
       <Page Update="Features\LoginPage.xaml">

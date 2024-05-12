@@ -4,6 +4,7 @@ using HelixToolkit.SharpDX.Core.Assimp;
 using HelixToolkit.SharpDX.Core.Model;
 using HelixToolkit.SharpDX.Core.Model.Scene;
 using HelixToolkit.Wpf.SharpDX;
+using Isomerization.Shared;
 using Isomerization.UI.Services;
 using SharpDX;
 using Camera = HelixToolkit.Wpf.SharpDX.Camera;
@@ -17,6 +18,17 @@ public class InstallationRenderControlVM: ViewModelBase
     public Camera Camera { get; }
     public EffectsManager EffectsManager { get; }
 
+    public bool HasError { get; private set; } = false;
+    public string FilePath
+    {
+        get => _filePath;
+        set
+        {
+            _filePath = value;
+            OpenFile();
+        }
+    }
+
     public InstallationRenderControlVM(IMessageBoxService messageBoxService)
     {
         _messageBoxService = messageBoxService;
@@ -29,7 +41,6 @@ public class InstallationRenderControlVM: ViewModelBase
             FarPlaneDistance = 5000,
             NearPlaneDistance = 0.1f
         };
-        OpenFile();
     }
     public bool IsLoading { get; set; }
     public BoundingBox ModelBound { get; set; } = new();
@@ -38,6 +49,8 @@ public class InstallationRenderControlVM: ViewModelBase
     public SceneNodeGroupModel3D GroupModel { get; } = new SceneNodeGroupModel3D();
 
     private bool renderEnvironmentMap = false;
+    private string _filePath;
+
     public bool RenderEnvironmentMap
     {
         set
@@ -60,27 +73,37 @@ public class InstallationRenderControlVM: ViewModelBase
     }
     
     private void OpenFile()
-        {
-            if (IsLoading)
+    {
+        HasError = false;
+            if (IsLoading || string.IsNullOrEmpty(FilePath))
             {
-                return;
-            }
-            string path = "C:\\Users\\aspir\\Desktop\\Plantlinker\\MAYTEST\\Plantlinker\\models\\model338.ifc";
-            if (path == null)
-            {
+                HasError = true;
                 return;
             }
             var syncContext = SynchronizationContext.Current;
             IsLoading = true;
 
-            Task.Run(() =>
+            Task.Run(async () =>
             {
+                // await Task.Delay(5000);
                 var loader = new Importer();
-                return scene = loader.Load(path);
+                var scene = loader.Load(FilePath);
+                scene.Root.Attach(EffectsManager); // Pre attach scene graph
+                scene.Root.UpdateAllTransformMatrix();
+                if (scene.Root.TryGetBound(out var bound))
+                {
+                    /// Must use UI thread to set value back.
+                    syncContext.Post((o) => { ModelBound = bound; }, null);
+                }
+                if (scene.Root.TryGetCentroid(out var centroid))
+                {
+                    /// Must use UI thread to set value back.
+                    syncContext.Post((o) => { ModelCentroid = centroid.ToPoint3D(); }, null);
+                }
+                return scene;
             }).ContinueWith((result) =>
             {
-                IsLoading = false;
-                if (result.IsCompleted)
+                if (result.IsCompletedSuccessfully)
                 {
                     scene = result.Result;
                     GroupModel.Clear();
@@ -113,15 +136,17 @@ public class InstallationRenderControlVM: ViewModelBase
                 }
                 else if (result.IsFaulted && result.Exception != null)
                 {
-                    _messageBoxService.Show("result.Exception.Message", "Ошибка!");
+                    HasError = true;
+                    // _messageBoxService.Show("result.Exception.Message", "Ошибка!");
                 }
-
+                IsLoading = false;
+                FocusCameraToScene();
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
     private void FocusCameraToScene()
     {
         var maxWidth = Math.Max(Math.Max(ModelBound.Width, ModelBound.Height), ModelBound.Depth);
-        var pos = ModelBound.Center + new Vector3(0, 0, maxWidth);
+        var pos = ModelBound.Center + new Vector3(maxWidth, maxWidth, maxWidth);
         Camera.Position = pos.ToPoint3D();
         Camera.LookDirection = (ModelBound.Center - pos).ToVector3D();
         Camera.UpDirection = Vector3.UnitY.ToVector3D();

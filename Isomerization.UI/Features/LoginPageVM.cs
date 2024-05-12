@@ -1,5 +1,6 @@
 using Isomerization.Domain.Data;
 using Isomerization.Domain.Models;
+using Isomerization.Shared;
 using Isomerization.UI.Features;
 using Isomerization.UI.Features.Admin;
 using Isomerization.UI.Features.Researcher;

@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using Isomerization.Shared;
 using Isomerization.UI.Features.Admin.DIMIsomerization;
 using Isomerization.UI.Features.Admin.Installation;
 using Isomerization.UI.Features.Admin.Kinetic;

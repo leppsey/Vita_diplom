@@ -39,7 +39,9 @@
                                 <shared:LabeledControlPresenter HeaderText="Оборудование">
                                     <ComboBox ItemsSource="{Binding Installations}"
                                               SelectedItem="{Binding SelectedInstallation}"
-                                              DisplayMemberPath="Name">
+                                              DisplayMemberPath="Name"
+                                              SelectionChanged="Selector_OnSelectionChanged"
+                                              >
                                     </ComboBox>
                                 </shared:LabeledControlPresenter>
                                 <shared:LabeledControlPresenter HeaderText="Сырье">
@@ -57,68 +59,69 @@
                             </StackPanel>
                         </ui:Card>
                     </shared:LabeledControlPresenter>
-                    <shared:LabeledControlPresenter HeaderText="Начальные значения"
-                                                    HeaderFontSize="16"
-                                                    Margin="0,7">
+                    <shared:LabeledControlPresenter
+                        HeaderText="Параметры процесса"
+                        HeaderFontSize="16"
+                        Margin="0,7">
                         <ui:Card>
                             <StackPanel>
-                                <shared:LabeledControlPresenter HeaderTextPlacement="Left" HeaderText="Сырье C0" RightText="моль/м³">
+                                <shared:LabeledControlPresenter HeaderText="Температура" RightText="моль/м³">
                                     <ui:NumberBox Value="{Binding C0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
                                 </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderTextPlacement="Left" HeaderText="Начальная температура">
-                                    <ui:NumberBox Value="{Binding T0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderTextPlacement="Left" HeaderText="Расход сырья">
-                                    <ui:NumberBox Value="{Binding G, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>
-                            </StackPanel>
-                        </ui:Card>
-                    </shared:LabeledControlPresenter>
-                    <shared:LabeledControlPresenter HeaderText="Погрешность решения"
-                                                    HeaderFontSize="16"
-                                                    Margin="0,7">
-                        <ui:Card>
-                            <StackPanel>
-                                <shared:LabeledControlPresenter HeaderText="Допустимая погрешность">
-                                    <ui:NumberBox Value="{Binding EMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>  
-                                <shared:LabeledControlPresenter HeaderText="Максимальнок число делений сетки пополам">
-                                    <ui:NumberBox Value="{Binding QMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>  
-                            </StackPanel>
-                        </ui:Card>
-                    </shared:LabeledControlPresenter>
-                    <shared:LabeledControlPresenter HeaderText="Время"
-                                                    HeaderFontSize="16"
-                                                    Margin="0,7">
-                        <ui:Card>
-                            <StackPanel>
-                                <shared:LabeledControlPresenter HeaderText="Время пребывания">
+                                <shared:LabeledControlPresenter HeaderText="Время проведения реакции" RightText="с">
                                     <ui:NumberBox Value="{Binding Tau, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>  
-                                <shared:LabeledControlPresenter HeaderText="Шаг">
+                                </shared:LabeledControlPresenter>
+                                <!-- <shared:LabeledControlPresenter HeaderTextPlacement="Left" HeaderText="Расход сырья"> -->
+                                <!--     <ui:NumberBox Value="{Binding G, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox> -->
+                                <!-- </shared:LabeledControlPresenter> -->
+                            </StackPanel>
+                        </ui:Card>
+                    </shared:LabeledControlPresenter>
+                    <!-- <shared:LabeledControlPresenter HeaderText="Погрешность решения" -->
+                    <!--                                 HeaderFontSize="16" -->
+                    <!--                                 Margin="0,7"> -->
+                    <!--     <ui:Card> -->
+                    <!--         <StackPanel> -->
+                    <!--             <shared:LabeledControlPresenter HeaderText="Допустимая погрешность"> -->
+                    <!--                 <ui:NumberBox Value="{Binding EMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox> -->
+                    <!--             </shared:LabeledControlPresenter>   -->
+                    <!--             <shared:LabeledControlPresenter HeaderText="Максимальнок число делений сетки пополам"> -->
+                    <!--                 <ui:NumberBox Value="{Binding QMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox> -->
+                    <!--             </shared:LabeledControlPresenter>   -->
+                    <!--         </StackPanel> -->
+                    <!--     </ui:Card> -->
+                    <!-- </shared:LabeledControlPresenter> -->
+                    <shared:LabeledControlPresenter HeaderText="Параметры расчета"
+                                                    HeaderFontSize="16"
+                                                    Margin="0,7">
+                        <ui:Card>
+                            <StackPanel>
+                                <!-- <shared:LabeledControlPresenter HeaderText="Время пребывания"> -->
+                                <!--     <ui:NumberBox Value="{Binding Tau, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox> -->
+                                <!-- </shared:LabeledControlPresenter>   -->
+                                <shared:LabeledControlPresenter HeaderText="Шаг" RightText="с">
                                     <ui:NumberBox Value="{Binding H, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
                                 </shared:LabeledControlPresenter>  
-                                <shared:LabeledControlPresenter HeaderText="Время эксплуатации катализатора">
-                                    <ui:NumberBox Value="{Binding CatalystT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
-                                </shared:LabeledControlPresenter>  
+                                <!-- <shared:LabeledControlPresenter HeaderText="Время эксплуатации катализатора"> -->
+                                <!--     <ui:NumberBox Value="{Binding CatalystT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox> -->
+                                <!-- </shared:LabeledControlPresenter>   -->
                             </StackPanel>
                         </ui:Card>
                     </shared:LabeledControlPresenter>
-                    <shared:LabeledControlPresenter HeaderText="Информация"
-                                                    HeaderFontSize="16"
-                                                    Margin="0,7">
-                        <ui:Card>
-                            <StackPanel>
-                                <shared:LabeledControlPresenter HeaderText="ПРИ">
-                                </shared:LabeledControlPresenter>  
-                                <shared:LabeledControlPresenter HeaderText="ПРИ">
-                                </shared:LabeledControlPresenter>  
-                                <shared:LabeledControlPresenter HeaderText="ПРИ">
-                                </shared:LabeledControlPresenter>  
-                            </StackPanel>
-                        </ui:Card>
-                    </shared:LabeledControlPresenter>
+                    <!-- <shared:LabeledControlPresenter HeaderText="Информация" -->
+                    <!--                                 HeaderFontSize="16" -->
+                    <!--                                 Margin="0,7"> -->
+                    <!--     <ui:Card> -->
+                    <!--         <StackPanel> -->
+                    <!--             <shared:LabeledControlPresenter HeaderText="ПРИ"> -->
+                    <!--             </shared:LabeledControlPresenter>   -->
+                    <!--             <shared:LabeledControlPresenter HeaderText="ПРИ"> -->
+                    <!--             </shared:LabeledControlPresenter>   -->
+                    <!--             <shared:LabeledControlPresenter HeaderText="ПРИ"> -->
+                    <!--             </shared:LabeledControlPresenter>   -->
+                    <!--         </StackPanel> -->
+                    <!--     </ui:Card> -->
+                    <!-- </shared:LabeledControlPresenter> -->
                 </StackPanel>
             </ui:PassiveScrollViewer>
             <ui:Button Grid.Row="1"
@@ -141,7 +144,7 @@
                         </StackPanel>
                     </TabItem.Header>
                     <Grid>
-                        <researcher:InstallationRenderControl />
+                        <researcher:InstallationRenderControl x:Name="RenderControl" ModelPath="{Binding SelectedInstallation.ModelPath}" />
                         <!-- <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНА БЫТЬ КРУТАЯ ТАБЛИЦА" /> -->
                     </Grid>
                 </TabItem>
@@ -198,7 +201,7 @@
                               Style="{DynamicResource DataGridStyle1}"
                               IsReadOnly="True" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Длина реактора, м"
+                            <DataGridTextColumn Header="Время пребывания, с"
                                                 Binding="{Binding Cord}" />
                             <DataGridTextColumn Header="С1, %" Binding="{Binding C1, StringFormat=F2}" />
                             <DataGridTextColumn Header="С2, %" Binding="{Binding C2, StringFormat=F2}" />

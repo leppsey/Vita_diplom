@@ -2,9 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Isomerization.UI"
-             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:misc="clr-namespace:Isomerization.UI.Misc">
     <Application.Resources>
         <ResourceDictionary>
+            <misc:BooleanToVisibilityConverter 
+                x:Key="BooleanToVisibilityConverter"  />
+            <misc:InvertedBooleanToVisibilityConverter 
+                x:Key="InvertedBooleanToVisibilityConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemesDictionary Theme="Light" />
                 <ui:ControlsDictionary />

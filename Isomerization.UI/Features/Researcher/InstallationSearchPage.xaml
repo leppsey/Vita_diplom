@@ -11,7 +11,7 @@
       d:DataContext="{d:DesignInstance local:InstallationSearchPageVM}"
       d:DesignHeight="2500"
       d:DesignWidth="1200">
-    <Grid>
+    <Grid Margin="15">
         <Grid.ColumnDefinitions>
            <ColumnDefinition Width="300"/> 
            <ColumnDefinition/> 

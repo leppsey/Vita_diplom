@@ -1,20 +1,32 @@
+using Isomerization.Shared;
+using Isomerization.UI.Misc;
 using UI.Services.MyDialogService;
 
 namespace Isomerization.UI.Features.Admin.Catalyst;
 
-public class CatalystEditControlVM: ViewModelBase, IInteractionAware, IResultHolder, IDataHolder
+public class CatalystEditControlVM: ViewModelBase,  IDialogEditViewModel<Domain.Models.Catalyst>
 {
-    private Domain.Models.Catalyst EditingCatalyst { get; set; }
-    public Action FinishInteraction { get; set; }
-    public object Result { get; set; }
+    public Domain.Models.Catalyst Result { get; set; }
 
-    public object Data
-    {
-        get => EditingCatalyst;
-        set => EditingCatalyst = (Domain.Models.Catalyst) value;
-    }
+    public Domain.Models.Catalyst Data { get; set; }
+
+    public Action FinishInteraction { get; set; }
     
+    private RelayCommand _applyCommand;
+
+    public RelayCommand ApplyCommand
+    {
+        get
+        {
+            return _applyCommand ??= new RelayCommand(o =>
+            {
+                Result = Data;
+                FinishInteraction();
+            }, _=> !Data?.HasErrors ?? false);
+        }
+    }
     private RelayCommand _cancelCommand;
+
     public RelayCommand CancelCommand
     {
         get
@@ -26,18 +38,5 @@ public class CatalystEditControlVM: ViewModelBase, IInteractionAware, IResultHol
             });
         }
     }
-
-    private RelayCommand _applyCommand;
-
-    public RelayCommand ApplyCommand
-    {
-        get
-        {
-            return _applyCommand ??= new RelayCommand(o =>
-            {
-                Result = EditingCatalyst;
-                FinishInteraction();
-            }, _=> !EditingCatalyst.HasErrors);
-        }
-    }
 }
+

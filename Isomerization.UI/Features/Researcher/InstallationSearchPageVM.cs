@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using Isomerization.Domain.Data;
 using Isomerization.Domain.Models;
+using Isomerization.Shared;
 using Isomerization.UI.Services;
 using Wpf.Ui;
 

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Isomerization.Domain.Data;
 using Isomerization.Domain.Models;
 using Isomerization.Domain.Task1;
+using Isomerization.Shared;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
@@ -33,13 +34,16 @@ public class ResearcherPageVM: ViewModelBase
     public ObservableCollection<Catalyst> Catalysts { get; set; }
     public Catalyst SelectedCatalyst { get; set; }
     
+    //todo delete
+    public string SOMESTRING { get; set; } = "12345";
+
     public Axis[] XAxes { get; set; } =
     {
         new Axis
         {
-            Name = "Длина реактора, м",
+            Name = "Время пребывания, с",
             TextSize = 14,
-            LabelsPaint = new SolidColorPaint(SKColors.Black)
+            LabelsPaint = new SolidColorPaint(SKColors.Black),
         }
     };
     public Axis[] ConcentrationYAxes { get; set; } =
@@ -80,10 +84,11 @@ public class ResearcherPageVM: ViewModelBase
     /// Максимальное число делений сетки пополам 
     /// </summary>
     public double QMax { get; set; } = 4;
+
     /// <summary>
-    /// Время преывания
+    /// Время проведения реакции
     /// </summary>
-    public double Tau { get; set; }
+    public double Tau { get; set; } = 600;
 
     /// <summary>
     /// Шаг
@@ -108,7 +113,7 @@ public class ResearcherPageVM: ViewModelBase
             G = 9.1,//G,
             Step = H,
             HeatCap = 190.931, //todo get from somewhere
-            L = 80, //todo get from somewhere
+            L = Tau, //todo get from somewhere
         };
         MathClass= new MathClass(calcParams);
         MathClass.Calculate();
@@ -132,44 +137,58 @@ public class ResearcherPageVM: ViewModelBase
     public bool IsCalculated { get; set; } = false;
     public List<ISeries> CSeries { get; set; }
 
+
+    private static LineSeries<ObservablePoint> CreateSerie(string name)
+    {
+        return new LineSeries<ObservablePoint>()
+        {
+            Name = name,
+            Fill = null,
+            
+            GeometryStroke = null,
+            GeometryFill = null,
+            // GeometrySize = 8,
+        };
+    }
+
     /// <summary>
     ///     Серия точек 1 вещества
     /// </summary>
-    private LineSeries<ObservablePoint> C1LineSerie { get; set; } = new LineSeries<ObservablePoint>(){Name = "C1", Fill = null};
+    private LineSeries<ObservablePoint> C1LineSerie { get; set; } = CreateSerie("C1");
 
     /// <summary>
     ///     Серия точек 2 вещества
     /// </summary>
-    private LineSeries<ObservablePoint> C2LineSerie { get; set; } = new LineSeries<ObservablePoint>(){Name = "C2", Fill = null};
+    private LineSeries<ObservablePoint> C2LineSerie { get; set; } = CreateSerie( "C2");
 
         
     /// <summary>
     ///     Серия точек 3 вещества
     /// </summary>
-    private LineSeries<ObservablePoint> C3LineSerie { get; set; } = new LineSeries<ObservablePoint>(){Name = "C3", Fill = null};
+    private LineSeries<ObservablePoint> C3LineSerie { get; set; } = CreateSerie( "C3");
 
     /// <summary>
     ///     Серия точек 4 вещества
     /// </summary>
-    private LineSeries<ObservablePoint> C4LineSerie { get; set; } = new LineSeries<ObservablePoint>(){Name = "C4", Fill = null};
+    private LineSeries<ObservablePoint> C4LineSerie { get; set; } = CreateSerie( "C4");
 
     /// <summary>
     ///     Серия точек 5 вещества
     /// </summary>
-    private LineSeries<ObservablePoint> C5LineSerie { get; set; } = new LineSeries<ObservablePoint>(){Name = "C5", Fill = null};
+    private LineSeries<ObservablePoint> C5LineSerie { get; set; } = CreateSerie( "C5");
 
     /// <summary>
     ///     Серия точек 6 вещества
     /// </summary>
-    private LineSeries<ObservablePoint> C6LineSerie { get; set; } = new LineSeries<ObservablePoint>(){Name = "C6", Fill = null};
+    private LineSeries<ObservablePoint> C6LineSerie { get; set; } = CreateSerie( "C6");
         
     /// <summary>
     ///     Серия точек 7 вещества
     /// </summary>
-    private LineSeries<ObservablePoint> C7LineSerie { get; set; } = new LineSeries<ObservablePoint>(){Name = "C7", Fill = null};
+    private LineSeries<ObservablePoint> C7LineSerie { get; set; } = CreateSerie( "C7");
 
     
-    private LineSeries<ObservablePoint> TLineSerie { get; set; } = new LineSeries<ObservablePoint>(){Name = "T", Fill = null};
+    private LineSeries<ObservablePoint> TLineSerie { get; set; } = CreateSerie("T");
     public List<ISeries> TSeries { get; set; }
     public long TotalMemory
     {

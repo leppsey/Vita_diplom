@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Isomerization.Domain.Data;
 using Isomerization.Domain.Models;
 
@@ -148,6 +149,7 @@ public class DatabaseInitializer
                 Width = 98,
                 DateOfCommissioning = DateTime.Now.AddYears(-2),
                 DateOfPlannedWorks = DateTime.Now.AddYears(1),
+                ModelPath = "resources/model338.ifc",
             },
             new()
             {
@@ -165,6 +167,7 @@ public class DatabaseInitializer
                 Width = 31,
                 DateOfCommissioning = DateTime.Now.AddYears(-3),
                 DateOfPlannedWorks = DateTime.Now.AddYears(2),
+                ModelPath = "resources/asm.obj",
             },
         };
         context.AddRange(defaultInstallations);
@@ -224,6 +227,7 @@ public class DatabaseInitializer
                 PreExponentialFactor=10000,
                 EnergyActivation=100,
                 Kineticscol="some value",
+                RawMaterial = defaultRawMaterial.First(),
             },
             
         };
