@@ -214,7 +214,7 @@ public class DatabaseInitializer
             },
         };
         context.AddRange(defaultRawMaterial);
-        
+        context.SaveChanges();
         #endregion
 
         #region Kinetic
@@ -234,6 +234,139 @@ public class DatabaseInitializer
         context.AddRange(defaultKinetic);
         
         #endregion
+
+        var concentrations = new List<Concetration>()
+        {
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[0].RawMaterialId,
+                Order = 0,
+                Value = 53.37,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[0].RawMaterialId,
+                Order = 1,
+                Value = 15.39,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[0].RawMaterialId,
+                Order = 2,
+                Value = 6.41,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[0].RawMaterialId,
+                Order = 3,
+                Value = 11.8,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[0].RawMaterialId,
+                Order = 4,
+                Value = 6.52,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[0].RawMaterialId,
+                Order = 5,
+                Value = 2.06,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[0].RawMaterialId,
+                Order = 6,
+                Value = 1.92,
+            },
+            
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[1].RawMaterialId,
+                Order = 0,
+                Value = 50.37,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[1].RawMaterialId,
+                Order = 1,
+                Value = 15.39,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[1].RawMaterialId,
+                Order = 2,
+                Value = 7.41,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[1].RawMaterialId,
+                Order = 3,
+                Value = 13.8,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[1].RawMaterialId,
+                Order = 4,
+                Value = 6.52,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[1].RawMaterialId,
+                Order = 5,
+                Value = 2.06,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[1].RawMaterialId,
+                Order = 6,
+                Value = 1.92,
+            },
+            
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 0,
+                Value = 45.37,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 1,
+                Value = 20.39,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 2,
+                Value = 7.41,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 3,
+                Value = 13.8,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 4,
+                Value = 6.52,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 5,
+                Value = 2.06,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 6,
+                Value = 1.92,
+            },
+        };
+        context.AddRange(concentrations);
         context.SaveChanges();
     }
 }

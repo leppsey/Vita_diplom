@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Isomerization.Domain.Models;
 
 public class RawMaterial
@@ -10,5 +12,14 @@ public class RawMaterial
     public double HeatCapacity { get; set; }
     public double Viscosity { get; set; }
     public double SulfurContent { get; set; }
-    public double OctaneRating { get; set; }
+    public double OctaneRating { get; set; } 
+    public List<Concetration> Concetrations { get; set; }
+}
+
+public class Concetration
+{
+    public int ConcetrationId { get; set; }
+    public int RawMaterialId { get; set; }
+    public double Value { get; set; }
+    public int Order { get; set; }
 }
