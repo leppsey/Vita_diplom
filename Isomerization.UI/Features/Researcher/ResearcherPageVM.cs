@@ -8,6 +8,7 @@ using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
+using Microsoft.EntityFrameworkCore;
 using SkiaSharp;
 
 namespace Isomerization.UI.Features;
@@ -20,7 +21,7 @@ public class ResearcherPageVM: ViewModelBase
     {
         _context = context;
         
-        RawMaterials = new ObservableCollection<RawMaterial>(_context.RawMaterials);
+        RawMaterials = new ObservableCollection<RawMaterial>(_context.RawMaterials.Include(x=>x.Concetrations));
         SelectedRawMaterial = RawMaterials.FirstOrDefault();
         Catalysts = new ObservableCollection<Catalyst>(_context.Catalysts);
         SelectedCatalyst = Catalysts.FirstOrDefault();
@@ -114,6 +115,8 @@ public class ResearcherPageVM: ViewModelBase
             Step = H,
             HeatCap = 190.931, //todo get from somewhere
             L = Tau, //todo get from somewhere
+            C0 = SelectedRawMaterial.Concetrations.OrderBy(x=>x.Order).Select(x=>x.Value).ToArray(),
+            
         };
         MathClass= new MathClass(calcParams);
         MathClass.Calculate();
