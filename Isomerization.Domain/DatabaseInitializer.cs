@@ -149,7 +149,14 @@ public class DatabaseInitializer
                 Width = 98,
                 DateOfCommissioning = DateTime.Now.AddYears(-2),
                 DateOfPlannedWorks = DateTime.Now.AddYears(1),
-                ModelPath = "resources/model338.ifc",
+                Model = new Model()
+                {
+                    ObjPath = "resources/1/1.obj",
+                    AlbedoPath = "resources/1/1_albedo.png",
+                    HeightPath = "resources/1/1_height.png",
+                    NormalPath = "resources/1/1_normal.png",
+                    RMPath = "resources/1/1_RM.png",
+                },
             },
             new()
             {
@@ -167,7 +174,39 @@ public class DatabaseInitializer
                 Width = 31,
                 DateOfCommissioning = DateTime.Now.AddYears(-3),
                 DateOfPlannedWorks = DateTime.Now.AddYears(2),
-                ModelPath = "resources/asm.obj",
+                Model = new Model()
+                {
+                    ObjPath = "resources/2/2.obj",
+                    AlbedoPath = "resources/2/2_albedo.png",
+                    HeightPath = "resources/2/2_height.png",
+                    NormalPath = "resources/2/2_normal.png",
+                    RMPath = "resources/2/2_RM.png",
+                },
+            },
+            new()
+            {
+                Type = "Реакторный блок",
+                Name = "ПГИ-434 ОАО Газпромнефтехим - 2 ",
+                Diameter = 4,
+                Height = 2,
+                Length = 5,
+                Performance = 531,
+                Pressure = 865,
+                Status = "В работе",
+                Temperature = 25,
+                Volume = 56,
+                EnergyConsumption = 92,
+                Width = 31,
+                DateOfCommissioning = DateTime.Now.AddYears(-3),
+                DateOfPlannedWorks = DateTime.Now.AddYears(2),
+                Model = new Model()
+                {
+                    ObjPath = "resources/3/3.obj",
+                    AlbedoPath = "resources/3/3_albedo.png",
+                    HeightPath = "resources/3/3_height.png",
+                    NormalPath = "resources/3/3_normal.png",
+                    RMPath = "resources/3/3_RM.png",
+                },
             },
         };
         context.AddRange(defaultInstallations);

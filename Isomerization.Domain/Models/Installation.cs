@@ -21,5 +21,5 @@ public class Installation: ViewModelBase
     public DateTime DateOfPlannedWorks { get; set; }
     public string Status { get; set; }
 
-    public string ModelPath { get; set; }
+    public Model Model { get; set; }
 }

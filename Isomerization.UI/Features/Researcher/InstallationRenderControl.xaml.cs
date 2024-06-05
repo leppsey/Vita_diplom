@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
+using Isomerization.Domain.Models;
 using Isomerization.UI.Misc;
 
 namespace Isomerization.UI.Features.Researcher;
@@ -16,9 +17,9 @@ public partial class InstallationRenderControl : UserControl, IViewWithVM<Instal
 
     public InstallationRenderControlVM ViewModel { get; set; }
     
-    public static readonly DependencyProperty ModelPathProperty = DependencyProperty.RegisterAttached(
-        nameof(ModelPath), typeof(string), typeof(InstallationRenderControl), new FrameworkPropertyMetadata(
-            "null",
+    public static readonly DependencyProperty ModelProperty = DependencyProperty.RegisterAttached(
+        nameof(Model), typeof(Model), typeof(InstallationRenderControl), new FrameworkPropertyMetadata(
+            null,
             new PropertyChangedCallback(PropertyChangedCallback)));
 
     private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -26,13 +27,13 @@ public partial class InstallationRenderControl : UserControl, IViewWithVM<Instal
         Debug.WriteLine(e.NewValue);
     }
 
-    public string ModelPath
+    public Model Model
     {
-        get { return (string)GetValue(ModelPathProperty); }
+        get { return (Model)GetValue(ModelProperty); }
         set
         {
-            SetValue(ModelPathProperty, value);
-            ViewModel.FilePath = value;
+            SetValue(ModelProperty, value);
+            ViewModel.Model = value;
         }
     }
 }

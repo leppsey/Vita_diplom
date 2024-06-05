@@ -18,6 +18,6 @@ public partial class ResearcherPage : INavigableView<ResearcherPageVM>
     {
         var box = (ComboBox)sender;
         var installation = (Installation)box.SelectedItem;
-        RenderControl.ModelPath = installation.ModelPath;
+        RenderControl.Model = installation.Model;
     }
 }

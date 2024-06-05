@@ -36,6 +36,7 @@ namespace Isomerization.Domain.Data
         public virtual DbSet<RawMaterial> RawMaterials { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
+        public virtual DbSet<Model> Models { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

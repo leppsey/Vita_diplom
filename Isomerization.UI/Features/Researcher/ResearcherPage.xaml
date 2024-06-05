@@ -144,7 +144,7 @@
                         </StackPanel>
                     </TabItem.Header>
                     <Grid>
-                        <researcher:InstallationRenderControl x:Name="RenderControl" ModelPath="{Binding SelectedInstallation.ModelPath}" />
+                        <researcher:InstallationRenderControl x:Name="RenderControl" Model="{Binding SelectedInstallation.Model}" />
                         <!-- <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНА БЫТЬ КРУТАЯ ТАБЛИЦА" /> -->
                     </Grid>
                 </TabItem>

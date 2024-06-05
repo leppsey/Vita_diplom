@@ -4,11 +4,13 @@ using HelixToolkit.SharpDX.Core.Assimp;
 using HelixToolkit.SharpDX.Core.Model;
 using HelixToolkit.SharpDX.Core.Model.Scene;
 using HelixToolkit.Wpf.SharpDX;
+using Isomerization.Domain.Models;
 using Isomerization.Shared;
 using Isomerization.UI.Services;
 using SharpDX;
 using Camera = HelixToolkit.Wpf.SharpDX.Camera;
 using OrthographicCamera = HelixToolkit.Wpf.SharpDX.OrthographicCamera;
+using PerspectiveCamera = HelixToolkit.Wpf.SharpDX.PerspectiveCamera;
 
 namespace Isomerization.UI.Features.Researcher;
 
@@ -19,12 +21,12 @@ public class InstallationRenderControlVM: ViewModelBase
     public EffectsManager EffectsManager { get; }
 
     public bool HasError { get; private set; } = false;
-    public string FilePath
+    public Model Model
     {
-        get => _filePath;
+        get => _model;
         set
         {
-            _filePath = value;
+            _model = value;
             OpenFile();
         }
     }
@@ -33,13 +35,14 @@ public class InstallationRenderControlVM: ViewModelBase
     {
         _messageBoxService = messageBoxService;
         EffectsManager = new DefaultEffectsManager();
+        // Camera = new PerspectiveCamera(){}
         Camera = new OrthographicCamera()
         {
-            LookDirection = new System.Windows.Media.Media3D.Vector3D(0, -10, -10),
-            Position = new System.Windows.Media.Media3D.Point3D(0, 10, 10),
-            UpDirection = new System.Windows.Media.Media3D.Vector3D(0, 1, 0),
-            FarPlaneDistance = 5000,
-            NearPlaneDistance = 0.1f
+        LookDirection = new System.Windows.Media.Media3D.Vector3D(0, -10, -10),
+        Position = new System.Windows.Media.Media3D.Point3D(0, 10, 10),
+        UpDirection = new System.Windows.Media.Media3D.Vector3D(0, 1, 0),
+        FarPlaneDistance = 5000,
+        NearPlaneDistance = 0.1f
         };
     }
     public bool IsLoading { get; set; }
@@ -49,7 +52,7 @@ public class InstallationRenderControlVM: ViewModelBase
     public SceneNodeGroupModel3D GroupModel { get; } = new SceneNodeGroupModel3D();
 
     private bool renderEnvironmentMap = false;
-    private string _filePath;
+    private Model _model;
 
     public bool RenderEnvironmentMap
     {
@@ -71,11 +74,14 @@ public class InstallationRenderControlVM: ViewModelBase
         }
         get => renderEnvironmentMap;
     }
-    
+
+    public TextureModel EnvironmentMap { get; } = TextureModel.Create(
+        "C:\\Users\\aspir\\Desktop\\helix-toolkit-master\\Images\\EnvironmentMaps\\Cubemap_Grandcanyon.dds");
+
     private void OpenFile()
     {
         HasError = false;
-            if (IsLoading || string.IsNullOrEmpty(FilePath))
+            if (IsLoading || string.IsNullOrEmpty(Model.ObjPath))
             {
                 HasError = true;
                 return;
@@ -87,7 +93,7 @@ public class InstallationRenderControlVM: ViewModelBase
             {
                 // await Task.Delay(5000);
                 var loader = new Importer();
-                var scene = loader.Load(FilePath);
+                var scene = loader.Load(Model.ObjPath);
                 scene.Root.Attach(EffectsManager); // Pre attach scene graph
                 scene.Root.UpdateAllTransformMatrix();
                 if (scene.Root.TryGetBound(out var bound))
@@ -115,14 +121,20 @@ public class InstallationRenderControlVM: ViewModelBase
                             {
                                 if (node is MaterialGeometryNode m)
                                 {
-                                    if (m.Material is PBRMaterialCore pbr)
+                                    m.Material = new PBRMaterialCore()
                                     {
-                                        pbr.RenderEnvironmentMap = RenderEnvironmentMap;
-                                    }
-                                    else if (m.Material is PhongMaterialCore phong)
-                                    {
-                                        phong.RenderEnvironmentMap = RenderEnvironmentMap;
-                                    }
+                                        NormalMap = TextureModel.Create(Model.NormalPath),
+                                        AlbedoMap = TextureModel.Create(Model.AlbedoPath),
+                                        RoughnessMetallicMap = TextureModel.Create(Model.RMPath),
+                                        DisplacementMap = TextureModel.Create(Model.HeightPath),
+                                        DisplacementMapScaleMask = new Vector4(0.01f,0.01f,0.01f,0),
+                                        RoughnessFactor = 0.8f,
+                                        MetallicFactor = 0.2f,                
+                                        RenderShadowMap = true,
+                                        EnableAutoTangent = true,
+                                        EnableTessellation = true,
+                                        RenderEnvironmentMap = true,
+                                    };
                                 }
                             }
                         }
