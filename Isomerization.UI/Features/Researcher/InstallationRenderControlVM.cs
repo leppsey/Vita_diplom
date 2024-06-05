@@ -106,47 +106,40 @@ public class InstallationRenderControlVM: ViewModelBase
                     /// Must use UI thread to set value back.
                     syncContext.Post((o) => { ModelCentroid = centroid.ToPoint3D(); }, null);
                 }
-                return scene;
-            }).ContinueWith((result) =>
-            {
-                if (result.IsCompletedSuccessfully)
+                GroupModel.Clear();
+                if (scene.Root != null)
                 {
-                    scene = result.Result;
-                    GroupModel.Clear();
-                    if (scene != null)
+                    foreach (var node in scene.Root.Traverse())
                     {
-                        if (scene.Root != null)
+                        if (node is MaterialGeometryNode m)
                         {
-                            foreach (var node in scene.Root.Traverse())
+                            m.Material = new PBRMaterialCore()
                             {
-                                if (node is MaterialGeometryNode m)
-                                {
-                                    m.Material = new PBRMaterialCore()
-                                    {
-                                        NormalMap = TextureModel.Create(Model.NormalPath),
-                                        AlbedoMap = TextureModel.Create(Model.AlbedoPath),
-                                        RoughnessMetallicMap = TextureModel.Create(Model.RMPath),
-                                        DisplacementMap = TextureModel.Create(Model.HeightPath),
-                                        DisplacementMapScaleMask = new Vector4(0.01f,0.01f,0.01f,0),
-                                        RoughnessFactor = 0.8f,
-                                        MetallicFactor = 0.2f,                
-                                        RenderShadowMap = true,
-                                        EnableAutoTangent = true,
-                                        EnableTessellation = true,
-                                        RenderEnvironmentMap = true,
-                                    };
-                                }
-                            }
-                        }
-
-                        GroupModel.AddNode(scene.Root);
-                        foreach (var n in scene.Root.Traverse())
-                        {
-                            n.Tag = new AttachedNodeViewModel(n);
+                                NormalMap = TextureModel.Create(Model.NormalPath),
+                                AlbedoMap = TextureModel.Create(Model.AlbedoPath),
+                                RoughnessMetallicMap = TextureModel.Create(Model.RMPath),
+                                DisplacementMap = TextureModel.Create(Model.HeightPath),
+                                DisplacementMapScaleMask = new Vector4(0.01f,0.01f,0.01f,0),
+                                RoughnessFactor = 0.8f,
+                                MetallicFactor = 0.2f,                
+                                RenderShadowMap = true,
+                                EnableAutoTangent = true,
+                                EnableTessellation = true,
+                                RenderEnvironmentMap = true,
+                            };
                         }
                     }
                 }
-                else if (result.IsFaulted && result.Exception != null)
+
+                GroupModel.AddNode(scene.Root);
+                foreach (var n in scene.Root.Traverse())
+                {
+                    n.Tag = new AttachedNodeViewModel(n);
+                }
+                return scene;
+            }).ContinueWith((result) =>
+            {
+                if (result.IsFaulted && result.Exception != null)
                 {
                     HasError = true;
                     // _messageBoxService.Show("result.Exception.Message", "Ошибка!");
