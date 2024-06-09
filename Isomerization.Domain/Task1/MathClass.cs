@@ -19,7 +19,7 @@ public class MathClass // todo как-то красиво переписать �
     {
         Cp = cp;
     }
-    
+
     /// <summary>
     ///     Результаты вычислений
     /// </summary>
@@ -37,7 +37,7 @@ public class MathClass // todo как-то красиво переписать �
     /// <summary>
     ///     Функция производит вычисления с заданными параметрами
     /// </summary>
-    public void Calculate()
+    public void Calculate1()
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -130,12 +130,100 @@ public class MathClass // todo как-то красиво переписать �
                 x += h;
             }
         }
-        
+
         double[] oktNumbers = { 61.7, 92.3, 24.8, 66.0, 75.0, 91.1, 91.8 };
         var oktNumber = 0d;
         for (var i = 0; i < 7; i++)
         {
             oktNumber += oktNumbers[i] * C0[i] / 100;
+        }
+
+        sw.Stop();
+
+        Results = new CalculationResults
+            { CordCs = cordCs, MathTimer = sw, OKT = Math.Round(oktNumber, 2) };
+    }
+
+    public void Calculate()
+    {
+        var sw = new Stopwatch();
+        sw.Start();
+        // var tay = Step;
+        var h = Step;
+        // var tN = (int)Round(t / tay,0);
+        var hN = (int)Math.Round(L / h, 0);
+        // k это 
+        var R = 8.31;
+        double[] K =
+        {
+            0.027, 0.03, 0.05, 0.04, 0.05
+        };
+        double[] C0 =
+        {
+            1, 0, 0, 0, 0, 0, 0
+        };
+
+        double[] H =
+        {
+            -8.22, 8.22, -6.98, 6.98, -4.44
+        };
+        // var C_temp = new double[7,tN,hN];
+        var cTemp = new double[7, hN + 1];
+        var r = new double[7];
+        var v = 4 * G / (P * Math.PI * D * D);
+        var x = h;
+        var cordCs = new List<CordC>();
+        var tTemp = T0;
+        cordCs.Add(new CordC
+        {
+            Cord = 0, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], C5 = C0[4], C6 = C0[5], C7 = C0[6], T = T0
+        });
+        for (var reactor = 0; reactor < 1; reactor++)
+        {
+            for (var i = 0; i < 7; i++)
+            {
+                cTemp[i, 0] = C0[i];
+            }
+
+            for (var k = 1; k <= hN; k++)
+            {
+                
+                // расчет r[i]
+                r[0] = -K[0] *  C0[0]-K[1] *  C0[0]-K[2] *  C0[0];
+                r[1] = K[0] *  C0[0]-K[3] *  C0[1]-K[4] *  C0[1];
+                r[2] = K[2] *  C0[0]+K[4] *  C0[1];
+                r[3] = K[1] *  C0[0]+K[3] *  C0[1];
+                r[4] = 0;
+                r[5] = 0;
+                r[6] = 0;
+                for (var i = 0; i < 7; i++)
+                {
+                    // C_temp[i, k] = Round(h*r[i]/v + C_temp[i, k - 1],2);
+                    cTemp[i, k] = h * r[i]/v  + cTemp[i, k - 1];
+                    C0[i] = cTemp[i, k];
+                }
+
+                var sum = K[0] *  C0[0]  * H[0]  +
+                          K[1] *  C0[0]  * H[1]  +
+                          K[2] *  C0[0] * H[2]  +
+                          K[3] *  C0[1] * H[3]  +
+                          K[4] *  C0[1] * H[4]  ;
+                tTemp = h * sum / (v * P * HeatCap) + tTemp;
+
+                cordCs.Add(new CordC
+                {
+                    Cord = x, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], C5 = C0[4], C6 = C0[5], C7 = C0[6],
+                    T = tTemp
+                });
+                x += h;
+            }
+        }
+
+        double[] oktNumbers = { 10.8, 15.1, 92.0, 79.0, 0, 0, 0 };
+        var oktNumber = 0d;
+        for (var i = 0; i < 7; i++)
+        {
+            oktNumber += oktNumbers[i] * C0[i] ;
         }
 
         sw.Stop();
@@ -163,7 +251,7 @@ public class MathClass // todo как-то красиво переписать �
     private double D => Cp.D;
 
     private double HeatCap => Cp.HeatCap;
-    
+
     private double Step => Cp.Step;
     private double Activity => Cp.Activity;
     private double[] C0 => Cp.C0;
