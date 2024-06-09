@@ -13,4 +13,5 @@ public struct CalculationParameters
     public double HeatCap { get; init; }
     public double T0 { get; init; }
     public double[] C0 { get; init; }
+    public double Activity { get; init; }
 }

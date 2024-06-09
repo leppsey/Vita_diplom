@@ -57,7 +57,7 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "Pt/Al2O3 (Платина на алюмосиликате)",
-                Activity = 80,
+                Activity = 1.1,
                 LoadingRate = 0.5,
                 // OperatingTime = 1234,
                 ServiceLife = 5,
@@ -69,7 +69,7 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "Pt/Zeolite (Платина на цеолите)",
-                Activity = 90,
+                Activity = 1.36,
                 LoadingRate = 0.4,
                 // OperatingTime = 1234,
                 ServiceLife = 5,
@@ -81,7 +81,7 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "Pd/C (Палладий на углероде)",
-                Activity = 80,
+                Activity = 1,
                 LoadingRate = 0.3,
                 // OperatingTime = 1234,
                 ServiceLife = 6,
@@ -93,7 +93,7 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "mordenite-based (На основе морденита)",
-                Activity = 80,
+                Activity = 1.2,
                 LoadingRate = 0.45,
                 // OperatingTime = 1234,
                 ServiceLife = 5,
@@ -105,7 +105,7 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "ZSM-5",
-                Activity = 90,
+                Activity = 1.15,
                 LoadingRate = 0.4,
                 // OperatingTime = 1234,
                 ServiceLife = 10,
@@ -117,7 +117,7 @@ public class DatabaseInitializer
             {
                 Type = "Гомогенный",
                 Name = "Катализатор на основе комплексов рутения",
-                Activity = 90,
+                Activity = 1.3,
                 LoadingRate = 0.25,
                 // OperatingTime = 1234,
                 ServiceLife = 3,
@@ -147,6 +147,7 @@ public class DatabaseInitializer
                 Volume = 351,
                 EnergyConsumption = 743,
                 Width = 98,
+                RawMaterialConsumption = 9.1,
                 DateOfCommissioning = DateTime.Now.AddYears(-2),
                 DateOfPlannedWorks = DateTime.Now.AddYears(1),
                 Model = new Model()
@@ -172,6 +173,7 @@ public class DatabaseInitializer
                 Volume = 56,
                 EnergyConsumption = 92,
                 Width = 31,
+                RawMaterialConsumption = 8.7,
                 DateOfCommissioning = DateTime.Now.AddYears(-3),
                 DateOfPlannedWorks = DateTime.Now.AddYears(2),
                 Model = new Model()
@@ -197,6 +199,7 @@ public class DatabaseInitializer
                 Volume = 56,
                 EnergyConsumption = 92,
                 Width = 31,
+                RawMaterialConsumption = 8.7,
                 DateOfCommissioning = DateTime.Now.AddYears(-3),
                 DateOfPlannedWorks = DateTime.Now.AddYears(2),
                 Model = new Model()

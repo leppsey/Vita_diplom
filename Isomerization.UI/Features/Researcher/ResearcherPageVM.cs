@@ -66,13 +66,9 @@ public class ResearcherPageVM: ViewModelBase
         }
     };
     /// <summary>
-    /// Концетрация С0
-    /// </summary>
-    public double C0 { get; set; } = 850;
-    /// <summary>
     /// Начальная температура
     /// </summary>
-    public double T0 { get; set; } = 600;
+    public double T0 { get; set; } = 120;
     /// <summary>
     /// Расход сырья
     /// </summary>
@@ -108,13 +104,14 @@ public class ResearcherPageVM: ViewModelBase
     {
         var calcParams = new CalculationParameters()
         {
-            D = 3, //todo get from somewhere
-            P = 0.651, //todo get from somewhere
-            T0 = 120,//T0,
-            G = 9.1,//G,
+            D = SelectedInstallation.Diameter,
+            P = SelectedRawMaterial.Density,
+            T0 = T0,
+            G = SelectedInstallation.RawMaterialConsumption,
             Step = H,
-            HeatCap = 190.931, //todo get from somewhere
-            L = Tau, //todo get from somewhere
+            HeatCap = SelectedRawMaterial.HeatCapacity,
+            L = Tau,
+            Activity = SelectedCatalyst.Activity,
             C0 = SelectedRawMaterial.Concetrations.OrderBy(x=>x.Order).Select(x=>x.Value).ToArray(),
             
         };

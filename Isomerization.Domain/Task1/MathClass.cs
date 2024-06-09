@@ -41,15 +41,27 @@ public class MathClass // todo как-то красиво переписать �
     {
         var sw = new Stopwatch();
         sw.Start();
-        // var tay = Step;
         var h = Step;
-        // var tN = (int)Round(t / tay,0);
         var hN = (int)Math.Round(L / h, 0);
-        // k это 
+        
         double[] K =
         {
-            0.039, 0.01, 0.009, 0.005, 0.031, 0.001, 0.012, 0.015, 0.017, 0.035, 0.001, 0.06, 0.06, 0.031, 0.035,
-            0.0001
+            0.039  * Activity,
+            0.01   * Activity,
+            0.009  * Activity,
+            0.005  * Activity,
+            0.031  * Activity,
+            0.001  * Activity,
+            0.012  * Activity,
+            0.015  * Activity,
+            0.017  * Activity,
+            0.035  * Activity,
+            0.001  * Activity,
+            0.06   * Activity,
+            0.06   * Activity,
+            0.031  * Activity,
+            0.035  * Activity,
+            0.0001 * Activity,
         };
 
         double[] H =
@@ -153,6 +165,7 @@ public class MathClass // todo как-то красиво переписать �
     private double HeatCap => Cp.HeatCap;
     
     private double Step => Cp.Step;
+    private double Activity => Cp.Activity;
     private double[] C0 => Cp.C0;
 
     #endregion
