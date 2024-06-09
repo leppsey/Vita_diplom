@@ -17,6 +17,7 @@ public class Installation: ViewModelBase
     public double Length { get; set; }
     public double Diameter { get; set; }
     public double Volume { get; set; }
+    public double RawMaterialConsumption { get; set; }
     public DateTime DateOfCommissioning { get; set; }
     public DateTime DateOfPlannedWorks { get; set; }
     public string Status { get; set; }

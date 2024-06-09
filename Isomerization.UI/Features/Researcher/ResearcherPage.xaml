@@ -65,10 +65,10 @@
                         Margin="0,7">
                         <ui:Card>
                             <StackPanel>
-                                <shared:LabeledControlPresenter HeaderText="Температура" RightText="моль/м³">
-                                    <ui:NumberBox Value="{Binding C0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
+                                <shared:LabeledControlPresenter HeaderText="Температура" RightText="℃">
+                                    <ui:NumberBox Value="{Binding T0, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
                                 </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="Время проведения реакции" RightText="с">
+                                <shared:LabeledControlPresenter HeaderText="Время пребывания" RightText="с">
                                     <ui:NumberBox Value="{Binding Tau, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ui:NumberBox>
                                 </shared:LabeledControlPresenter>
                                 <!-- <shared:LabeledControlPresenter HeaderTextPlacement="Left" HeaderText="Расход сырья"> -->
