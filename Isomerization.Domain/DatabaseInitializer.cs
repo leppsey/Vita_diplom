@@ -369,43 +369,25 @@ public class DatabaseInitializer
             {
                 RawMaterialId = defaultRawMaterial[2].RawMaterialId,
                 Order = 0,
-                Value = 45.37,
+                Value = 100,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[2].RawMaterialId,
                 Order = 1,
-                Value = 20.39,
+                Value = 0,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[2].RawMaterialId,
                 Order = 2,
-                Value = 7.41,
+                Value = 0,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[2].RawMaterialId,
                 Order = 3,
-                Value = 13.8,
-            },
-            new()
-            {
-                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
-                Order = 4,
-                Value = 6.52,
-            },
-            new()
-            {
-                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
-                Order = 5,
-                Value = 2.06,
-            },
-            new()
-            {
-                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
-                Order = 6,
-                Value = 1.92,
+                Value = 0,
             },
         };
         context.AddRange(concentrations);

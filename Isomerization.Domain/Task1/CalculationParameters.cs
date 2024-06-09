@@ -14,4 +14,6 @@ public struct CalculationParameters
     public double T0 { get; init; }
     public double[] C0 { get; init; }
     public double Activity { get; init; }
+
+    public int MaterialCount => C0.Length;
 }

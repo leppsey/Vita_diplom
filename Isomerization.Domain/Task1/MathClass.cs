@@ -34,10 +34,21 @@ public class MathClass // todo как-то красиво переписать �
         return str.Length == 2 ? str[1].Length : 0;
     }
 
+    public void Calculate()
+    {
+        if (Cp.MaterialCount == 7)
+        {
+            Calculate7();
+        }
+        else if (Cp.MaterialCount == 4)
+        {
+            Calculate4();
+        }
+    }
     /// <summary>
     ///     Функция производит вычисления с заданными параметрами
     /// </summary>
-    public void Calculate1()
+    public void Calculate7()
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -144,7 +155,7 @@ public class MathClass // todo как-то красиво переписать �
             { CordCs = cordCs, MathTimer = sw, OKT = Math.Round(oktNumber, 2) };
     }
 
-    public void Calculate()
+    public void Calculate4()
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -152,35 +163,32 @@ public class MathClass // todo как-то красиво переписать �
         var h = Step;
         // var tN = (int)Round(t / tay,0);
         var hN = (int)Math.Round(L / h, 0);
-        // k это 
-        var R = 8.31;
         double[] K =
         {
-            0.027, 0.03, 0.05, 0.04, 0.05
+            0.027 * Activity,
+            0.03  * Activity,
+            0.05  * Activity,
+            0.04  * Activity,
+            0.05  * Activity,
         };
-        double[] C0 =
-        {
-            1, 0, 0, 0, 0, 0, 0
-        };
-
         double[] H =
         {
             -8.22, 8.22, -6.98, 6.98, -4.44
         };
         // var C_temp = new double[7,tN,hN];
-        var cTemp = new double[7, hN + 1];
-        var r = new double[7];
+        var cTemp = new double[4, hN + 1];
+        var r = new double[4];
         var v = 4 * G / (P * Math.PI * D * D);
         var x = h;
         var cordCs = new List<CordC>();
         var tTemp = T0;
         cordCs.Add(new CordC
         {
-            Cord = 0, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], C5 = C0[4], C6 = C0[5], C7 = C0[6], T = T0
+            Cord = 0, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], T = T0
         });
         for (var reactor = 0; reactor < 1; reactor++)
         {
-            for (var i = 0; i < 7; i++)
+            for (var i = 0; i < 4; i++)
             {
                 cTemp[i, 0] = C0[i];
             }
@@ -196,7 +204,7 @@ public class MathClass // todo как-то красиво переписать �
                 r[4] = 0;
                 r[5] = 0;
                 r[6] = 0;
-                for (var i = 0; i < 7; i++)
+                for (var i = 0; i < 4; i++)
                 {
                     // C_temp[i, k] = Round(h*r[i]/v + C_temp[i, k - 1],2);
                     cTemp[i, k] = h * r[i]/v  + cTemp[i, k - 1];
@@ -212,7 +220,7 @@ public class MathClass // todo как-то красиво переписать �
 
                 cordCs.Add(new CordC
                 {
-                    Cord = x, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], C5 = C0[4], C6 = C0[5], C7 = C0[6],
+                    Cord = x, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3],
                     T = tTemp
                 });
                 x += h;
@@ -221,7 +229,7 @@ public class MathClass // todo как-то красиво переписать �
 
         double[] oktNumbers = { 10.8, 15.1, 92.0, 79.0, 0, 0, 0 };
         var oktNumber = 0d;
-        for (var i = 0; i < 7; i++)
+        for (var i = 0; i < 4; i++)
         {
             oktNumber += oktNumbers[i] * C0[i] ;
         }
@@ -231,8 +239,7 @@ public class MathClass // todo как-то красиво переписать �
         Results = new CalculationResults
             { CordCs = cordCs, MathTimer = sw, OKT = Math.Round(oktNumber, 2) };
     }
-
-
+    
     //todo rename
 
 

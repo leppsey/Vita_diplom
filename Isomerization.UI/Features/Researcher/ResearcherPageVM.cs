@@ -219,17 +219,30 @@ public class ResearcherPageVM: ViewModelBase
         UpdateLineSeriesByCordAndValue(C6LineSerie, x, c6);
         UpdateLineSeriesByCordAndValue(C7LineSerie, x, c7);
         UpdateLineSeriesByCordAndValue(TLineSerie, x, t);
-            
-        CSeries = new List<ISeries>()
+
+        if (MathClass.Cp.MaterialCount == 4)
         {
-            C1LineSerie,
-            C2LineSerie,
-            C3LineSerie,
-            C4LineSerie,
-            C5LineSerie,
-            C6LineSerie,
-            C7LineSerie,
-        };
+            CSeries = new List<ISeries>()
+            {
+                C1LineSerie,
+                C2LineSerie,
+                C3LineSerie,
+                C4LineSerie,
+            };
+        }
+        else if (MathClass.Cp.MaterialCount == 7)
+        {
+            CSeries = new List<ISeries>()
+            {
+                C1LineSerie,
+                C2LineSerie,
+                C3LineSerie,
+                C4LineSerie,
+                C5LineSerie,
+                C6LineSerie,
+                C7LineSerie,
+            };
+        }
         
         TSeries = new List<ISeries>() { TLineSerie };
         
