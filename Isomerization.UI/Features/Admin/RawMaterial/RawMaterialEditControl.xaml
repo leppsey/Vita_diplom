@@ -1,45 +1,41 @@
-<UserControl x:Class="Isomerization.UI.Features.Admin.Catalyst.CatalystEditControl"
+<UserControl x:Class="Isomerization.UI.Features.Admin.RawMaterial.RawMaterialEditControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Isomerization.UI.Features.Admin.Catalyst"
+             xmlns:local="clr-namespace:Isomerization.UI.Features.Admin.RawMaterial"
              xmlns:shared="clr-namespace:Isomerization.UI.Shared"
-             mc:Ignorable="d"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             d:DataContext="{d:DesignInstance local:CatalystEditControlVM}"
-             MinHeight="600"
-             MinWidth="400"
-              >
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance local:RawMaterialEditControlVM}"
+             >
     <Grid Margin="15,15,15,5">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="60"/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <shared:LabeledControlPresenter HeaderText="Тип">
-                <ui:TextBox Text="{Binding  Data.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Название">
                 <ui:TextBox Text="{Binding  Data.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Активность" RightText="%">
-                <ui:NumberBox Value="{Binding  Data.Activity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <shared:LabeledControlPresenter HeaderText="Потребление">
+                <ui:TextBox Text="{Binding  Data.Consumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Норма загрузки" RightText="м³/с">
-                <ui:NumberBox Value="{Binding  Data.LoadingRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <shared:LabeledControlPresenter HeaderText="Плотность" RightText="%">
+                <ui:NumberBox Value="{Binding  Data.Density, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Температура реакции" RightText="℃">
-                <ui:NumberBox Value="{Binding  Data.TemperatureReaction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <shared:LabeledControlPresenter HeaderText="Теплоемкость" RightText="м³/с">
+                <ui:NumberBox Value="{Binding  Data.HeatCapacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Срок службы" RightText="г">
-                <ui:NumberBox Value="{Binding  Data.ServiceLife, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <shared:LabeledControlPresenter HeaderText="Вязкость" RightText="℃">
+                <ui:NumberBox Value="{Binding  Data.Viscosity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Дата ввода в эксплуатацию">
-                <DatePicker SelectedDate="{Binding Data.DateOfCommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            <shared:LabeledControlPresenter HeaderText="Содержание серы" RightText="℃">
+                <ui:NumberBox Value="{Binding  Data.SulfurContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Дата вывода из эксплуатации">
-                <DatePicker SelectedDate="{Binding Data.DateOfDecommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            <shared:LabeledControlPresenter HeaderText="Октановое число" RightText="℃">
+                <ui:NumberBox Value="{Binding  Data.OctaneRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
         </StackPanel>
         <Grid Grid.Row="1">

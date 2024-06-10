@@ -5,8 +5,63 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Isomerization.UI.Features.Admin.RawMaterial"
       mc:Ignorable="d"
-      Title="RawMaterialPage" Height="450" Width="800">
-    <Grid>
-        
+      Title="RawMaterialPage" 
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:shared="clr-namespace:Isomerization.UI.Shared"
+      d:DataContext="{d:DesignInstance local:RawMaterialPageVM}"
+      >
+    
+    <Grid Margin="30,30,30,0">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <shared:LabeledControlPresenter HeaderText="Сырье" HeaderFontSize="24">
+            <DataGrid 
+                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                  Style="{DynamicResource DataGridStyle1}"
+                  ItemsSource="{Binding RawMaterials}">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Потребление" Binding="{Binding Path=Consumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Плотность" Binding="{Binding Path=Density, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Теплоемкость" Binding="{Binding Path=HeatCapacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Вязкость" Binding="{Binding Path=Viscosity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Содержание серы" Binding="{Binding Path=SulfurContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Октановое число" Binding="{Binding Path=OctaneRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTemplateColumn  IsReadOnly="True" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <ui:Button 
+                                           Icon="{ui:SymbolIcon Edit16}"
+                                           Appearance="Info"
+                                        CommandParameter="{Binding}"
+                                        Command="{Binding Path=ViewModel.EditRawMaterialCommand,
+                                        RelativeSource={RelativeSource Mode=FindAncestor,
+                                        AncestorType={x:Type local:RawMaterialPage}}}" />
+                                <ui:Button Margin="5 0 0 0" 
+                                           Icon="{ui:SymbolIcon Delete16}"
+                                           Appearance="Danger"
+                                           CommandParameter="{Binding}"
+                                           Command="{Binding Path=ViewModel.DeleteRawMaterialCommand,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type local:RawMaterialPage}}}" />
+                            </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        </shared:LabeledControlPresenter>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+            <ui:Button Content="Добавить сырье"
+                       Appearance="Success"
+                       Icon="Add16" 
+                       Command="{Binding AddRawMaterialCommand}"/>
+        </StackPanel>
+
     </Grid>
 </Page>
