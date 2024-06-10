@@ -1,4 +1,3 @@
-
 using System.Collections.ObjectModel;
 using Isomerization.Domain.Data;
 using Isomerization.Shared;

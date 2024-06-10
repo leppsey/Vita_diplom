@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using DAL;
 
 namespace Isomerization.Domain.Models;
 
-public class RawMaterial
+public class RawMaterial: ValidatableViewModel<RawMaterialValidator>
 {
     public int RawMaterialId { get; set; }
     public string Name { get; set; }

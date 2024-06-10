@@ -74,7 +74,7 @@ public class InstallationValidator: AbstractValidator<Installation>
         RuleFor(c => c.DateOfPlannedWorks)
             .NotEmpty()
             .WithMessage("Поле не должно быть пустым")
-            .GreaterThan(installation => installation.DateOfPlannedWorks);
+            .GreaterThan(installation => installation.DateOfCommissioning);
             // .WithMessage("Дата должна быть после ");
             
         RuleFor(c=>c.Status)
