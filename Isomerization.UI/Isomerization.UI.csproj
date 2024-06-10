@@ -48,6 +48,12 @@
       <Compile Update="Features\Researcher\InstallationRenderControlVM.cs">
         <DependentUpon>InstallationRenderControl.xaml</DependentUpon>
       </Compile>
+      <Compile Update="Features\Admin\Installation\InstallationEditControlVM.cs">
+        <DependentUpon>InstallationEditControl.xaml</DependentUpon>
+      </Compile>
+      <Compile Update="Features\Admin\Installation\InstallationPageVM.cs">
+        <DependentUpon>InstallationPage.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Isomerization.Domain\Isomerization.Domain.csproj" />

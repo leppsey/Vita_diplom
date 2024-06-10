@@ -25,12 +25,12 @@
                                     <StackPanel>
                                         <TextBlock
                                             Margin="0"
-                                            FontSize="13"
+                                            FontSize="18"
                                             FontWeight="Medium"
                                             Text="{Binding Name, Mode=OneTime}"
                                             TextWrapping="Wrap" />
                                         <TextBlock
-                                            FontSize="10"
+                                            FontSize="15"
                                             Foreground="{DynamicResource TextFillColorTertiaryBrush}"
                                             Text="{Binding Description, Mode=OneTime}"
                                             TextWrapping="Wrap" />
@@ -42,7 +42,7 @@
                             <ItemsPanelTemplate>
                                 <ui:VirtualizingWrapPanel
                                     IsItemsHost="True"
-                                    ItemSize="300,70"
+                                    ItemSize="500,120"
                                     Orientation="Vertical"
                                     SpacingMode="Uniform"
                                     StretchItems="True" />

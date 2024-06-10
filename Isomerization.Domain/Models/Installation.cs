@@ -1,9 +1,10 @@
 using System;
+using DAL;
 using Isomerization.Shared;
 
 namespace Isomerization.Domain.Models;
 
-public class Installation: ViewModelBase
+public class Installation: ValidatableViewModel<InstallationValidator>
 {
     public int InstallationId { get; set; }
     public string Name { get; set; }
