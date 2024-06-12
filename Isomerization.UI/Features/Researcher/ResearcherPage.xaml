@@ -228,12 +228,54 @@
                             HeaderText="Критериальные показатели"
                             HeaderFontSize="16">
                             <ui:Card>
-                                <shared:LabeledControlPresenter HeaderText="Октановое число" HeaderFontSize="14">
-                                    <ui:TextBox 
-                                        IsReadOnly="True" 
-                                        Text="{Binding MathClass.Results.OKT, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                </shared:LabeledControlPresenter>
+                                <StackPanel>
+                                    <shared:LabeledControlPresenter HeaderText="Октановое число" HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.OKT, StringFormat=F2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                    <shared:LabeledControlPresenter HeaderText="Концетрация вещества 1" HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.C1, StringFormat=F2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                    <shared:LabeledControlPresenter HeaderText="Концетрация вещества 2" HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.C2, StringFormat=F2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                    <shared:LabeledControlPresenter HeaderText="Концетрация вещества 3" HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.C3, StringFormat=F2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                    <shared:LabeledControlPresenter HeaderText="Концетрация вещества 4" HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.C4, StringFormat=F2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                    <shared:LabeledControlPresenter HeaderText="Концетрация вещества 5"
+                                                                    Visibility="{Binding Draw7Concentrations, Converter = {StaticResource BooleanToVisibilityConverter}}"
+                                                                    HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.C5, StringFormat=F2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                    <shared:LabeledControlPresenter HeaderText="Концетрация вещества 6"
+                                                                    Visibility="{Binding Draw7Concentrations, Converter = {StaticResource BooleanToVisibilityConverter}}"
+                                                                    HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.C6, StringFormat=F2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                    <shared:LabeledControlPresenter HeaderText="Концетрация вещества 7"
+                                                                    Visibility="{Binding Draw7Concentrations, Converter = {StaticResource BooleanToVisibilityConverter}}"
+                                                                    HeaderFontSize="14">
+                                        <ui:TextBox 
+                                            IsReadOnly="True" 
+                                            Text="{Binding MathClass.Results.C7, StringFormat=F2, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </shared:LabeledControlPresenter>
+                                </StackPanel>
                             </ui:Card>
                         </shared:LabeledControlPresenter>
                         <shared:LabeledControlPresenter 

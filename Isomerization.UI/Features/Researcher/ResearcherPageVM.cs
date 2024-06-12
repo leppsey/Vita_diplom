@@ -1,14 +1,17 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Windows;
 using Isomerization.Domain.Data;
 using Isomerization.Domain.Models;
 using Isomerization.Domain.Task1;
 using Isomerization.Shared;
+using Isomerization.UI.Services;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkiaSharp;
 
 namespace Isomerization.UI.Features;
@@ -16,11 +19,13 @@ namespace Isomerization.UI.Features;
 public class ResearcherPageVM: ViewModelBase
 {
     private readonly IsomerizationContext _context;
+    private readonly IMessageBoxService _messageBoxService;
 
-    public ResearcherPageVM(IsomerizationContext context)
+    public ResearcherPageVM(IsomerizationContext context, IMessageBoxService messageBoxService)
     {
         _context = context;
-        
+        _messageBoxService = messageBoxService;
+
         RawMaterials = new ObservableCollection<RawMaterial>(_context.RawMaterials.Include(x=>x.Concetrations));
         SelectedRawMaterial = RawMaterials.FirstOrDefault();
         Catalysts = new ObservableCollection<Catalyst>(_context.Catalysts);
@@ -34,9 +39,8 @@ public class ResearcherPageVM: ViewModelBase
 
     public ObservableCollection<Catalyst> Catalysts { get; set; }
     public Catalyst SelectedCatalyst { get; set; }
-    
-    //todo delete
-    public string SOMESTRING { get; set; } = "12345";
+
+    public bool Draw7Concentrations => MathClass?.Results.MaterialCount == 7;
 
     public Axis[] XAxes { get; set; } =
     {
@@ -100,7 +104,7 @@ public class ResearcherPageVM: ViewModelBase
 
     private RelayCommand _calcCommand;
 
-    public RelayCommand CalcCommand => _calcCommand ??= new RelayCommand(_ =>
+    public RelayCommand CalcCommand => _calcCommand ??= new RelayCommand(async _ =>
     {
         var calcParams = new CalculationParameters()
         {
@@ -112,14 +116,31 @@ public class ResearcherPageVM: ViewModelBase
             HeatCap = SelectedRawMaterial.HeatCapacity,
             L = Tau,
             Activity = SelectedCatalyst.Activity,
-            C0 = SelectedRawMaterial.Concetrations.OrderBy(x=>x.Order).Select(x=>x.Value).ToArray(),
+            C0 = SelectedRawMaterial.Concetrations.OrderBy(x=>x.Order).Select(x=>x.Value/100).ToArray(),
             
         };
         MathClass= new MathClass(calcParams);
         MathClass.Calculate();
         UpdateGraphics();
         IsCalculated = true;
+        var res = MathClass.Results;
+        var answerText =
+            $"Октановое число: {res.OKT}\n" +
+            $"Выходная концентрация вещества 1: {res.CordCs.Last().C1:F2}\n" +
+            $"Выходная концентрация вещества 2: {res.CordCs.Last().C2:F2}\n" +
+            $"Выходная концентрация вещества 3: {res.CordCs.Last().C3:F2}\n" +
+            $"Выходная концентрация вещества 4: {res.CordCs.Last().C4:F2}\n";
+        if (res.MaterialCount == 7)
+        {
+            answerText +=
+                $"Выходная концентрация вещества 5: {res.CordCs.Last().C5:F2}\n" +
+                $"Выходная концентрация вещества 6: {res.CordCs.Last().C6:F2}\n" +
+                $"Выходная концентрация вещества 7: {res.CordCs.Last().C7:F2}\n";
+        }
+
+        _messageBoxService.Show(answerText, "Результаты расчета", MessageBoxButton.OK);
     });
+    
     
     public List<CordC> CordСs
     {
@@ -248,7 +269,7 @@ public class ResearcherPageVM: ViewModelBase
         
         OnPropertyChanged(nameof(MathClass));
         OnPropertyChanged(nameof(TotalMemory));
-
+        OnPropertyChanged(nameof(Draw7Concentrations));
     }
     
     private void UpdateLineSeriesByCordAndValue(LineSeries<ObservablePoint> serie, List<double> x, List<double> y)
