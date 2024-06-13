@@ -24,11 +24,11 @@
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Название" Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
                 <DataGridTextColumn Header="Тип" Binding="{Binding Path=Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="Активность" Binding="{Binding Path=Activity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="Норма загрузки" Binding="{Binding Path=LoadingRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="Температура реакции" Binding="{Binding Path=TemperatureReaction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
-                <!-- <DataGridTextColumn Header="Время эксплуатации" Binding="{Binding Path=OperatingTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" /> -->
-                <DataGridTextColumn Header="Срок службы" Binding="{Binding Path=ServiceLife, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Активность, %" Binding="{Binding Path=Activity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Норма загрузки, м³/с" Binding="{Binding Path=LoadingRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Температура реакции, ℃" Binding="{Binding Path=TemperatureReaction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Время эксплуатации, с" Binding="{Binding Path=OperatingTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Срок службы, г" Binding="{Binding Path=ServiceLife, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
                 <DataGridTextColumn Header="Дата ввода в эксплуатацию" Binding="{Binding Path=DateOfCommissioning, Mode=TwoWay,StringFormat=\{0:dd.MM.yy\}, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
                 <DataGridTextColumn Header="Дата вывода из эксплуатации" Binding="{Binding Path=DateOfDecommissioning, Mode=TwoWay,StringFormat=\{0:dd.MM.yy\}, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
                 <DataGridTemplateColumn  IsReadOnly="True" Width="*">

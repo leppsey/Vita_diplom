@@ -85,7 +85,7 @@ public class ResearcherPageVM: ViewModelBase
     /// <summary>
     /// Время проведения реакции
     /// </summary>
-    public double Tau { get; set; } = 600;
+    public double Tau { get; set; } = 100;
 
     /// <summary>
     /// Шаг
@@ -111,7 +111,7 @@ public class ResearcherPageVM: ViewModelBase
             Step = H,
             HeatCap = SelectedRawMaterial.HeatCapacity,
             L = Tau,
-            Activity = SelectedCatalyst.Activity,
+            Activity = SelectedCatalyst.Activity/100,
             C0 = SelectedRawMaterial.Concetrations.OrderBy(x=>x.Order).Select(x=>x.Value).ToArray(),
             
         };

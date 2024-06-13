@@ -57,9 +57,9 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "Pt/Al2O3 (Платина на алюмосиликате)",
-                Activity = 1.1,
+                Activity = 110,
                 LoadingRate = 0.5,
-                // OperatingTime = 1234,
+                OperatingTime = 5000,
                 ServiceLife = 5,
                 TemperatureReaction = 220,
                 DateOfCommissioning = new DateTime(year: 2022, day: 22, month: 06),
@@ -69,9 +69,9 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "Pt/Zeolite (Платина на цеолите)",
-                Activity = 1.36,
+                Activity = 136,
                 LoadingRate = 0.4,
-                // OperatingTime = 1234,
+                OperatingTime = 5500,
                 ServiceLife = 5,
                 TemperatureReaction = 150,
                 DateOfCommissioning = new DateTime(year: 2021, day: 07, month: 06),
@@ -81,9 +81,9 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "Pd/C (Палладий на углероде)",
-                Activity = 1,
+                Activity = 100,
                 LoadingRate = 0.3,
-                // OperatingTime = 1234,
+                OperatingTime = 6000,
                 ServiceLife = 6,
                 TemperatureReaction = 150,
                 DateOfCommissioning = new DateTime(year: 2023, day: 30, month: 05),
@@ -93,9 +93,9 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "mordenite-based (На основе морденита)",
-                Activity = 1.2,
+                Activity = 120,
                 LoadingRate = 0.45,
-                // OperatingTime = 1234,
+                OperatingTime = 5000,
                 ServiceLife = 5,
                 TemperatureReaction = 180,
                 DateOfCommissioning = new DateTime(year: 2020, day: 01, month: 02),
@@ -105,9 +105,9 @@ public class DatabaseInitializer
             {
                 Type = "Гетерогенный",
                 Name = "ZSM-5",
-                Activity = 1.15,
+                Activity = 115,
                 LoadingRate = 0.4,
-                // OperatingTime = 1234,
+                OperatingTime = 2400,
                 ServiceLife = 10,
                 TemperatureReaction = 300,
                 DateOfCommissioning = new DateTime(year: 2021, day: 28, month: 02),
@@ -117,9 +117,9 @@ public class DatabaseInitializer
             {
                 Type = "Гомогенный",
                 Name = "Катализатор на основе комплексов рутения",
-                Activity = 1.3,
+                Activity = 130,
                 LoadingRate = 0.25,
-                // OperatingTime = 1234,
+                OperatingTime = 3900,
                 ServiceLife = 3,
                 TemperatureReaction = 150,
                 DateOfCommissioning = new DateTime(year: 2022, day: 30, month: 08),
@@ -188,7 +188,7 @@ public class DatabaseInitializer
             new()
             {
                 Type = "Реакторный блок",
-                Name = "ПГИ-434 ОАО Газпромнефтехим - 2 ",
+                Name = "ПАО Сургутнефтегаз",
                 Diameter = 4,
                 Height = 2,
                 Length = 5,
@@ -223,35 +223,26 @@ public class DatabaseInitializer
             new()
             {
                Name="Стабильный гидрогенизат-1",
-               Consumption=0.3,
                Compound=13000,
                Density=0.650,
                HeatCapacity=2100,
-               Viscosity=0.0001,
-               SulfurContent=0.1,
                OctaneRating=80,
             },
             
             new()
             {
                Name="Стабильный гидрогенизат-2",
-               Consumption=0.4,
                Compound=20000,
                Density=0.660,
                HeatCapacity=2150,
-               Viscosity=0.0005,
-               SulfurContent=0.05,
                OctaneRating=84,
             },
             new()
             {
                Name="Стабильный гидрогенизат-3",
-               Consumption=0.4,
                Compound=18000,
                Density=0.660,
                HeatCapacity=2000,
-               Viscosity=0.0002,
-               SulfurContent=0.01,
                OctaneRating=86,
             },
         };

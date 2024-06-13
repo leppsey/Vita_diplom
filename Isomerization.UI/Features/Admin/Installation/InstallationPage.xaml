@@ -24,16 +24,16 @@
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Название" Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="Тип" Binding="{Binding Path=Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="True" />
-                <DataGridTextColumn Header="Давление" Binding="{Binding Path=Pressure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Производительность" Binding="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Энергопотребление" Binding="{Binding Path=EnergyConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Температура" Binding="{Binding Path=Temperature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Высота" Binding="{Binding Path=Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Ширина" Binding="{Binding Path=Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Длина" Binding="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Диаметр" Binding="{Binding Path=Diameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Объем" Binding="{Binding Path=Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Расход сырья" Binding="{Binding Path=RawMaterialConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Давление, МПа" Binding="{Binding Path=Pressure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Производительность, т/г" Binding="{Binding Path=Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Энергопотребление, кВт⋅ч" Binding="{Binding Path=EnergyConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Температура, ℃" Binding="{Binding Path=Temperature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <!-- <DataGridTextColumn Header="Высота, м" Binding="{Binding Path=Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" /> -->
+                <!-- <DataGridTextColumn Header="Ширина, м" Binding="{Binding Path=Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" /> -->
+                <DataGridTextColumn Header="Длина, м" Binding="{Binding Path=Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <!-- <DataGridTextColumn Header="Диаметр, м" Binding="{Binding Path=Diameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" /> -->
+                <DataGridTextColumn Header="Объем, м³" Binding="{Binding Path=Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Расход сырья, м³/с" Binding="{Binding Path=RawMaterialConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="Дата ввода в эксплуатацию" Binding="{Binding Path=DateOfCommissioning, Mode=TwoWay,StringFormat=\{0:dd.MM.yy\}, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="Дата планируемых работ" Binding="{Binding Path=DateOfPlannedWorks, Mode=TwoWay,StringFormat=\{0:dd.MM.yy\}, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
                 <DataGridTemplateColumn Width="Auto" IsReadOnly="True" >

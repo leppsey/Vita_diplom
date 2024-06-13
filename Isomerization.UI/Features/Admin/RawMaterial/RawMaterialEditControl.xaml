@@ -19,22 +19,13 @@
             <shared:LabeledControlPresenter HeaderText="Название">
                 <ui:TextBox Text="{Binding  Data.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Потребление">
-                <ui:TextBox Text="{Binding  Data.Consumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Плотность" RightText="%">
+            <shared:LabeledControlPresenter HeaderText="Плотность" RightText="кг/м³">
                 <ui:NumberBox Value="{Binding  Data.Density, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Теплоемкость" RightText="м³/с">
+            <shared:LabeledControlPresenter HeaderText="Теплоемкость" RightText="Дж/кг⋅℃">
                 <ui:NumberBox Value="{Binding  Data.HeatCapacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Вязкость" RightText="℃">
-                <ui:NumberBox Value="{Binding  Data.Viscosity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Содержание серы" RightText="℃">
-                <ui:NumberBox Value="{Binding  Data.SulfurContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Октановое число" RightText="℃">
+            <shared:LabeledControlPresenter HeaderText="Октановое число">
                 <ui:NumberBox Value="{Binding  Data.OctaneRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
         </StackPanel>
