@@ -1,0 +1,55 @@
+<UserControl x:Class="Isomerization.UI.Features.Admin.Kinetic.KineticEditControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Isomerization.UI.Features.Admin.Kinetic"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:shared="clr-namespace:Isomerization.UI.Shared"
+             d:DataContext="{d:DesignInstance local:KineticEditControlVM}">
+    <Grid Margin="15,15,15,5">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <shared:LabeledControlPresenter HeaderText="Сырье">
+                <ComboBox ItemsSource="{Binding RawMaterials}" 
+                          SelectedItem="{Binding Data.RawMaterial, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          DisplayMemberPath="Name"
+                          />
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Стехиометрический множитель" >
+                <ui:NumberBox Value="{Binding  Data.StehiometricFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Предэкспоненциальный фактор" >
+                <ui:NumberBox Value="{Binding  Data.PreExponentialFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Константа скорости реакции" RightText="1/с">
+                <ui:NumberBox Value="{Binding  Data.ReactionRateConstant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ui:Button Grid.Column="0" 
+                       Width="100"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Content="Отмена"
+                       Command="{Binding CancelCommand}"/>
+            <ui:Button Grid.Column="1"
+                       Width="100"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Content="Применить"
+                       Appearance="Success"
+                       Command="{Binding ApplyCommand}"/>
+        </Grid>
+    </Grid>
+
+</UserControl>

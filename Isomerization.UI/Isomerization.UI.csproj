@@ -60,6 +60,9 @@
       <Compile Update="Features\Researcher\SelectDIMIsomerizationWindowVM.cs">
         <DependentUpon>SelectDIMIsomerizationWindow.xaml</DependentUpon>
       </Compile>
+      <Compile Update="Features\Admin\Kinetic\KineticEditControlVM.cs">
+        <DependentUpon>KineticEditControl.xaml</DependentUpon>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\Isomerization.Domain\Isomerization.Domain.csproj" />
