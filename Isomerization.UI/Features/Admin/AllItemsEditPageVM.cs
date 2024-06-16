@@ -28,5 +28,10 @@ public class AllItemsEditPageVM: ViewModelBase
                 Name = "Сырье",
                 Link = nameof(RawMaterialPage),
             },
+            new()
+            {
+                Name = "Кинетики",
+                Link = nameof(KineticPage),
+            },
         };
 }
