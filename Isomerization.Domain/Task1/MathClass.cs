@@ -53,6 +53,7 @@ public class MathClass // todo как-то красиво переписать �
         var sw = new Stopwatch();
         sw.Start();
         var h = Step;
+        var L = Volume / G;
         var hN = (int)Math.Round(L / h, 0);
         
         double[] K =
@@ -162,6 +163,7 @@ public class MathClass // todo как-то красиво переписать �
         // var tay = Step;
         var h = Step;
         // var tN = (int)Round(t / tay,0);
+        var L = Volume / G;
         var hN = (int)Math.Round(L / h, 0);
         double[] K =
         {
@@ -244,7 +246,7 @@ public class MathClass // todo как-то красиво переписать �
 
     public CalculationParameters Cp { get; init; }
 
-    private double L => Cp.L;
+    private double Volume => Cp.Volume;
 
     private double G => Cp.G;
 

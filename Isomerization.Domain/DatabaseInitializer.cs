@@ -277,7 +277,7 @@ public class DatabaseInitializer
         
         #endregion
 
-        var concentrations = new List<Concetration>()
+        var concentrations = new List<Concentration>()
         {
             new()
             {

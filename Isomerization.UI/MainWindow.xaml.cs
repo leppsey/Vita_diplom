@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Isomerization.UI.Services;
 using Wpf.Ui;
 using Wpf.Ui.Controls;
 
@@ -38,7 +39,13 @@ public partial class MainWindow : INavigationWindow
 
     public bool Navigate(Type pageType)
     {
-        return RootNavigation.Navigate(pageType);
+        var res = RootNavigation.Navigate(pageType);
+        if (res)
+        {
+            App.GetService<MainWindowVM>().IsMenuEnabled = App.GetService<UserService>().CurrentUser is not null;
+        }
+
+        return res;
     }
 
     public void SetServiceProvider(IServiceProvider serviceProvider)

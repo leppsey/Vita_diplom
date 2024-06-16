@@ -1,0 +1,47 @@
+<Window x:Class="Isomerization.UI.Features.Researcher.SelectDIMIsomerizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Isomerization.UI.Features.Researcher"
+        mc:Ignorable="d"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        d:DataContext="{d:DesignInstance local:SelectDIMIsomerizationWindowVM}"
+        Title="Выбор цифровой модели изомеризации" Height="300" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <!-- <StackPanel> -->
+            <ComboBox
+                MinWidth="400"
+                HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      ItemsSource="{Binding DimIsomerizations}"
+                      SelectedItem="{Binding SelectedDimIsomerization}"
+                      DisplayMemberPath="Name">
+            </ComboBox>
+        <!-- </StackPanel> -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ui:Button Grid.Column="0" 
+                       Width="100"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Content="Отмена"
+                       Command="{Binding CancelCommand}"/>
+            <ui:Button Grid.Column="1"
+                       Width="100"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Content="Применить"
+                       Appearance="Success"
+                       Command="{Binding ApplyCommand}"/>
+        </Grid>
+
+    </Grid>
+</Window>
