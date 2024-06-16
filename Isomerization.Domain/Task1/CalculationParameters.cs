@@ -4,7 +4,7 @@ public struct CalculationParameters
 {
     public string MaterialName { get; init; }
     public double Step { get; init; }
-    public double L { get; init; }
+    public double Volume { get; init; }
 
     public double G { get; init; }
     public double D { get; init; }

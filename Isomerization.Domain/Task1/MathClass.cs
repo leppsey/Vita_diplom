@@ -53,6 +53,7 @@ public class MathClass // todo как-то красиво переписать �
         var sw = new Stopwatch();
         sw.Start();
         var h = Step;
+        var L = Volume / G;
         var hN = (int)Math.Round(L / h, 0);
         
         double[] K =
@@ -131,7 +132,7 @@ public class MathClass // todo как-то красиво переписать �
                           K[13] * H[13] * C0[6] +
                           K[14] * H[14] * C0[5] +
                           K[15] * H[15] * C0[6];
-                tTemp = h * sum / (v * P * HeatCap) + tTemp;
+                tTemp += (h * sum / (v * P * HeatCap))*10000 ;
 
                 cordCs.Add(new CordC
                 {
@@ -146,13 +147,13 @@ public class MathClass // todo как-то красиво переписать �
         var oktNumber = 0d;
         for (var i = 0; i < 7; i++)
         {
-            oktNumber += oktNumbers[i] * C0[i] / 100;
+            oktNumber += oktNumbers[i] * C0[i];
         }
 
         sw.Stop();
 
         Results = new CalculationResults
-            { CordCs = cordCs, MathTimer = sw, OKT = Math.Round(oktNumber, 2) };
+            { CordCs = cordCs, MathTimer = sw, OKT = Math.Round(oktNumber, 2), MaterialCount = 7};
     }
 
     public void Calculate4()
@@ -162,6 +163,7 @@ public class MathClass // todo как-то красиво переписать �
         // var tay = Step;
         var h = Step;
         // var tN = (int)Round(t / tay,0);
+        var L = Volume / G;
         var hN = (int)Math.Round(L / h, 0);
         double[] K =
         {
@@ -201,9 +203,6 @@ public class MathClass // todo как-то красиво переписать �
                 r[1] = K[0] *  C0[0]-K[3] *  C0[1]-K[4] *  C0[1];
                 r[2] = K[2] *  C0[0]+K[4] *  C0[1];
                 r[3] = K[1] *  C0[0]+K[3] *  C0[1];
-                r[4] = 0;
-                r[5] = 0;
-                r[6] = 0;
                 for (var i = 0; i < 4; i++)
                 {
                     // C_temp[i, k] = Round(h*r[i]/v + C_temp[i, k - 1],2);
@@ -227,17 +226,17 @@ public class MathClass // todo как-то красиво переписать �
             }
         }
 
-        double[] oktNumbers = { 10.8, 15.1, 92.0, 79.0, 0, 0, 0 };
+        double[] oktNumbers = { 10.8, 15.1, 92.0, 79.0};
         var oktNumber = 0d;
         for (var i = 0; i < 4; i++)
         {
-            oktNumber += oktNumbers[i] * C0[i] ;
+            oktNumber += oktNumbers[i] * C0[i];
         }
 
         sw.Stop();
 
         Results = new CalculationResults
-            { CordCs = cordCs, MathTimer = sw, OKT = Math.Round(oktNumber, 2) };
+            { CordCs = cordCs, MathTimer = sw, OKT = oktNumber, MaterialCount = 4};
     }
     
     //todo rename
@@ -247,7 +246,7 @@ public class MathClass // todo как-то красиво переписать �
 
     public CalculationParameters Cp { get; init; }
 
-    private double L => Cp.L;
+    private double Volume => Cp.Volume;
 
     private double G => Cp.G;
 

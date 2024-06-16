@@ -1,30 +1,49 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Windows;
 using Isomerization.Domain.Data;
 using Isomerization.Domain.Models;
 using Isomerization.Domain.Task1;
 using Isomerization.Shared;
+using Isomerization.UI.Features.Researcher;
+using Isomerization.UI.Services;
 using LiveChartsCore;
 using LiveChartsCore.Defaults;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkiaSharp;
+using Wpf.Ui;
+using Wpf.Ui.Extensions;
 
 namespace Isomerization.UI.Features;
 
 public class ResearcherPageVM: ViewModelBase
 {
     private readonly IsomerizationContext _context;
+    private readonly IMessageBoxService _messageBoxService;
+    private readonly IMenuService _menuService;
+    private readonly IUserService _userService;
+    private readonly ISnackbarService _snackbarService;
 
-    public ResearcherPageVM(IsomerizationContext context)
+    public ResearcherPageVM(IsomerizationContext context,
+        IMessageBoxService messageBoxService,
+        IMenuService menuService,
+        IUserService userService,
+        ISnackbarService snackbarService)
     {
         _context = context;
-        
-        RawMaterials = new ObservableCollection<RawMaterial>(_context.RawMaterials.Include(x=>x.Concetrations));
+        _messageBoxService = messageBoxService;
+        _menuService = menuService;
+        _userService = userService;
+        _snackbarService = snackbarService;
+
+        RawMaterials = new ObservableCollection<RawMaterial>(_context.RawMaterials.Include(x=>x.Concentrations));
         SelectedRawMaterial = RawMaterials.FirstOrDefault();
         Catalysts = new ObservableCollection<Catalyst>(_context.Catalysts);
         SelectedCatalyst = Catalysts.FirstOrDefault();
+        App.GetService<MainWindowVM>().IsMenuEnabled = false;
     }
     public ObservableCollection<Installation> Installations { get; set; }
     public Installation SelectedInstallation { get; set; }
@@ -34,9 +53,8 @@ public class ResearcherPageVM: ViewModelBase
 
     public ObservableCollection<Catalyst> Catalysts { get; set; }
     public Catalyst SelectedCatalyst { get; set; }
-    
-    //todo delete
-    public string SOMESTRING { get; set; } = "12345";
+
+    public bool Draw7Concentrations => MathClass?.Results.MaterialCount == 7;
 
     public Axis[] XAxes { get; set; } =
     {
@@ -65,6 +83,56 @@ public class ResearcherPageVM: ViewModelBase
             LabelsPaint = new SolidColorPaint(SKColors.Black)
         }
     };
+    
+    private RelayCommand _loadModelCommand;
+    public RelayCommand LoadModelCommand => _loadModelCommand ??= new RelayCommand(_ =>
+    {
+        var window = App.GetService<SelectDIMIsomerizationWindow>();
+        window.ShowDialog();
+        var res = window.ViewModel.SelectedDimIsomerizationFinal;
+        if (res is null)
+        {
+            return;
+        }
+
+        Installations = new ObservableCollection<Installation>(_context.Installations);
+        SelectedInstallation = Installations.First(x => x.InstallationId == res.InstallationId);
+        SelectedCatalyst = Catalysts.First(x => x.CatalystId == res.CatalystId);
+        SelectedRawMaterial = RawMaterials.First(x => x.RawMaterialId == res.RawMaterialId);
+
+        T0 = res.Temp;
+        G = res.Consumption;
+        H = res.Step;
+    });
+    private RelayCommand _saveModelCommand;
+    public RelayCommand SaveModelCommand => _saveModelCommand ??= new RelayCommand(_ =>
+    {
+        var isomerization = new DIMIsomerization()
+        {
+            Catalyst = SelectedCatalyst,
+            Installation = SelectedInstallation,
+            RawMaterial = SelectedRawMaterial,
+            Name = $"Модель изомеризации - {DateTime.Now:G}",
+            Consumption = SelectedInstallation.RawMaterialConsumption,
+            Temp = T0,
+            User = _userService.CurrentUser,
+            Step = H,
+        };
+        _context.DimIsomerizations.Add(isomerization);
+        _context.SaveChanges();
+        _messageBoxService.Show("Данные о цифровой модели изомеризации добавлены", "База данных обновлена", MessageBoxButton.OK);
+    });
+    
+    private RelayCommand _goHomeMenu;
+    public RelayCommand GoHomeMenu => _goHomeMenu ??= new RelayCommand(_ =>
+    {
+        _menuService.GoHome();
+    });
+    private RelayCommand _goLoginMenu;
+    public RelayCommand GoLoginMenu => _goLoginMenu ??= new RelayCommand(_ =>
+    {
+        _menuService.GoLogin();
+    });
     /// <summary>
     /// Начальная температура
     /// </summary>
@@ -72,7 +140,7 @@ public class ResearcherPageVM: ViewModelBase
     /// <summary>
     /// Расход сырья
     /// </summary>
-    public double G { get; set; } = 0.01;
+    public double G { get; set; } = 9;
     /// <summary>
     /// Погрешность в процентах
     /// </summary>
@@ -90,7 +158,7 @@ public class ResearcherPageVM: ViewModelBase
     /// <summary>
     /// Шаг
     /// </summary>
-    public double H { get; set; } = 1;
+    public int H { get; set; } = 1;
 
     /// <summary>
     /// Время эксплуатации катализатора
@@ -100,26 +168,42 @@ public class ResearcherPageVM: ViewModelBase
 
     private RelayCommand _calcCommand;
 
-    public RelayCommand CalcCommand => _calcCommand ??= new RelayCommand(_ =>
+    public RelayCommand CalcCommand => _calcCommand ??= new RelayCommand(async _ =>
     {
         var calcParams = new CalculationParameters()
         {
+            Volume = SelectedInstallation.Volume,
             D = SelectedInstallation.Diameter,
             P = SelectedRawMaterial.Density,
             T0 = T0,
-            G = SelectedInstallation.RawMaterialConsumption,
+            G = G,
             Step = H,
             HeatCap = SelectedRawMaterial.HeatCapacity,
-            L = Tau,
             Activity = SelectedCatalyst.Activity/100,
-            C0 = SelectedRawMaterial.Concetrations.OrderBy(x=>x.Order).Select(x=>x.Value).ToArray(),
-            
+            C0 = SelectedRawMaterial.Concentrations.OrderBy(x=>x.Order).Select(x=>x.Value/100).ToArray(),
         };
         MathClass= new MathClass(calcParams);
         MathClass.Calculate();
         UpdateGraphics();
         IsCalculated = true;
+        var res = MathClass.Results;
+        var answerText =
+            $"Октановое число: {res.OKT}\n" +
+            $"Выходная концентрация вещества 1: {res.CordCs.Last().C1:F2}\n" +
+            $"Выходная концентрация вещества 2: {res.CordCs.Last().C2:F2}\n" +
+            $"Выходная концентрация вещества 3: {res.CordCs.Last().C3:F2}\n" +
+            $"Выходная концентрация вещества 4: {res.CordCs.Last().C4:F2}\n";
+        if (res.MaterialCount == 7)
+        {
+            answerText +=
+                $"Выходная концентрация вещества 5: {res.CordCs.Last().C5:F2}\n" +
+                $"Выходная концентрация вещества 6: {res.CordCs.Last().C6:F2}\n" +
+                $"Выходная концентрация вещества 7: {res.CordCs.Last().C7:F2}\n";
+        }
+
+        _messageBoxService.Show(answerText, "Результаты расчета", MessageBoxButton.OK);
     });
+    
     
     public List<CordC> CordСs
     {
@@ -248,7 +332,7 @@ public class ResearcherPageVM: ViewModelBase
         
         OnPropertyChanged(nameof(MathClass));
         OnPropertyChanged(nameof(TotalMemory));
-
+        OnPropertyChanged(nameof(Draw7Concentrations));
     }
     
     private void UpdateLineSeriesByCordAndValue(LineSeries<ObservablePoint> serie, List<double> x, List<double> y)

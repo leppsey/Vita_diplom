@@ -7,6 +7,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Isomerization.Domain;
 using Isomerization.Domain.Data;
+using Isomerization.UI.Features.Researcher;
 using Isomerization.UI.Misc;
 using Isomerization.UI.Services;
 using Wpf.Ui;
@@ -57,6 +58,7 @@ public partial class App : Application
         builder.RegisterType<MessageBoxService>().As<IMessageBoxService>().SingleInstance();
         builder.RegisterType<ContentMessageBoxService>().As<IContentMessageBoxService>().SingleInstance();
         builder.RegisterType<EditDialogService>().AsSelf().SingleInstance();
+        builder.RegisterType<SelectDIMIsomerizationWindow>().AsSelf();
         #endregion
         
        

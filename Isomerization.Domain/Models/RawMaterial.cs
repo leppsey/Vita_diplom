@@ -11,13 +11,19 @@ public class RawMaterial: ValidatableViewModel<RawMaterialValidator>
     public double Density { get; set; }
     public double HeatCapacity { get; set; }
     public double OctaneRating { get; set; } 
-    public List<Concetration> Concetrations { get; set; }
+    public List<Concentration> Concentrations { get; set; }
 }
 
-public class Concetration
+public class Concentration
 {
-    public int ConcetrationId { get; set; }
+    public int ConcentrationId { get; set; }
     public int RawMaterialId { get; set; }
     public double Value { get; set; }
     public int Order { get; set; }
 }
+//
+// public class Material
+// {
+//     public int MaterialId { get; set; }
+//     public double OctaneRating { get; set; }
+// }

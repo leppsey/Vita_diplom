@@ -5,6 +5,7 @@ namespace Isomerization.Domain.Models;
 /// </summary>
 public class DIMIsomerization
 {
+    public string Name { get; set; }
     public int DIMIsomerizationId { get; set; }
     public RawMaterial RawMaterial { get; set; }
     public int RawMaterialId { get; set; }
@@ -12,8 +13,10 @@ public class DIMIsomerization
     public int UserId { get; set; }
     public Catalyst Catalyst { get; set; }
     public int CatalystId { get; set; }
-    public Pipeline Pipeline { get; set; }
-    public int PipelineId { get; set; }
     public Installation Installation { get; set; }
     public int InstallationId { get; set; }
+    
+    public double Temp { get; set; }
+    public double Consumption { get; set; }
+    public int Step { get; set; }
 }
