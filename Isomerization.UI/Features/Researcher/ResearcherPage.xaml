@@ -180,25 +180,25 @@
                             <!-- <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНы БЫТЬ ОСНОВНЫЕ ПРОДУКТЫ" /> -->
                         <!-- </Grid> -->
                     </TabItem>
-                    <TabItem Visibility="{Binding IsCalculated, Converter = {StaticResource BooleanToVisibilityConverter}}">
-                        <TabItem.Header>
-                            <StackPanel Orientation="Horizontal">
-                                <ui:SymbolIcon Margin="0,0,6,0" Symbol="Table28"/>
-                                <TextBlock Text="График температуры" />
-                            </StackPanel>
-                        </TabItem.Header>
-                        <lvc:CartesianChart
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            XAxes="{Binding XAxes}"
-                            YAxes="{Binding TemperatureYAxes}"
-                            Series="{Binding TSeries}">
-                        </lvc:CartesianChart>
-
-                        <!-- <Grid> -->
-                        <!--     <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНы БЫТЬ ПОБОЧНЫЕ ПРОДУКТЫ" /> -->
-                        <!-- </Grid> -->
-                    </TabItem>
+                    <!-- <TabItem Visibility="{Binding IsCalculated, Converter = {StaticResource BooleanToVisibilityConverter}}"> -->
+                    <!--     <TabItem.Header> -->
+                    <!--         <StackPanel Orientation="Horizontal"> -->
+                    <!--             <ui:SymbolIcon Margin="0,0,6,0" Symbol="Table28"/> -->
+                    <!--             <TextBlock Text="График температуры" /> -->
+                    <!--         </StackPanel> -->
+                    <!--     </TabItem.Header> -->
+                    <!--     <lvc:CartesianChart -->
+                    <!--         HorizontalAlignment="Stretch" -->
+                    <!--         VerticalAlignment="Stretch" -->
+                    <!--         XAxes="{Binding XAxes}" -->
+                    <!--         YAxes="{Binding TemperatureYAxes}" -->
+                    <!--         Series="{Binding TSeries}"> -->
+                    <!--     </lvc:CartesianChart> -->
+                    <!-- -->
+                    <!--     ~1~ <Grid> @1@ -->
+                    <!--     ~1~     <TextBlock Margin="12" Text="ЗДЕСЬ ДОЛЖНы БЫТЬ ПОБОЧНЫЕ ПРОДУКТЫ" /> @1@ -->
+                    <!--     ~1~ </Grid> @1@ -->
+                    <!-- </TabItem> -->
                     <TabItem Visibility="{Binding IsCalculated, Converter = {StaticResource BooleanToVisibilityConverter}}">
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal">
