@@ -22,34 +22,34 @@
             <shared:LabeledControlPresenter HeaderText="Название">
                 <ui:TextBox Text="{Binding  Data.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Давление" RightText="%">
+            <shared:LabeledControlPresenter HeaderText="Давление" RightText="МПа">
                 <ui:NumberBox Value="{Binding  Data.Pressure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Производительность" RightText="м³/с">
+            <shared:LabeledControlPresenter HeaderText="Производительность" RightText="т/г">
                 <ui:NumberBox Value="{Binding  Data.Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Энергопотребление" RightText="℃">
+            <shared:LabeledControlPresenter HeaderText="Энергопотребление" RightText="кВт⋅ч">
                 <ui:NumberBox Value="{Binding  Data.EnergyConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Температура" RightText="г">
+            <shared:LabeledControlPresenter HeaderText="Температура" RightText="℃">
                 <ui:NumberBox Value="{Binding  Data.Temperature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Высота" RightText="г">
-                <ui:NumberBox Value="{Binding  Data.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Ширина" RightText="г">
-                <ui:NumberBox Value="{Binding  Data.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Длина" RightText="г">
+            <!-- <shared:LabeledControlPresenter HeaderText="Высота" RightText="м"> -->
+            <!--     <ui:NumberBox Value="{Binding  Data.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> -->
+            <!-- </shared:LabeledControlPresenter> -->
+            <!-- <shared:LabeledControlPresenter HeaderText="Ширина" RightText="м"> -->
+            <!--     <ui:NumberBox Value="{Binding  Data.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> -->
+            <!-- </shared:LabeledControlPresenter> -->
+            <shared:LabeledControlPresenter HeaderText="Длина" RightText="м">
                 <ui:NumberBox Value="{Binding  Data.Length, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Диаметр" RightText="г">
-                <ui:NumberBox Value="{Binding  Data.Diameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Объем" RightText="г">
+            <!-- <shared:LabeledControlPresenter HeaderText="Диаметр" RightText="м"> -->
+            <!--     <ui:NumberBox Value="{Binding  Data.Diameter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> -->
+            <!-- </shared:LabeledControlPresenter> -->
+            <shared:LabeledControlPresenter HeaderText="Объем" RightText="м³">
                 <ui:NumberBox Value="{Binding  Data.Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Расход сырья" RightText="г">
+            <shared:LabeledControlPresenter HeaderText="Расход сырья" RightText="м³/с">
                 <ui:NumberBox Value="{Binding  Data.RawMaterialConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Дата ввода в эксплуатацию">

@@ -151,6 +151,11 @@ public class ResearcherPageVM: ViewModelBase
     public double QMax { get; set; } = 4;
 
     /// <summary>
+    /// Время проведения реакции
+    /// </summary>
+    public double Tau { get; set; } = 100;
+
+    /// <summary>
     /// Шаг
     /// </summary>
     public int H { get; set; } = 1;
@@ -174,7 +179,7 @@ public class ResearcherPageVM: ViewModelBase
             G = G,
             Step = H,
             HeatCap = SelectedRawMaterial.HeatCapacity,
-            Activity = SelectedCatalyst.Activity,
+            Activity = SelectedCatalyst.Activity/100,
             C0 = SelectedRawMaterial.Concentrations.OrderBy(x=>x.Order).Select(x=>x.Value/100).ToArray(),
         };
         MathClass= new MathClass(calcParams);

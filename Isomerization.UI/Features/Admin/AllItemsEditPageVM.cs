@@ -16,27 +16,17 @@ public class AllItemsEditPageVM: ViewModelBase
             new()
             {
                 Name = "Катализаторы",
-                Link = nameof(CatalystPage)
-            },
-            new()
-            {
-                Name = "Цифровые информационные модели изомеризации",
-                Link = nameof(DIMIsomerizationPage)
+                Link = nameof(CatalystPage),
             },
             new()
             {
                 Name = "Установки",
-                Link = nameof(InstallationPage)
-            },
-            new()
-            {
-                Name = "Кинетические характеристики химических процессов",
-                Link = nameof(KineticPage)
+                Link = nameof(InstallationPage),
             },
             new()
             {
                 Name = "Сырье",
-                Link = nameof(RawMaterialPage)
+                Link = nameof(RawMaterialPage),
             },
         };
 }

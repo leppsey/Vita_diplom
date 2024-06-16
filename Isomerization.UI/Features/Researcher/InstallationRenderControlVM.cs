@@ -76,7 +76,7 @@ public class InstallationRenderControlVM: ViewModelBase
     }
 
     public TextureModel EnvironmentMap { get; } = TextureModel.Create(
-        "C:\\Users\\aspir\\Desktop\\helix-toolkit-master\\Images\\EnvironmentMaps\\Cubemap_Grandcanyon.dds");
+        "resources\\Cubemap_Grandcanyon.dds");
 
     private void OpenFile()
     {
