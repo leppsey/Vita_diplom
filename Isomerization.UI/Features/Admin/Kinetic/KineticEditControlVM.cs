@@ -16,7 +16,17 @@ public class KineticEditControlVM: ViewModelBase, IDialogEditViewModel<Domain.Mo
     }
     
     public ObservableCollection<Domain.Models.RawMaterial> RawMaterials { get; set; }
-    public Domain.Models.Kinetic Data { get; set; }
+
+    public Domain.Models.Kinetic Data
+    {
+        get => _data;
+        set
+        {
+            _data = value;
+            _data.RawMaterial = RawMaterials.FirstOrDefault(x => x.RawMaterialId == _data.RawMaterial?.RawMaterialId);
+        }
+    }
+
     public Domain.Models.Kinetic Result { get; private set; }
     public Action FinishInteraction { get; set; }
     
@@ -28,6 +38,7 @@ public class KineticEditControlVM: ViewModelBase, IDialogEditViewModel<Domain.Mo
         {
             return _applyCommand ??= new RelayCommand(o =>
             {
+                // Data.RawMaterialId = Data.RawMaterial.RawMaterialId;
                 Result = Data;
                 FinishInteraction();
             }, _=> !Data?.HasErrors ?? false);
@@ -35,6 +46,7 @@ public class KineticEditControlVM: ViewModelBase, IDialogEditViewModel<Domain.Mo
     }
     
     private RelayCommand _cancelCommand;
+    private Domain.Models.Kinetic _data;
 
     public RelayCommand CancelCommand
     {

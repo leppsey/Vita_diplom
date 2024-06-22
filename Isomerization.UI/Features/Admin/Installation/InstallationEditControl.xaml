@@ -49,9 +49,9 @@
             <shared:LabeledControlPresenter HeaderText="Объем" RightText="м³">
                 <ui:NumberBox Value="{Binding  Data.Volume, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Расход сырья" RightText="м³/с">
-                <ui:NumberBox Value="{Binding  Data.RawMaterialConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            </shared:LabeledControlPresenter>
+            <!-- <shared:LabeledControlPresenter HeaderText="Расход сырья" RightText="м³/с"> -->
+            <!--     <ui:NumberBox Value="{Binding  Data.RawMaterialConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> -->
+            <!-- </shared:LabeledControlPresenter> -->
             <shared:LabeledControlPresenter HeaderText="Дата ввода в эксплуатацию">
                 <DatePicker SelectedDate="{Binding Data.DateOfCommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
             </shared:LabeledControlPresenter>

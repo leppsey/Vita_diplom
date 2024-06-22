@@ -46,10 +46,6 @@ namespace Isomerization.Domain.Data
                 optionsBuilder.UseSqlite("DataSource=Membrane.db");
             }
         }
-
-        private void OnModelCreatingPartial(ModelBuilder modelBuilder)
-        {
-            //throw new NotImplementedException();
-        }
+        
     }
 }

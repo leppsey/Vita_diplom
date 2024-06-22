@@ -4,6 +4,7 @@ using Isomerization.Shared;
 using Isomerization.UI.Features.Admin.Catalyst;
 using Isomerization.UI.Misc;
 using Isomerization.UI.Services;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Wpf.Ui;
 using Wpf.Ui.Controls;
@@ -34,13 +35,15 @@ public class CatalystPageVM: ViewModelBase
     private RelayCommand _editCatalystCommand;
     public RelayCommand EditCatalystCommand => _editCatalystCommand ??= new RelayCommand(async catalyst   =>
     {
-        var res = await _editDialogService.ShowDialog<CatalystEditControl, Domain.Models.Catalyst>((Domain.Models.Catalyst)catalyst);
+        var initialObject = (Domain.Models.Catalyst)catalyst;
+        var res = await _editDialogService.ShowDialog<CatalystEditControl, Domain.Models.Catalyst>(initialObject.Adapt<Domain.Models.Catalyst>());
         if (res is null)
         {
             return;
         }
 
-        _context.Entry(res).State = EntityState.Modified;
+        res.Adapt(initialObject);
+        _context.Entry(initialObject).State = EntityState.Modified;
         _context.SaveChanges();
         _snackbarService.Show("База данных обновлена", "Данные о катализаторе обновлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
@@ -55,9 +58,9 @@ public class CatalystPageVM: ViewModelBase
             return;
         }
 
-        _context.Entry(res).State = EntityState.Modified;
+        _context.Entry(res).State = EntityState.Added;
         _context.SaveChanges();
-        
+        Catalysts.Add(res);
         _snackbarService.Show("База данных обновлена", "Данные о катализаторе добавлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
     

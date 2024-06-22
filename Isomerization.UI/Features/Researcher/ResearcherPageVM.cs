@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
@@ -45,9 +46,8 @@ public class ResearcherPageVM: ViewModelBase
         SelectedCatalyst = Catalysts.FirstOrDefault();
         App.GetService<MainWindowVM>().IsMenuEnabled = false;
     }
-    public ObservableCollection<Installation> Installations { get; set; }
+    public ObservableCollection<Installation> AvailableInstallations { get; set; }
     public Installation SelectedInstallation { get; set; }
-
     public ObservableCollection<RawMaterial> RawMaterials { get; set; }
     public RawMaterial SelectedRawMaterial { get; set; }
 
@@ -95,8 +95,8 @@ public class ResearcherPageVM: ViewModelBase
             return;
         }
 
-        Installations = new ObservableCollection<Installation>(_context.Installations);
-        SelectedInstallation = Installations.First(x => x.InstallationId == res.InstallationId);
+        AvailableInstallations = new ObservableCollection<Installation>(_context.Installations);
+        // SelectedInstallation = AvailableInstallations.First(x => x.InstallationId == res.InstallationId);
         SelectedCatalyst = Catalysts.First(x => x.CatalystId == res.CatalystId);
         SelectedRawMaterial = RawMaterials.First(x => x.RawMaterialId == res.RawMaterialId);
 
@@ -110,10 +110,10 @@ public class ResearcherPageVM: ViewModelBase
         var isomerization = new DIMIsomerization()
         {
             Catalyst = SelectedCatalyst,
-            Installation = SelectedInstallation,
+            // Installation = SelectedInstallation,
             RawMaterial = SelectedRawMaterial,
             Name = $"Модель изомеризации - {DateTime.Now:G}",
-            Consumption = SelectedInstallation.RawMaterialConsumption,
+            // Consumption = SelectedInstallation.RawMaterialConsumption,
             Temp = T0,
             User = _userService.CurrentUser,
             Step = H,
@@ -170,25 +170,61 @@ public class ResearcherPageVM: ViewModelBase
 
     public RelayCommand CalcCommand => _calcCommand ??= new RelayCommand(async _ =>
     {
-        var calcParams = new CalculationParameters()
+        var mathResults = new ConcurrentBag<(Installation Installation, MathClass Math)>();
+        Parallel.ForEach(AvailableInstallations, installation =>
         {
-            Volume = SelectedInstallation.Volume,
-            D = SelectedInstallation.Diameter,
-            P = SelectedRawMaterial.Density,
-            T0 = T0,
-            G = G,
-            Step = H,
-            HeatCap = SelectedRawMaterial.HeatCapacity,
-            Activity = SelectedCatalyst.Activity/100,
-            C0 = SelectedRawMaterial.Concentrations.OrderBy(x=>x.Order).Select(x=>x.Value/100).ToArray(),
-        };
-        MathClass= new MathClass(calcParams);
-        MathClass.Calculate();
+            var calcParams = new CalculationParameters()
+            {
+                Volume = installation.Volume,
+                D = installation.Diameter,
+                P = SelectedRawMaterial.Density,
+                T0 = T0,
+                G = G,
+                Step = H,
+                HeatCap = SelectedRawMaterial.HeatCapacity,
+                Activity = SelectedCatalyst.Activity/100,
+                C0 = SelectedRawMaterial.Concentrations.OrderBy(x=>x.Order).Select(x=>x.Value/100).ToArray(),
+            };
+            var math = new MathClass(calcParams);
+            math.Calculate();
+            mathResults.Add((installation, math));
+        });
+
+        bool IsResultOk(CalculationResults results)
+        {
+            return true;
+        }
+
+        var satisfyingCalcs = mathResults.Where(x => IsResultOk(x.Math.Results)).ToList();
+
+        if (!satisfyingCalcs.Any())
+        {
+            IsCalculated = false;
+            return;
+        }
+
+        var bestCalc = satisfyingCalcs.MaxBy(x => x.Math.Results.OKT);
+        var otherCalcs = satisfyingCalcs.Except(new[] { bestCalc }).ToList();
+        MathClass = bestCalc.Math;
+        
         UpdateGraphics();
+        SelectedInstallation = bestCalc.Installation;
         IsCalculated = true;
         var res = MathClass.Results;
+
+
+        var bestInstallationResultText =
+            $"Самое высокое октановое число достигается с установкой {bestCalc.Installation.Name}, октановое число: {bestCalc.Math.Results.OKT:F2}\n";
+        var otherInstallationResultText = otherCalcs.Any() ? "Результаты для остальных установок:\n" : string.Empty;
+        foreach (var otherCalc in otherCalcs)
+        {
+            otherInstallationResultText +=
+                $"Установка {otherCalc.Installation.Name}, октановое число: {otherCalc.Math.Results.OKT:F2}\n";
+        }
+        
         var answerText =
-            $"Октановое число: {res.OKT}\n" +
+            bestInstallationResultText +
+            otherInstallationResultText +
             $"Выходная концентрация вещества 1: {res.CordCs.Last().C1:F2}\n" +
             $"Выходная концентрация вещества 2: {res.CordCs.Last().C2:F2}\n" +
             $"Выходная концентрация вещества 3: {res.CordCs.Last().C3:F2}\n" +

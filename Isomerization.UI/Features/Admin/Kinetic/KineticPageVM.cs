@@ -5,6 +5,7 @@ using Isomerization.Shared;
 using Isomerization.UI.Features.Admin.RawMaterial;
 using Isomerization.UI.Misc;
 using Isomerization.UI.Services;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Wpf.Ui;
 using Wpf.Ui.Extensions;
@@ -31,14 +32,29 @@ public class KineticPageVM: ViewModelBase
     private RelayCommand _editKineticCommand;
     public RelayCommand EditKineticCommand => _editKineticCommand ??= new RelayCommand(async kinetic   =>
     {
-        var res = await _editDialogService.ShowDialog<KineticEditControl, Domain.Models.Kinetic>((Domain.Models.Kinetic)kinetic);
+        var initialObject = (Domain.Models.Kinetic)kinetic;
+
+        var res = await _editDialogService.ShowDialog<KineticEditControl, Domain.Models.Kinetic>(initialObject.Adapt<Domain.Models.Kinetic>());
         if (res is null)
         {
             return;
         }
 
-        _context.Entry(res).State = EntityState.Modified;
-        _context.SaveChanges();
+        var existingEntity = _context.Kinetics
+            .Include(k => k.RawMaterial)
+            .SingleOrDefault(k => k.KineticId == initialObject.KineticId);
+
+        if (existingEntity != null)
+        {
+            // Удалить зависимую сущность
+            _context.Kinetics.Remove(existingEntity);
+            _context.SaveChanges();
+
+            // Создать новую зависимую сущность
+            initialObject.RawMaterial = res.RawMaterial; // newRawMaterial - это новый объект RawMaterial
+            _context.Kinetics.Add(initialObject);
+            _context.SaveChanges();
+        }
         _snackbarService.Show("База данных обновлена", "Данные о кинетике обновлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
     
@@ -52,9 +68,9 @@ public class KineticPageVM: ViewModelBase
             return;
         }
 
-        _context.Entry(res).State = EntityState.Modified;
+        _context.Entry(res).State = EntityState.Added;
         _context.SaveChanges();
-        
+        Kinetics.Add(res);
         _snackbarService.Show("База данных обновлена", "Данные о кинетике добавлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
     

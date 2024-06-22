@@ -33,7 +33,7 @@
                 <ui:NumberBox Value="{Binding  Data.TemperatureReaction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Время эксплуатации" RightText="с">
-                <ui:NumberBox Value="{Binding  Data.TemperatureReaction, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <ui:NumberBox Value="{Binding  Data.OperatingTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Срок службы" RightText="г">
                 <ui:NumberBox Value="{Binding  Data.ServiceLife, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>

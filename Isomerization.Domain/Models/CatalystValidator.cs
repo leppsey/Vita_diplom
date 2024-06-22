@@ -31,12 +31,12 @@ public class CatalystValidator: AbstractValidator<Catalyst>
             .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
-        //
-        // RuleFor(c=>c.OperatingTime)
-        //     .NotEmpty()
-        //     .WithMessage("Поле не должно быть пустым")
-        //     .GreaterThan(0)
-        //     .WithMessage("Значение не может быть меньше нуля");
+        
+        RuleFor(c=>c.OperatingTime)
+            .NotEmpty()
+            .WithMessage("Поле не должно быть пустым")
+            .GreaterThan(0)
+            .WithMessage("Значение не может быть меньше нуля");
         
         RuleFor(c=>c.ServiceLife)
             .NotEmpty()
@@ -44,14 +44,12 @@ public class CatalystValidator: AbstractValidator<Catalyst>
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
 
-        RuleFor(c=>c.DateOfDecommissioning)
+        RuleFor(c => c.DateOfDecommissioning)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым")
-            .GreaterThan(c => c.DateOfCommissioning);
+            .WithMessage("Поле не должно быть пустым");
 
-        RuleFor(c=>c.DateOfCommissioning)
+        RuleFor(c => c.DateOfCommissioning)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым")
-            .LessThan(c => c.DateOfDecommissioning);
+            .WithMessage("Поле не должно быть пустым");
     }
 }

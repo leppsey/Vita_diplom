@@ -4,6 +4,7 @@ using Isomerization.Shared;
 using Isomerization.UI.Features.Admin.Catalyst;
 using Isomerization.UI.Misc;
 using Isomerization.UI.Services;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Wpf.Ui;
 using Wpf.Ui.Extensions;
@@ -33,13 +34,16 @@ public class RawMaterialPageVM: ViewModelBase
     private RelayCommand _editRawMaterialCommand;
     public RelayCommand EditRawMaterialCommand => _editRawMaterialCommand ??= new RelayCommand(async rawMaterial   =>
     {
-        var res = await _editDialogService.ShowDialog<RawMaterialEditControl, Domain.Models.RawMaterial>((Domain.Models.RawMaterial)rawMaterial);
+        var initialObject = (Domain.Models.RawMaterial)rawMaterial;
+
+        var res = await _editDialogService.ShowDialog<RawMaterialEditControl, Domain.Models.RawMaterial>(initialObject);
         if (res is null)
         {
             return;
         }
-
-        _context.Entry(res).State = EntityState.Modified;
+        
+        res.Adapt(initialObject);
+        _context.Entry(initialObject).State = EntityState.Modified;
         _context.SaveChanges();
         _snackbarService.Show("База данных обновлена", "Данные о сырье обновлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
@@ -54,9 +58,9 @@ public class RawMaterialPageVM: ViewModelBase
             return;
         }
 
-        _context.Entry(res).State = EntityState.Modified;
+        _context.Entry(res).State = EntityState.Added;
         _context.SaveChanges();
-        
+        RawMaterials.Add(res);
         _snackbarService.Show("База данных обновлена", "Данные о сырье добавлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
     

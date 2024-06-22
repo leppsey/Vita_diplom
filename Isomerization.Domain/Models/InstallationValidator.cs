@@ -37,17 +37,17 @@ public class InstallationValidator: AbstractValidator<Installation>
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
 
-        RuleFor(c=>c.Height)
-            .NotEmpty()
-            .WithMessage("Поле не должно быть пустым")
-            .GreaterThan(0)
-            .WithMessage("Значение не может быть меньше нуля");
+        // RuleFor(c=>c.Height)
+        //     .NotEmpty()
+        //     .WithMessage("Поле не должно быть пустым")
+        //     .GreaterThan(0)
+        //     .WithMessage("Значение не может быть меньше нуля");
 
-        RuleFor(c=>c.Width)
-            .NotEmpty()
-            .WithMessage("Поле не должно быть пустым")
-            .GreaterThan(0)
-            .WithMessage("Значение не может быть меньше нуля");
+        // RuleFor(c=>c.Width)
+        //     .NotEmpty()
+        //     .WithMessage("Поле не должно быть пустым")
+        //     .GreaterThan(0)
+        //     .WithMessage("Значение не может быть меньше нуля");
 
         RuleFor(c=>c.Length)
             .NotEmpty()
@@ -55,11 +55,11 @@ public class InstallationValidator: AbstractValidator<Installation>
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
 
-        RuleFor(c=>c.Diameter)
-            .NotEmpty()
-            .WithMessage("Поле не должно быть пустым")
-            .GreaterThan(0)
-            .WithMessage("Значение не может быть меньше нуля");
+        // RuleFor(c=>c.Diameter)
+        //     .NotEmpty()
+        //     .WithMessage("Поле не должно быть пустым")
+        //     .GreaterThan(0)
+        //     .WithMessage("Значение не может быть меньше нуля");
 
         RuleFor(c=>c.Volume)
             .NotEmpty()
@@ -70,15 +70,13 @@ public class InstallationValidator: AbstractValidator<Installation>
         RuleFor(c=>c.DateOfCommissioning)
             .NotEmpty()
             .WithMessage("Поле не должно быть пустым");
-        
+
         RuleFor(c => c.DateOfPlannedWorks)
             .NotEmpty()
-            .WithMessage("Поле не должно быть пустым")
-            .GreaterThan(installation => installation.DateOfCommissioning);
-            // .WithMessage("Дата должна быть после ");
-            
-        RuleFor(c=>c.Status)
-            .NotEmpty()
             .WithMessage("Поле не должно быть пустым");
+            
+        // RuleFor(c=>c.Status)
+        //     .NotEmpty()
+        //     .WithMessage("Поле не должно быть пустым");
     }
 }

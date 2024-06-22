@@ -11,11 +11,21 @@ public class KineticValidator: AbstractValidator<Kinetic>
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
         
-        RuleFor(c=>c.EnergyActivation)
+        RuleFor(c=>c.StehiometricFactor)
             .NotEmpty()
             .WithMessage("Поле не должно быть пустым")
             .GreaterThan(0)
             .WithMessage("Значение не может быть меньше нуля");
+        
+        RuleFor(c=>c.ReactionRateConstant)
+            .NotEmpty()
+            .WithMessage("Поле не должно быть пустым")
+            .GreaterThan(0)
+            .WithMessage("Значение не может быть меньше нуля");
+        
+        RuleFor(c => c.RawMaterial)
+            .NotNull()
+            .WithMessage("Поле не должно быть пустым");
     }
 }
 

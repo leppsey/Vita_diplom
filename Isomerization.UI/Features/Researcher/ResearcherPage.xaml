@@ -51,8 +51,8 @@
                                                         Margin="0,7">
                             <ui:Card>
                                 <StackPanel>
-                                    <shared:LabeledControlPresenter HeaderText="Оборудование">
-                                        <ComboBox ItemsSource="{Binding Installations}"
+                                    <shared:LabeledControlPresenter HeaderText="Оборудование" Visibility="Collapsed">
+                                        <ComboBox ItemsSource="{Binding AvailableInstallations}"
                                                   SelectedItem="{Binding SelectedInstallation}"
                                                   DisplayMemberPath="Name"
                                                   SelectionChanged="Selector_OnSelectionChanged"
@@ -149,7 +149,7 @@
 
             </Grid>
             <Grid Grid.Column="2" Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}}">
-                <ui:TabView>
+                <ui:TabView Visibility="{Binding IsCalculated, Converter = {StaticResource BooleanToVisibilityConverter}}">
                     <TabItem>
                         <TabItem.Header>
                             <StackPanel Orientation="Horizontal">

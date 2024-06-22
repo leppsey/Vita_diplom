@@ -4,6 +4,7 @@ using Isomerization.Domain.Data;
 using Isomerization.Shared;
 using Isomerization.UI.Misc;
 using Isomerization.UI.Services;
+using Mapster;
 using Microsoft.EntityFrameworkCore;
 using Wpf.Ui;
 using Wpf.Ui.Extensions;
@@ -29,13 +30,16 @@ public class InstallationPageVM: ViewModelBase
     private RelayCommand _editInstallationCommand;
     public RelayCommand EditInstallationCommand => _editInstallationCommand ??= new RelayCommand(async installation   =>
     {
-        var res = await _editDialogService.ShowDialog<InstallationEditControl, Domain.Models.Installation>((Domain.Models.Installation)installation);
+        var initialObject = (Domain.Models.Installation)installation;
+
+        var res = await _editDialogService.ShowDialog<InstallationEditControl, Domain.Models.Installation>(initialObject.Adapt<Domain.Models.Installation>());
         if (res is null)
         {
             return;
         }
 
-        _context.Entry(res).State = EntityState.Modified;
+        res.Adapt(initialObject);
+        _context.Entry(initialObject).State = EntityState.Modified;
         _context.SaveChanges();
         _snackbarService.Show("База данных обновлена", "Данные об установке обновлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
@@ -50,9 +54,9 @@ public class InstallationPageVM: ViewModelBase
             return;
         }
 
-        _context.Entry(res).State = EntityState.Modified;
+        _context.Entry(res).State = EntityState.Added;
         _context.SaveChanges();
-        
+        Installations.Add(res);
         _snackbarService.Show("База данных обновлена", "Данные об установке добавлены", timeout: TimeSpan.FromMilliseconds(2000));
     });
 

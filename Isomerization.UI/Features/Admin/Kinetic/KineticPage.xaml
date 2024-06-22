@@ -25,8 +25,7 @@
                 <DataGridTextColumn Header="Сырье" Binding="{Binding Path=RawMaterial.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="Предэкспоненциальный фактор" Binding="{Binding Path=PreExponentialFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="Константа скорости реакции, 1/с" Binding="{Binding Path=ReactionRateConstant, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="Стехиометрический коэффициент" Binding="{Binding Path=StehiometricFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
-                <DataGridTextColumn Header="Энергия активации" Binding="{Binding Path=EnergyActivation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Стехиометрический множитель" Binding="{Binding Path=StehiometricFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
                 <DataGridTemplateColumn  IsReadOnly="True" Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

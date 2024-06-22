@@ -111,8 +111,8 @@ public class InstallationSearchPageVM: ViewModelBase
         }
 
         var vm = App.GetService<ResearcherPageVM>();
-        vm.Installations = FindedInstallations;
-        vm.SelectedInstallation = FindedInstallations.First();
+        vm.AvailableInstallations = FindedInstallations;
+        // vm.SelectedInstallation = FindedInstallations.First();
         _navigationService.Navigate(typeof(ResearcherPage), vm);
     });
 }
