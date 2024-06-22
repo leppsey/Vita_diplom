@@ -123,6 +123,26 @@
                                 </StackPanel>
                             </ui:Card>
                         </shared:LabeledControlPresenter>
+                        <shared:LabeledControlPresenter HeaderText="Показатели качества"
+                                                        HeaderFontSize="16"
+                                                        Margin="0,7">
+                            <ui:Card>
+                                <shared:LabeledControlPresenter HeaderText="Октановое число" HeaderFontSize="20">
+                                    <StackPanel>
+                                        <shared:LabeledControlPresenter HeaderText="От"  HeaderTextPlacement="Left">
+                                            <ui:NumberBox 
+                                                Minimum="0"
+                                                Value="{Binding OctaneNumberMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </shared:LabeledControlPresenter>
+                                        <shared:LabeledControlPresenter HeaderText="До"  HeaderTextPlacement="Left">
+                                            <ui:NumberBox 
+                                                Minimum="0"
+                                                Value="{Binding OctaneNumberMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </shared:LabeledControlPresenter>
+                                    </StackPanel>
+                                </shared:LabeledControlPresenter>
+                            </ui:Card>
+                        </shared:LabeledControlPresenter>
                         <!-- <shared:LabeledControlPresenter HeaderText="Информация" -->
                         <!--                                 HeaderFontSize="16" -->
                         <!--                                 Margin="0,7"> -->

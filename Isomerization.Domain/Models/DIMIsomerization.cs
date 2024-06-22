@@ -19,4 +19,6 @@ public class DIMIsomerization
     public double Temp { get; set; }
     public double Consumption { get; set; }
     public int Step { get; set; }
+    public double OctaneNumberMin { get; set; }
+    public double OctaneNumberMax { get; set; }
 }
