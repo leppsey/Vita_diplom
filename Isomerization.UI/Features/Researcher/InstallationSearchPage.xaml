@@ -48,6 +48,23 @@
                                 </shared:LabeledControlPresenter>
                             </StackPanel>
                         </shared:LabeledControlPresenter>
+                        
+                        <shared:LabeledControlPresenter Margin="0,15,0,0" HeaderText="Октановое число" HeaderFontSize="20">
+                            <StackPanel>
+                                <shared:LabeledControlPresenter HeaderText="От"  HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding OctaneNumberMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="До"  HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding OctaneNumberMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                            </StackPanel>
+                        </shared:LabeledControlPresenter>
+                      
+
                         <ui:Button HorizontalAlignment="Right"
                                    Width="100"
                                    Margin="0,20,0,0" 

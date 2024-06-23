@@ -22,6 +22,7 @@ public class MenuService : IMenuService
         {
             return;
         }
+        App.GetService<MainWindowVM>().IsMenuEnabled = true;
         if (_userService.CurrentUser.IsAdmin())
         {
             _navigationService.Navigate(typeof(AllItemsEditPage));

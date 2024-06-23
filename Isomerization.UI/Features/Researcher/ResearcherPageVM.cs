@@ -119,6 +119,7 @@ public class ResearcherPageVM: ViewModelBase
             Temp = T0,
             User = _userService.CurrentUser,
             Step = H,
+            Consumption = G,
             OctaneNumberMin = OctaneNumberMin,
             OctaneNumberMax = OctaneNumberMax,
         };

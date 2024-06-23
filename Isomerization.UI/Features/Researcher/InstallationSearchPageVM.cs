@@ -4,6 +4,7 @@ using Isomerization.Domain.Data;
 using Isomerization.Domain.Models;
 using Isomerization.Shared;
 using Isomerization.UI.Services;
+using Microsoft.EntityFrameworkCore;
 using Wpf.Ui;
 
 namespace Isomerization.UI.Features.Researcher;
@@ -13,15 +14,32 @@ public class InstallationSearchPageVM: ViewModelBase
     private readonly IsomerizationContext _context;
     private readonly INavigationService _navigationService;
     private readonly IMessageBoxService _messageBoxService;
+    private readonly IMenuService _menuService;
 
 
-    public InstallationSearchPageVM(IsomerizationContext context, INavigationService navigationService, IMessageBoxService messageBoxService)
+    public InstallationSearchPageVM(IsomerizationContext context, INavigationService navigationService, IMessageBoxService messageBoxService, IMenuService menuService)
     {
         _context = context;
         _navigationService = navigationService;
         _messageBoxService = messageBoxService;
+        _menuService = menuService;
         FindInstallations();
     }
+
+    private RelayCommand _goHomeMenu;
+    public RelayCommand GoHomeMenu => _goHomeMenu ??= new RelayCommand(_ =>
+    {
+        _menuService.GoHome();
+    });
+    private RelayCommand _goLoginMenu;
+    public RelayCommand GoLoginMenu => _goLoginMenu ??= new RelayCommand(_ =>
+    {
+        _menuService.GoLogin();
+    });
+    
+    public double OctaneNumberMin { get; set; } = 78;
+    public double OctaneNumberMax { get; set; } = 85;
+    
     
     private double? _performanceMin;
     public double? PerformanceMin
@@ -74,7 +92,7 @@ public class InstallationSearchPageVM: ViewModelBase
     {
         try
         {
-            var installations = _context.Installations.AsQueryable();
+            var installations = _context.Installations.Include(x=>x.Model).AsQueryable();
             if (EnergyConsumptionMin.HasValue)
             {
                 installations = installations.Where(x => x.EnergyConsumption >= EnergyConsumptionMin.Value);
@@ -112,7 +130,10 @@ public class InstallationSearchPageVM: ViewModelBase
 
         var vm = App.GetService<ResearcherPageVM>();
         vm.AvailableInstallations = FindedInstallations;
+        vm.OctaneNumberMin = OctaneNumberMin; 
+        vm.OctaneNumberMax = OctaneNumberMax; 
         // vm.SelectedInstallation = FindedInstallations.First();
         _navigationService.Navigate(typeof(ResearcherPage), vm);
     });
+
 }

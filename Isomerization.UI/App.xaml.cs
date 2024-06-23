@@ -68,9 +68,12 @@ public partial class App : Application
         
         Container = builder.Build();
         var dbContext = Container.Resolve<IsomerizationContext>();
-        dbContext.Database.EnsureDeleted();
-        dbContext.Database.EnsureCreated();
-        DatabaseInitializer.Init(dbContext);
+        // dbContext.Database.EnsureDeleted();
+        if (dbContext.Database.EnsureCreated())
+        {
+            DatabaseInitializer.Init(dbContext);
+
+        }
         var navWindow = Container.Resolve<INavigationWindow>();
         navWindow.ShowWindow();
 
