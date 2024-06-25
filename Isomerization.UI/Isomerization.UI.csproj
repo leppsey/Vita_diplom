@@ -6,6 +6,7 @@
         <Nullable>disable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <UseWPF>true</UseWPF>
+        <ApplicationIcon>free-icon-factory-1681903.ico</ApplicationIcon>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Autofac" Version="8.0.0" />

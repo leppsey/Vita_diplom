@@ -56,11 +56,6 @@
                                         Minimum="0"
                                         Value="{Binding OctaneNumberMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="До"  HeaderTextPlacement="Left">
-                                    <ui:NumberBox 
-                                        Minimum="0"
-                                        Value="{Binding OctaneNumberMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                </shared:LabeledControlPresenter>
                             </StackPanel>
                         </shared:LabeledControlPresenter>
                       

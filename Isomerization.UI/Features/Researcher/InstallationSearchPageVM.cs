@@ -38,8 +38,6 @@ public class InstallationSearchPageVM: ViewModelBase
     });
     
     public double OctaneNumberMin { get; set; } = 78;
-    public double OctaneNumberMax { get; set; } = 85;
-    
     
     private double? _performanceMin;
     public double? PerformanceMin
@@ -131,7 +129,6 @@ public class InstallationSearchPageVM: ViewModelBase
         var vm = App.GetService<ResearcherPageVM>();
         vm.AvailableInstallations = FindedInstallations;
         vm.OctaneNumberMin = OctaneNumberMin; 
-        vm.OctaneNumberMax = OctaneNumberMax; 
         // vm.SelectedInstallation = FindedInstallations.First();
         _navigationService.Navigate(typeof(ResearcherPage), vm);
     });

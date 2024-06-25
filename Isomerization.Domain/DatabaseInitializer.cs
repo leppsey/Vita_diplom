@@ -152,11 +152,11 @@ public class DatabaseInitializer
                 DateOfPlannedWorks = DateTime.Now.AddYears(1),
                 Model = new Model()
                 {
-                    ObjPath = "resources/1/1.obj",
+                    ObjPath =    "resources/1/1.obj",
                     AlbedoPath = "resources/1/1_albedo.png",
                     HeightPath = "resources/1/1_height.png",
                     NormalPath = "resources/1/1_normal.png",
-                    RMPath = "resources/1/1_RM.png",
+                    RMPath =     "resources/1/1_RM.png",
                 },
             },
             new()
@@ -178,11 +178,11 @@ public class DatabaseInitializer
                 DateOfPlannedWorks = DateTime.Now.AddYears(2),
                 Model = new Model()
                 {
-                    ObjPath = "resources/1/1.obj",
-                    AlbedoPath = "resources/1/1_albedo.png",
-                    HeightPath = "resources/1/1_height.png",
-                    NormalPath = "resources/1/1_normal.png",
-                    RMPath = "resources/1/1_RM.png",
+                    ObjPath =    "resources/2/2.obj",
+                    AlbedoPath = "resources/2/2_albedo.png",
+                    HeightPath = "resources/2/2_height.png",
+                    NormalPath = "resources/2/2_normal.png",
+                    RMPath =     "resources/2/2_RM.png",
                 },
             },
             new()
@@ -204,11 +204,11 @@ public class DatabaseInitializer
                 DateOfPlannedWorks = DateTime.Now.AddYears(2),
                 Model = new Model()
                 {
-                    ObjPath = "resources/1/1.obj",
-                    AlbedoPath = "resources/1/1_albedo.png",
-                    HeightPath = "resources/1/1_height.png",
-                    NormalPath = "resources/1/1_normal.png",
-                    RMPath = "resources/1/1_RM.png",
+                    ObjPath =    "resources/3/3.obj",
+                    AlbedoPath = "resources/3/3_albedo.png",
+                    HeightPath = "resources/3/3_height.png",
+                    NormalPath = "resources/3/3_normal.png",
+                    RMPath =     "resources/3/3_RM.png",
                 },
             },
         };

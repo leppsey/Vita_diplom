@@ -104,7 +104,6 @@ public class ResearcherPageVM: ViewModelBase
         G = res.Consumption;
         H = res.Step;
         OctaneNumberMin = res.OctaneNumberMin;
-        OctaneNumberMax = res.OctaneNumberMax;
     });
     private RelayCommand _saveModelCommand;
     public RelayCommand SaveModelCommand => _saveModelCommand ??= new RelayCommand(_ =>
@@ -121,7 +120,6 @@ public class ResearcherPageVM: ViewModelBase
             Step = H,
             Consumption = G,
             OctaneNumberMin = OctaneNumberMin,
-            OctaneNumberMax = OctaneNumberMax,
         };
         _context.DimIsomerizations.Add(isomerization);
         _context.SaveChanges();
@@ -170,7 +168,6 @@ public class ResearcherPageVM: ViewModelBase
     /// </summary>
     public double CatalystT { get; set; } = 3600;
     public double OctaneNumberMin { get; set; } = 78;
-    public double OctaneNumberMax { get; set; } = 85;
     public MathClass MathClass { get; set; }
 
     private RelayCommand _calcCommand;
@@ -199,7 +196,7 @@ public class ResearcherPageVM: ViewModelBase
 
         bool IsResultOk(CalculationResults results)
         {
-            return results.OKT <= OctaneNumberMax && results.OKT >= OctaneNumberMin;
+            return results.OKT >= OctaneNumberMin;
         }
 
         var satisfyingCalcs = mathResults.Where(x => IsResultOk(x.Math.Results)).ToList();
