@@ -99,11 +99,15 @@ public class ResearcherPageVM: ViewModelBase
         // SelectedInstallation = AvailableInstallations.First(x => x.InstallationId == res.InstallationId);
         SelectedCatalyst = Catalysts.First(x => x.CatalystId == res.CatalystId);
         SelectedRawMaterial = RawMaterials.First(x => x.RawMaterialId == res.RawMaterialId);
-
+        
+        OctaneNumberMin = res.OctaneNumberMin;
+        PerformanceMin =  res.PerformanceMin;
+        PerformanceMax =  res.PerformanceMax;
+        EnergyConsumptionMax =  res.EnergyConsumptionMax;
+        EnergyConsumptionMin =  res.EnergyConsumptionMin;
         T0 = res.Temp;
         G = res.Consumption;
         H = res.Step;
-        OctaneNumberMin = res.OctaneNumberMin;
     });
     private RelayCommand _saveModelCommand;
     public RelayCommand SaveModelCommand => _saveModelCommand ??= new RelayCommand(_ =>
@@ -120,6 +124,10 @@ public class ResearcherPageVM: ViewModelBase
             Step = H,
             Consumption = G,
             OctaneNumberMin = OctaneNumberMin,
+            PerformanceMin = PerformanceMin,
+            PerformanceMax = PerformanceMax,
+            EnergyConsumptionMax = EnergyConsumptionMax,
+            EnergyConsumptionMin = EnergyConsumptionMin,
         };
         _context.DimIsomerizations.Add(isomerization);
         _context.SaveChanges();

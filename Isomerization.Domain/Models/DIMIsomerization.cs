@@ -18,5 +18,8 @@ public class DIMIsomerization
     public double Consumption { get; set; }
     public int Step { get; set; }
     public double OctaneNumberMin { get; set; }
-    public double OctaneNumberMax { get; set; }
+    public double? PerformanceMin { get; set; }
+    public double? PerformanceMax { get; set; }
+    public double? EnergyConsumptionMin { get; set; }
+    public double? EnergyConsumptionMax { get; set; }
 }
