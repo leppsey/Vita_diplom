@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using Isomerization.Domain.Data;
 using Isomerization.Shared;
 using Isomerization.UI.Misc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Isomerization.UI.Features.Admin.Kinetic;
 
@@ -12,7 +13,7 @@ public class KineticEditControlVM: ViewModelBase, IDialogEditViewModel<Domain.Mo
     public KineticEditControlVM(IsomerizationContext context)
     {
         _context = context;
-        RawMaterials = new ObservableCollection<Domain.Models.RawMaterial>(_context.RawMaterials);
+        RawMaterials = new ObservableCollection<Domain.Models.RawMaterial>(_context.RawMaterials.Include(x=>x.Concentrations));
     }
     
     public ObservableCollection<Domain.Models.RawMaterial> RawMaterials { get; set; }

@@ -57,7 +57,16 @@ public class RawMaterial: ValidatableViewModel<RawMaterialValidator>
         set => _sortedConcentrations[6].Value = value;
     }
 
-    private List<Concentration> _sortedConcentrations => Concentrations?.OrderBy(x => x.Order).ToList();
+    private List<Concentration> _sortedConcentrations => Concentrations?.OrderBy(x => x.Order).ToList() ?? new()
+    {
+        new (),
+        new (),
+        new (),
+        new (),
+        new (),
+        new (),
+        new (),
+    };
     public List<Concentration> Concentrations { get; set; }
 
 

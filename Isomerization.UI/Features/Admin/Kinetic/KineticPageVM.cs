@@ -25,7 +25,7 @@ public class KineticPageVM: ViewModelBase
         _editDialogService = editDialogService;
         _snackbarService = snackbarService;
         _messageBoxService = messageBoxService;
-        Kinetics = new ObservableCollection<Domain.Models.Kinetic>(_context.Kinetics.Include(x => x.RawMaterial));
+        Kinetics = new ObservableCollection<Domain.Models.Kinetic>(_context.Kinetics.Include(x => x.RawMaterial).ThenInclude(x=>x.Concentrations));
     }
     
     

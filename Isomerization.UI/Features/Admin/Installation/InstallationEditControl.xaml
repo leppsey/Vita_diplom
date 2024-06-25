@@ -25,7 +25,7 @@
             <shared:LabeledControlPresenter HeaderText="Давление" RightText="МПа">
                 <ui:NumberBox Value="{Binding  Data.Pressure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Производительность" RightText="т/г">
+            <shared:LabeledControlPresenter HeaderText="Производительность" RightText="т/год">
                 <ui:NumberBox Value="{Binding  Data.Performance, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Энергопотребление" RightText="кВт⋅ч">
