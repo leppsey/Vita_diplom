@@ -39,10 +39,10 @@
                 <ui:NumberBox Value="{Binding  Data.ServiceLife, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Дата ввода в эксплуатацию">
-                <DatePicker SelectedDate="{Binding Data.DateOfCommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                <DatePicker DisplayDateStart="01.01.1900" SelectedDate="{Binding Data.DateOfCommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
             </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Дата вывода из эксплуатации">
-                <DatePicker SelectedDate="{Binding Data.DateOfDecommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                <DatePicker DisplayDateStart="01.01.1900" SelectedDate="{Binding Data.DateOfDecommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
             </shared:LabeledControlPresenter>
         </StackPanel>
         <Grid Grid.Row="1">

@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 using Isomerization.Domain.Data;
+using Isomerization.Domain.Models;
 using Isomerization.Shared;
 using Isomerization.UI.Misc;
 using Isomerization.UI.Services;
@@ -47,7 +48,7 @@ public class InstallationPageVM: ViewModelBase
     private RelayCommand _addInstallationCommand;
     public RelayCommand AddInstallationCommand => _addInstallationCommand ??= new RelayCommand(async _ =>
     {
-        var res = await _editDialogService.ShowDialog<InstallationEditControl, Domain.Models.Installation>(new Domain.Models.Installation());
+        var res = await _editDialogService.ShowDialog<InstallationEditControl, Domain.Models.Installation>(new Domain.Models.Installation(){Model = new Model()});
 
         if (res is null)
         {

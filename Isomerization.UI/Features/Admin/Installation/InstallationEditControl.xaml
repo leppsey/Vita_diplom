@@ -53,10 +53,16 @@
             <!--     <ui:NumberBox Value="{Binding  Data.RawMaterialConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/> -->
             <!-- </shared:LabeledControlPresenter> -->
             <shared:LabeledControlPresenter HeaderText="Дата ввода в эксплуатацию">
-                <DatePicker SelectedDate="{Binding Data.DateOfCommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                <DatePicker DisplayDateStart="01.01.1900" SelectedDate="{Binding Data.DateOfCommissioning, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
             </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Дата планируемых работ">
-                <DatePicker SelectedDate="{Binding Data.DateOfPlannedWorks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                <DatePicker DisplayDateStart="01.01.1900" SelectedDate="{Binding Data.DateOfPlannedWorks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Файл модели">
+                <StackPanel Orientation="Horizontal">
+                    <ui:Button Appearance="Transparent" Content="Выбрать файл" Click="ButtonBase_OnClick"/>
+                    <TextBlock Margin="10,0" Text="{Binding Data.Model.ObjPath}" VerticalAlignment="Center"/>
+                </StackPanel>
             </shared:LabeledControlPresenter>
         </StackPanel>
         <Grid Grid.Row="1">
