@@ -46,6 +46,52 @@
                 </Grid.RowDefinitions>
                 <ui:PassiveScrollViewer Grid.Column="0" MinWidth="300" Margin="0,0,15,0">
                     <StackPanel Margin="0,0,5,0">
+                                                            <shared:LabeledControlPresenter HeaderText="Критерии поиска" HeaderFontSize="16" Margin="0,7">
+                <ui:Card>
+                    <StackPanel>
+                        <shared:LabeledControlPresenter HeaderText="Производительность" >
+                            <StackPanel>
+                                <shared:LabeledControlPresenter HeaderText="От" RightText="т/год" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding PerformanceMin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="До" RightText="т/год" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding PerformanceMax, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                            </StackPanel>
+                        </shared:LabeledControlPresenter>
+                        <shared:LabeledControlPresenter Margin="0,15,0,0" HeaderText="Энергопотребление" >
+                            <StackPanel>
+                                <shared:LabeledControlPresenter HeaderText="От" RightText="кВт·ч" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding EnergyConsumptionMin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="До" RightText="кВт·ч" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding EnergyConsumptionMax, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                            </StackPanel>
+                        </shared:LabeledControlPresenter>
+                        
+                        <shared:LabeledControlPresenter Margin="0,15,0,0" HeaderText="Октановое число" >
+                            <StackPanel>
+                                <shared:LabeledControlPresenter HeaderText="От" HeaderTextPlacement="Left">
+                                    <ui:NumberBox 
+                                        Minimum="0"
+                                        Value="{Binding OctaneNumberMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                            </StackPanel>
+                        </shared:LabeledControlPresenter>
+                        
+                    </StackPanel>
+                </ui:Card>
+            </shared:LabeledControlPresenter>
+
                         <shared:LabeledControlPresenter HeaderText="Сырье, катализатор"
                                                         HeaderFontSize="16"
                                                         Margin="0,7">
@@ -123,51 +169,6 @@
                                 </StackPanel>
                             </ui:Card>
                         </shared:LabeledControlPresenter>
-                                    <shared:LabeledControlPresenter HeaderText="Критерии поиска" HeaderFontSize="16" Margin="0,7">
-                <ui:Card>
-                    <StackPanel>
-                        <shared:LabeledControlPresenter HeaderText="Производительность" >
-                            <StackPanel>
-                                <shared:LabeledControlPresenter HeaderText="От" RightText="т/год" HeaderTextPlacement="Left">
-                                    <ui:NumberBox 
-                                        Minimum="0"
-                                        Value="{Binding PerformanceMin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="До" RightText="т/год" HeaderTextPlacement="Left">
-                                    <ui:NumberBox 
-                                        Minimum="0"
-                                        Value="{Binding PerformanceMax, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                </shared:LabeledControlPresenter>
-                            </StackPanel>
-                        </shared:LabeledControlPresenter>
-                        <shared:LabeledControlPresenter Margin="0,15,0,0" HeaderText="Энергопотребление" >
-                            <StackPanel>
-                                <shared:LabeledControlPresenter HeaderText="От" RightText="Квт/ч" HeaderTextPlacement="Left">
-                                    <ui:NumberBox 
-                                        Minimum="0"
-                                        Value="{Binding EnergyConsumptionMin, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                </shared:LabeledControlPresenter>
-                                <shared:LabeledControlPresenter HeaderText="До" RightText="Квт/ч" HeaderTextPlacement="Left">
-                                    <ui:NumberBox 
-                                        Minimum="0"
-                                        Value="{Binding EnergyConsumptionMax, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-                                </shared:LabeledControlPresenter>
-                            </StackPanel>
-                        </shared:LabeledControlPresenter>
-                        
-                        <shared:LabeledControlPresenter Margin="0,15,0,0" HeaderText="Октановое число" >
-                            <StackPanel>
-                                <shared:LabeledControlPresenter HeaderText="От"  HeaderTextPlacement="Left">
-                                    <ui:NumberBox 
-                                        Minimum="0"
-                                        Value="{Binding OctaneNumberMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                </shared:LabeledControlPresenter>
-                            </StackPanel>
-                        </shared:LabeledControlPresenter>
-                        
-                    </StackPanel>
-                </ui:Card>
-            </shared:LabeledControlPresenter>
 
                         <!-- <shared:LabeledControlPresenter HeaderText="Показатели качества" -->
                         <!--                                 HeaderFontSize="16" -->
@@ -290,7 +291,7 @@
                                 <DataGridTextColumn Header="С5, %" Binding="{Binding C5, StringFormat=F2}" />
                                 <DataGridTextColumn Header="С6, %" Binding="{Binding C6, StringFormat=F2}" />
                                 <DataGridTextColumn Header="С7, %" Binding="{Binding C7, StringFormat=F2}" />
-                                <DataGridTextColumn Header="T, C" Binding="{Binding T, StringFormat=F2}" />
+                                <!-- <DataGridTextColumn Header="T, C" Binding="{Binding T, StringFormat=F2}" /> -->
                             </DataGrid.Columns>
                         </DataGrid>
 

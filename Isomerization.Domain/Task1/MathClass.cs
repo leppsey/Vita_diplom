@@ -90,7 +90,7 @@ public class MathClass // todo как-то красиво переписать �
         var tTemp = T0;
         cordCs.Add(new CordC
         {
-            Cord = 0, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], C5 = C0[4], C6 = C0[5], C7 = C0[6], T = T0
+            Cord = 0, C1 = C0[0]*100, C2 = C0[1]*100, C3 = C0[2]*100, C4 = C0[3]*100, C5 = C0[4]*100, C6 = C0[5]*100, C7 = C0[6]*100, T = T0
         });
         for (var reactor = 0; reactor < 1; reactor++)
         {
@@ -136,7 +136,7 @@ public class MathClass // todo как-то красиво переписать �
 
                 cordCs.Add(new CordC
                 {
-                    Cord = x, C1 = C0[0], C2 = C0[1], C3 = C0[2], C4 = C0[3], C5 = C0[4], C6 = C0[5], C7 = C0[6],
+                    Cord = x, C1 = C0[0]*100, C2 = C0[1]*100, C3 = C0[2]*100, C4 = C0[3]*100, C5 = C0[4]*100, C6 = C0[5]*100, C7 = C0[6]*100,
                     T = tTemp
                 });
                 x += h;
