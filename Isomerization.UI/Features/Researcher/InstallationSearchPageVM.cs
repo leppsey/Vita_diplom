@@ -127,7 +127,7 @@ public class InstallationSearchPageVM: ViewModelBase
         }
 
         var vm = App.GetService<ResearcherPageVM>();
-        vm.AvailableInstallations = FindedInstallations;
+        // vm.AvailableInstallations = FindedInstallations;
         vm.OctaneNumberMin = OctaneNumberMin; 
         // vm.SelectedInstallation = FindedInstallations.First();
         _navigationService.Navigate(typeof(ResearcherPage), vm);

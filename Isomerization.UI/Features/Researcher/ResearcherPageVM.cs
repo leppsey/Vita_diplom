@@ -95,7 +95,7 @@ public class ResearcherPageVM: ViewModelBase
             return;
         }
 
-        AvailableInstallations = new ObservableCollection<Installation>(_context.Installations);
+        // AvailableInstallations = new ObservableCollection<Installation>(_context.Installations);
         // SelectedInstallation = AvailableInstallations.First(x => x.InstallationId == res.InstallationId);
         SelectedCatalyst = Catalysts.First(x => x.CatalystId == res.CatalystId);
         SelectedRawMaterial = RawMaterials.First(x => x.RawMaterialId == res.RawMaterialId);
@@ -144,29 +144,17 @@ public class ResearcherPageVM: ViewModelBase
     /// Расход сырья
     /// </summary>
     public double G { get; set; } = 9;
-    /// <summary>
-    /// Погрешность в процентах
-    /// </summary>
-    public double EMax { get; set; } = 5;
-    /// <summary>
-    /// Максимальное число делений сетки пополам 
-    /// </summary>
-    public double QMax { get; set; } = 4;
-
-    /// <summary>
-    /// Время проведения реакции
-    /// </summary>
-    public double Tau { get; set; } = 100;
 
     /// <summary>
     /// Шаг
     /// </summary>
     public int H { get; set; } = 1;
 
-    /// <summary>
-    /// Время эксплуатации катализатора
-    /// </summary>
-    public double CatalystT { get; set; } = 3600;
+    
+    public double? PerformanceMin { get; set; }
+    public double? PerformanceMax { get; set; }
+    public double? EnergyConsumptionMin { get; set; }
+    public double? EnergyConsumptionMax { get; set; }
     public double OctaneNumberMin { get; set; } = 78;
     public MathClass MathClass { get; set; }
 
@@ -175,6 +163,13 @@ public class ResearcherPageVM: ViewModelBase
     public RelayCommand CalcCommand => _calcCommand ??= new RelayCommand(async _ =>
     {
         var mathResults = new ConcurrentBag<(Installation Installation, MathClass Math)>();
+        AvailableInstallations = FindInstallations();
+        if (!AvailableInstallations.Any())
+        {
+            _messageBoxService.Show("Нельзя перейти к расчету, оборудование не найдено!", "Ошибка!",
+                MessageBoxButton.OK);
+            return;
+        }
         Parallel.ForEach(AvailableInstallations, installation =>
         {
             var calcParams = new CalculationParameters()
@@ -244,8 +239,36 @@ public class ResearcherPageVM: ViewModelBase
 
         _messageBoxService.Show(answerText, "Результаты расчета", MessageBoxButton.OK);
     });
-    
-    
+    private ObservableCollection<Installation> FindInstallations()
+    {
+        try
+        {
+            var installations = _context.Installations.Include(x=>x.Model).AsQueryable();
+            if (EnergyConsumptionMin.HasValue)
+            {
+                installations = installations.Where(x => x.EnergyConsumption >= EnergyConsumptionMin.Value);
+            }
+            if (EnergyConsumptionMax.HasValue)
+            {
+                installations = installations.Where(x => x.EnergyConsumption <= EnergyConsumptionMax.Value);
+            }
+            if (PerformanceMin.HasValue)
+            {
+                installations = installations.Where(x => x.Performance >= PerformanceMin.Value);
+            }
+            if (PerformanceMax.HasValue)
+            {
+                installations = installations.Where(x => x.Performance <= PerformanceMax.Value);
+            }
+            return new ObservableCollection<Installation>(installations);
+        }
+        catch
+        {
+            return new ObservableCollection<Installation>();
+        }
+        
+    }
+
     public List<CordC> CordСs
     {
         get

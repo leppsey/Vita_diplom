@@ -29,7 +29,8 @@ public class MenuService : IMenuService
         }
         else if(_userService.CurrentUser.IsResearcher())
         {
-            _navigationService.Navigate(typeof(InstallationSearchPage));
+            _navigationService.Navigate(typeof(ResearcherPage));
+            App.GetService<MainWindowVM>().IsMenuEnabled = false;
         }
     }
 

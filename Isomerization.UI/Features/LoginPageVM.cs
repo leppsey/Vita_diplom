@@ -47,7 +47,7 @@ public class LoginPageVM : ViewModelBase
         {
             UserRole = new UserRole() { Name = UserRoles.Researcher },
         };
-        _navigationService.Navigate(typeof(InstallationSearchPage));
+        _navigationService.Navigate(typeof(ResearcherPage));
     });
     
     private RelayCommand _enterCommand;
@@ -67,7 +67,7 @@ public class LoginPageVM : ViewModelBase
         {
             case UserRoles.Researcher:
                 _userService.CurrentUser = user;
-                _navigationService.Navigate(typeof(InstallationSearchPage));
+                _navigationService.Navigate(typeof(ResearcherPage));
                 break;
             case UserRoles.Admin:
                 _userService.CurrentUser = user;

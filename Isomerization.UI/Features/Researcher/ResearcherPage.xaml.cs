@@ -9,6 +9,8 @@ public partial class ResearcherPage : INavigableView<ResearcherPageVM>
 {
     public ResearcherPage()
     {
+        ViewModel = App.GetService<ResearcherPageVM>();
+        DataContext = ViewModel;
         InitializeComponent();
     }
 
@@ -18,6 +20,9 @@ public partial class ResearcherPage : INavigableView<ResearcherPageVM>
     {
         var box = (ComboBox)sender;
         var installation = (Installation)box.SelectedItem;
-        RenderControl.Model = installation.Model;
+        if (installation is not null)
+        {
+            RenderControl.Model = installation.Model;
+        }
     }
 }
