@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using Isomerization.Domain.Data;
+using Isomerization.Domain.Models;
 using Isomerization.Shared;
 using Isomerization.UI.Features.Admin.Catalyst;
 using Isomerization.UI.Misc;
@@ -51,7 +52,20 @@ public class RawMaterialPageVM: ViewModelBase
     private RelayCommand _addRawMaterialCommand;
     public RelayCommand AddRawMaterialCommand => _addRawMaterialCommand ??= new RelayCommand(async _ =>
     {
-        var res = await _editDialogService.ShowDialog<RawMaterialEditControl, Domain.Models.RawMaterial>(new Domain.Models.RawMaterial());
+        var newMaterial = new Domain.Models.RawMaterial()
+        {
+            Concentrations = new List<Concentration>()
+            {
+                new() { Order = 1, Value = 0.0m, },
+                new() { Order = 2, Value = 0.0m, },
+                new() { Order = 3, Value = 0.0m, },
+                new() { Order = 4, Value = 0.0m, },
+                new() { Order = 5, Value = 0.0m, },
+                new() { Order = 6, Value = 0.0m, },
+                new() { Order = 7, Value = 0.0m, },
+            }
+        };
+        var res = await _editDialogService.ShowDialog<RawMaterialEditControl, Domain.Models.RawMaterial>(newMaterial);
 
         if (res is null)
         {

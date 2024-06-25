@@ -51,4 +51,9 @@ public abstract class ValidatableViewModel<ValidatorType>: ViewModelBase, INotif
             return sb.ToString();
         }
     }
+
+    protected void RaiseErrorChanged(string propertyName)
+    {
+        ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+    }
 }

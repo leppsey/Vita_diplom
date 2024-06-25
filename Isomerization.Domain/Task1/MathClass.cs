@@ -260,7 +260,8 @@ public class MathClass // todo как-то красиво переписать �
 
     private double Step => Cp.Step;
     private double Activity => Cp.Activity;
-    private double[] C0 => Cp.C0;
+    private double[] c0;
+    private double[] C0 => c0 ??= Cp.C0.Select(x=>(double)x).ToArray();
 
     #endregion
 }

@@ -136,7 +136,7 @@ public class DatabaseInitializer
             new()
             {
                 Type = "Реакторный блок",
-                Name = "ЛК-2Б ООО КИНЕФ",
+                Name = "ЛК-2Б",
                 Diameter = 5,
                 Height = 8,
                 Length = 12,
@@ -162,7 +162,7 @@ public class DatabaseInitializer
             new()
             {
                 Type = "Реакторный блок",
-                Name = "ПГИ-434 ОАО Газпромнефтехим",
+                Name = "ПГИ-434",
                 Diameter = 4,
                 Height = 2,
                 Length = 5,
@@ -188,7 +188,7 @@ public class DatabaseInitializer
             new()
             {
                 Type = "Реакторный блок",
-                Name = "ПАО Сургутнефтегаз",
+                Name = "РХ-187",
                 Diameter = 4,
                 Height = 2,
                 Length = 5,
@@ -274,111 +274,129 @@ public class DatabaseInitializer
             {
                 RawMaterialId = defaultRawMaterial[0].RawMaterialId,
                 Order = 0,
-                Value = 53.37,
+                Value = 53.39m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[0].RawMaterialId,
                 Order = 1,
-                Value = 15.39,
+                Value = 15.39m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[0].RawMaterialId,
                 Order = 2,
-                Value = 6.41,
+                Value = 6.92m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[0].RawMaterialId,
                 Order = 3,
-                Value = 11.8,
+                Value = 11.8m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[0].RawMaterialId,
                 Order = 4,
-                Value = 6.52,
+                Value = 7.52m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[0].RawMaterialId,
                 Order = 5,
-                Value = 2.06,
+                Value = 3.06m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[0].RawMaterialId,
                 Order = 6,
-                Value = 1.92,
+                Value = 1.92m,
             },
             
             new()
             {
                 RawMaterialId = defaultRawMaterial[1].RawMaterialId,
                 Order = 0,
-                Value = 50.37,
+                Value = 58.39m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[1].RawMaterialId,
                 Order = 1,
-                Value = 15.39,
+                Value = 12.39m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[1].RawMaterialId,
                 Order = 2,
-                Value = 7.41,
+                Value = 6.92m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[1].RawMaterialId,
                 Order = 3,
-                Value = 13.8,
+                Value = 9.8m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[1].RawMaterialId,
                 Order = 4,
-                Value = 6.52,
+                Value = 6.52m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[1].RawMaterialId,
                 Order = 5,
-                Value = 2.06,
+                Value = 3.06m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[1].RawMaterialId,
                 Order = 6,
-                Value = 1.92,
+                Value = 2.92m,
             },
             
             new()
             {
                 RawMaterialId = defaultRawMaterial[2].RawMaterialId,
                 Order = 0,
-                Value = 100,
+                Value = 51.2m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[2].RawMaterialId,
                 Order = 1,
-                Value = 0,
+                Value = 20.1m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[2].RawMaterialId,
                 Order = 2,
-                Value = 0,
+                Value = 8.5m,
             },
             new()
             {
                 RawMaterialId = defaultRawMaterial[2].RawMaterialId,
                 Order = 3,
-                Value = 0,
+                Value = 10.98m,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 4,
+                Value = 4.2m,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 5,
+                Value = 3.1m,
+            },
+            new()
+            {
+                RawMaterialId = defaultRawMaterial[2].RawMaterialId,
+                Order = 6,
+                Value = 1.92m,
             },
         };
         context.AddRange(concentrations);

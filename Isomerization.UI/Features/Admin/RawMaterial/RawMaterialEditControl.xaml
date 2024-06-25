@@ -7,7 +7,7 @@
              xmlns:shared="clr-namespace:Isomerization.UI.Shared"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="600" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance local:RawMaterialEditControlVM}"
              >
     <Grid Margin="15,15,15,5">
@@ -25,8 +25,29 @@
             <shared:LabeledControlPresenter HeaderText="Теплоемкость" RightText="Дж/кг⋅℃">
                 <ui:NumberBox Value="{Binding  Data.HeatCapacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Октановое число">
+            <shared:LabeledControlPresenter HeaderText="Октановое число" >
                 <ui:NumberBox Value="{Binding  Data.OctaneRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Концетрация 1-ого вещества" RightText="%">
+                <ui:NumberBox Value="{Binding  Data.C1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Концетрация 2-ого вещества" RightText="%">
+                <ui:NumberBox Value="{Binding  Data.C2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Концетрация 3-ого вещества" RightText="%">
+                <ui:NumberBox Value="{Binding  Data.C3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Концетрация 4-ого вещества" RightText="%">
+                <ui:NumberBox Value="{Binding  Data.C4, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Концетрация 5-ого вещества" RightText="%">
+                <ui:NumberBox Value="{Binding  Data.C5, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Концетрация 6-ого вещества" RightText="%">
+                <ui:NumberBox Value="{Binding  Data.C6, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </shared:LabeledControlPresenter>
+            <shared:LabeledControlPresenter HeaderText="Концетрация 7-ого вещества" RightText="%">
+                <ui:NumberBox Value="{Binding  Data.C7, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
         </StackPanel>
         <Grid Grid.Row="1">
