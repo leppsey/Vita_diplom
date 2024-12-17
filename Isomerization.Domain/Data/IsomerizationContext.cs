@@ -1,6 +1,7 @@
 using System;
 using Isomerization.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Update;
 
 
 namespace Isomerization.Domain.Data

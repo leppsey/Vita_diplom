@@ -41,6 +41,10 @@
                          Icon="{ui:SymbolIcon Home28}"
                          Command="{Binding GoHomeMenu}"/>
             <ui:MenuItem Icon="{ui:SymbolIcon Person28}" Command="{Binding GoLoginMenu}"/>
+            <ui:MenuItem Icon="{ui:SymbolIcon Database24}">
+                <ui:MenuItem Icon="{ui:SymbolIcon DatabaseArrowDown20}" Command="{Binding LoadDb}" Header="Загрузить базу данных"/>
+                <ui:MenuItem Icon="{ui:SymbolIcon DatabaseArrowUp20}" Command="{Binding SaveDb}" Header="Сохранить базу данных"/>
+            </ui:MenuItem>
         </Menu>
         <!-- <ui:TitleBar -->
         <!--     Grid.Row="0"> -->

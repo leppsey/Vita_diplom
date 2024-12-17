@@ -10,6 +10,7 @@ using Isomerization.Domain.Data;
 using Isomerization.UI.Features.Researcher;
 using Isomerization.UI.Misc;
 using Isomerization.UI.Services;
+using Microsoft.EntityFrameworkCore;
 using Wpf.Ui;
 
 namespace Isomerization.UI;
@@ -71,6 +72,7 @@ public partial class App : Application
         // dbContext.Database.EnsureDeleted();
         if (dbContext.Database.EnsureCreated())
         {
+            dbContext.Database.ExecuteSqlRaw("PRAGMA journal_mode = 'delete';");
             DatabaseInitializer.Init(dbContext);
 
         }
