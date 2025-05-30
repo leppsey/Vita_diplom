@@ -45,6 +45,7 @@
                 <ui:MenuItem Icon="{ui:SymbolIcon DatabaseArrowDown20}" Command="{Binding LoadDb}" Header="Загрузить базу данных"/>
                 <ui:MenuItem Icon="{ui:SymbolIcon DatabaseArrowUp20}" Command="{Binding SaveDb}" Header="Сохранить базу данных"/>
             </ui:MenuItem>
+            <ui:MenuItem Icon="{ui:SymbolIcon QuestionCircle24}" Header="Справка" Command="{Binding OpenHelpCommand}"/>
         </Menu>
         <!-- <ui:TitleBar -->
         <!--     Grid.Row="0"> -->

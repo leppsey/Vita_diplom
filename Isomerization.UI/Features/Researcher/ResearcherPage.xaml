@@ -32,6 +32,7 @@
                 <ui:MenuItem Icon="{ui:SymbolIcon DocumentSave24}" Header="Сохранить модель изомерицации" Command="{Binding SaveModelCommand}"/>
                 <ui:MenuItem Icon="{ui:SymbolIcon DrawerArrowDownload24}" Header="Загрузить модель изомерицации" Command="{Binding LoadModelCommand}"/>
             </ui:MenuItem>
+            <ui:MenuItem Icon="{ui:SymbolIcon QuestionCircle24}" Header="Справка" Command="{Binding OpenHelpCommand}"/>
         </Menu>
         <Grid Grid.Row="1" Margin="30,10,30,0" > 
             <Grid.ColumnDefinitions>

@@ -64,6 +64,18 @@ public class MainWindowVM: ViewModelBase
             _messageBoxService.Show("Не удалось загрузить базу данных", "Ошибка", MessageBoxButton.OK);
         }
     });
-
+    private RelayCommand _openHelpCommand;
+    public RelayCommand OpenHelpCommand => _openHelpCommand ??= new RelayCommand(_ =>
+    {
+        const string url = "https://vitalina-opal.vercel.app/";
+        try
+        {
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        }
+        catch
+        {
+            MessageBox.Show("Ошибка при открытии браузера", "ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    });
     public bool IsMenuEnabled { get; set; }
 }

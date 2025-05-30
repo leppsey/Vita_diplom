@@ -109,6 +109,19 @@ public class ResearcherPageVM: ViewModelBase
         G = res.Consumption;
         H = res.Step;
     });
+    private RelayCommand _openHelpCommand;
+    public RelayCommand OpenHelpCommand => _openHelpCommand ??= new RelayCommand(_ =>
+    {
+        const string url = "https://vitalina-opal.vercel.app/";
+        try
+        {
+            Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
+        }
+        catch
+        {
+            MessageBox.Show("Ошибка при открытии браузера", "ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    });
     private RelayCommand _saveModelCommand;
     public RelayCommand SaveModelCommand => _saveModelCommand ??= new RelayCommand(_ =>
     {
