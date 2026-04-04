@@ -41,6 +41,9 @@ public partial class App : Application
         builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
             .Where(t => t.Name.EndsWith("VM"))
             .AsSelf();
+        
+        // Явная регистрация Task3ViewModel для избежания проблем с DI
+        builder.RegisterType<Features.Task3ViewModel>().AsSelf();
 
         #endregion
         

@@ -405,6 +405,161 @@
                                     </StackPanel>
 
                     </TabItem>
+                    <TabItem>
+                        <TabItem.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <ui:SymbolIcon Margin="0,0,6,0" Symbol="Table28"/>
+                                <TextBlock Text="ЦИМ-2" />
+                            </StackPanel>
+                        </TabItem.Header>
+                        <Grid DataContext="{Binding Task3VM}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="350"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <!-- Блок ввода параметров -->
+                            <ui:PassiveScrollViewer Grid.Row="0" Grid.Column="0" Grid.RowSpan="3" MinWidth="330" Margin="0,0,15,0">
+                                <StackPanel Margin="0,0,5,0">
+                                    <shared:LabeledControlPresenter HeaderText="Параметры расчета" HeaderFontSize="16" Margin="0,7">
+                                        <ui:Card>
+                                            <StackPanel>
+                                                <shared:LabeledControlPresenter HeaderText="EF (производительность)" RightText="кг/с">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <ui:NumberBox Grid.Column="0" 
+                                                                      Value="{Binding EF, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                      IsReadOnly="False"/>
+                                                        <ui:Button Grid.Column="1" 
+                                                                   Content="Из ЦИМ-1" 
+                                                                   Command="{Binding LoadFromCim1Command}"
+                                                                   Margin="5,0,0,0"
+                                                                   HorizontalAlignment="Right"/>
+                                                    </Grid>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="ρ (плотность)" RightText="кг/м³">
+                                                    <ui:NumberBox Value="{Binding rho, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="D (диаметр)" RightText="м">
+                                                    <ui:NumberBox Value="{Binding D, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="L (длина)" RightText="м">
+                                                    <ui:NumberBox Value="{Binding L, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Σζ (сумма местных сопротивлений)">
+                                                    <ui:NumberBox Value="{Binding sumZeta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="λ (коэффициент трения)">
+                                                    <ui:NumberBox Value="{Binding lambda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="η (КПД насоса)">
+                                                    <ui:NumberBox Value="{Binding eta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                            </StackPanel>
+                                        </ui:Card>
+                                    </shared:LabeledControlPresenter>
+                                    
+                                    <shared:LabeledControlPresenter HeaderText="Параметры ТЗ" HeaderFontSize="16" Margin="0,7">
+                                        <ui:Card>
+                                            <StackPanel>
+                                                <shared:LabeledControlPresenter HeaderText="EFmin">
+                                                    <ui:NumberBox Value="{Binding EFmin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="ESmax">
+                                                    <ui:NumberBox Value="{Binding ESmax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                            </StackPanel>
+                                        </ui:Card>
+                                    </shared:LabeledControlPresenter>
+                                    
+                                    <shared:LabeledControlPresenter HeaderText="Диапазон перебора" HeaderFontSize="16" Margin="0,7">
+                                        <ui:Card>
+                                            <StackPanel>
+                                                <shared:LabeledControlPresenter HeaderText="Dmin" RightText="м">
+                                                    <ui:NumberBox Value="{Binding Dmin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Dmax" RightText="м">
+                                                    <ui:NumberBox Value="{Binding Dmax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Кол-во шагов">
+                                                    <ui:NumberBox Value="{Binding steps, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                            </StackPanel>
+                                        </ui:Card>
+                                    </shared:LabeledControlPresenter>
+                                    
+                                    <StackPanel Margin="0,10,0,0">
+                                        <ui:Button Content="Рассчитать ЦИМ-2" 
+                                                   Command="{Binding CalculateCim2Command}"
+                                                   Appearance="Primary"
+                                                   Margin="0,0,0,5"/>
+                                        <ui:Button Content="Перебор по D" 
+                                                   Command="{Binding SweepDiametersCommand}"
+                                                   Margin="0,0,0,5"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </ui:PassiveScrollViewer>
+                            
+                            <!-- Таблица вариантов -->
+                            <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,0,10">
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                    <ui:Button Content="Экспорт таблицы" 
+                                               Command="{Binding ExportVariantsCommand}"
+                                               HorizontalAlignment="Left"
+                                               Margin="0,0,10,0"/>
+                                </StackPanel>
+                                <DataGrid AutoGenerateColumns="False"
+                                          ItemsSource="{Binding Variants}" 
+                                          SelectionMode="Single"
+                                          CanUserAddRows="False"
+                                          IsReadOnly="True"
+                                          MaxHeight="300">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="D, м" Binding="{Binding D, StringFormat=F4}"/>
+                                        <DataGridTextColumn Header="v, м/с" Binding="{Binding v, StringFormat=F4}"/>
+                                        <DataGridTextColumn Header="ΔPΣ, Па" Binding="{Binding dP_total, StringFormat=F2}"/>
+                                        <DataGridTextColumn Header="ES, Вт" Binding="{Binding ES, StringFormat=F2}"/>
+                                        <DataGridCheckBoxColumn Header="isESok" Binding="{Binding isESok}" IsThreeState="False"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                            
+                            <!-- Графики -->
+                            <Grid Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                
+                                <!-- График 1: ΔPΣ(D) -->
+                                <lvc:CartesianChart Grid.Row="0"
+                                                    HorizontalAlignment="Stretch"
+                                                    VerticalAlignment="Stretch"
+                                                    XAxes="{Binding DPTotalXAxes}"
+                                                    YAxes="{Binding DPTotalYAxes}"
+                                                    Series="{Binding DPTotalSeries}"
+                                                    Margin="0,0,0,10">
+                                </lvc:CartesianChart>
+                                
+                                <!-- График 2: ES(D) -->
+                                <lvc:CartesianChart Grid.Row="1"
+                                                    HorizontalAlignment="Stretch"
+                                                    VerticalAlignment="Stretch"
+                                                    XAxes="{Binding ESXAxes}"
+                                                    YAxes="{Binding ESYAxes}"
+                                                    Series="{Binding ESSeries}">
+                                </lvc:CartesianChart>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
                 </ui:TabView>
             </Grid>
     </Grid>

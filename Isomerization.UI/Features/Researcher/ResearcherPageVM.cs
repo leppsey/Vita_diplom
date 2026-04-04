@@ -46,6 +46,22 @@ public class ResearcherPageVM: ViewModelBase
         SelectedCatalyst = Catalysts.FirstOrDefault();
         App.GetService<MainWindowVM>().IsMenuEnabled = false;
     }
+    
+    private Task3ViewModel _task3VM;
+    /// <summary>
+    /// ViewModel для ЦИМ-2 (Task3)
+    /// </summary>
+    public Task3ViewModel Task3VM
+    {
+        get
+        {
+            if (_task3VM == null)
+            {
+                _task3VM = App.GetService<Task3ViewModel>();
+            }
+            return _task3VM;
+        }
+    }
     public ObservableCollection<Installation> AvailableInstallations { get; set; }
     public Installation SelectedInstallation { get; set; }
     public ObservableCollection<RawMaterial> RawMaterials { get; set; }
