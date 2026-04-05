@@ -2,54 +2,49 @@ namespace Isomerization.Domain.Task3;
 
 public struct PipeCalculationParameters
 {
-    /// <summary>
-    /// Производительность (расход) из ЦИМ-1
-    /// </summary>
+    /// <summary>Производительность (расход) из ЦИМ-1, кг/с.</summary>
     public double EF { get; set; }
-    
-    /// <summary>
-    /// Минимальная производительность
-    /// </summary>
+
+    /// <summary>Минимальная производительность, кг/с.</summary>
     public double EFmin { get; set; }
-    
-    /// <summary>
-    /// Максимальная энергоемкость
-    /// </summary>
+
+    /// <summary>Максимальное энергопотребление трубопровода ESpipe = Q·ΔPΣ, Вт.</summary>
     public double ESmax { get; set; }
-    
-    /// <summary>
-    /// Плотность среды
-    /// </summary>
+
     public double rho { get; set; }
-    
-    /// <summary>
-    /// Диаметр
-    /// </summary>
     public double D { get; set; }
-    
-    /// <summary>
-    /// Длина
-    /// </summary>
     public double L { get; set; }
-    
-    /// <summary>
-    /// Сумма местных сопротивлений
-    /// </summary>
     public double sumZeta { get; set; }
-    
-    /// <summary>
-    /// Коэффициент трения (по умолчанию 0.03)
-    /// </summary>
     public double lambda { get; set; }
-    
-    /// <summary>
-    /// КПД насоса (по умолчанию 0.7)
-    /// </summary>
     public double eta { get; set; }
-    
-    /// <summary>
-    /// Создает экземпляр с параметрами по умолчанию
-    /// </summary>
+
+    /// <summary>Максимальные суммарные потери давления ΔPΣ, Па (≤ 0 — проверка отключена).</summary>
+    public double DeltaPmax { get; set; }
+
+    /// <summary>Максимальная мощность насоса N, Вт (≤ 0 — проверка отключена).</summary>
+    public double Nmax { get; set; }
+
+    /// <summary>Рабочее давление, Па.</summary>
+    public double WorkingPressure { get; set; }
+
+    /// <summary>Допустимое давление для материала/ТЗ, Па (≤ 0 — проверка отключена).</summary>
+    public double AllowablePressure { get; set; }
+
+    /// <summary>Допускаемое напряжение материала [σ], Па (≤ 0 — расчёт δрасч отключён).</summary>
+    public double AllowableStress { get; set; }
+
+    /// <summary>Фактическая толщина стенки, м (≤ 0 — проверка отключена).</summary>
+    public double ActualWallThickness { get; set; }
+
+    /// <summary>Температура среды, °C.</summary>
+    public double FluidTemperature { get; set; }
+
+    /// <summary>Максимально допустимая температура, °C (≤ 0 — проверка отключена).</summary>
+    public double MaxFluidTemperature { get; set; }
+
+    /// <summary>Максимально допустимая скорость потока, м/с (≤ 0 — проверка отключена).</summary>
+    public double MaxVelocity { get; set; }
+
     public static PipeCalculationParameters CreateDefault()
     {
         return new PipeCalculationParameters

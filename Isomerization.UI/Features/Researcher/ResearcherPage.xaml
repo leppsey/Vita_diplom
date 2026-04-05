@@ -360,6 +360,39 @@
                                     </StackPanel>
                                 </ui:Card>
                             </shared:LabeledControlPresenter>
+                            <shared:LabeledControlPresenter
+                                Margin="10"
+                                HeaderText="Итог проверок ЦИМ-1"
+                                HeaderFontSize="16">
+                                <ui:Card>
+                                    <StackPanel>
+                                        <shared:LabeledControlPresenter HeaderText="EF (производительность), кг/с" HeaderFontSize="14">
+                                            <ui:TextBox IsReadOnly="True"
+                                                        Text="{Binding LastProcessResult.Productivity, StringFormat=F3, Mode=OneWay, TargetNullValue=''}"/>
+                                        </shared:LabeledControlPresenter>
+                                        <shared:LabeledControlPresenter HeaderText="ESproc (энергопотребление процесса)" HeaderFontSize="14">
+                                            <ui:TextBox IsReadOnly="True"
+                                                        Text="{Binding LastProcessResult.ProcessEnergyConsumption, StringFormat=F2, Mode=OneWay, TargetNullValue=''}"/>
+                                        </shared:LabeledControlPresenter>
+                                        <shared:LabeledControlPresenter HeaderText="Концентрация изопентана (выход), %" HeaderFontSize="14">
+                                            <ui:TextBox IsReadOnly="True"
+                                                        Text="{Binding LastProcessResult.IsopentaneConcentration, StringFormat=F2, Mode=OneWay, TargetNullValue=''}"/>
+                                        </shared:LabeledControlPresenter>
+                                        <shared:LabeledControlPresenter HeaderText="Степень изомеризации" HeaderFontSize="14">
+                                            <ui:TextBox IsReadOnly="True"
+                                                        Text="{Binding LastProcessResult.IsomerizationDegree, StringFormat=F4, Mode=OneWay, TargetNullValue=''}"/>
+                                        </shared:LabeledControlPresenter>
+                                        <shared:LabeledControlPresenter HeaderText="Рекомендации и статусы" HeaderFontSize="14">
+                                            <ui:TextBox IsReadOnly="True"
+                                                        TextWrapping="Wrap"
+                                                        AcceptsReturn="True"
+                                                        MinHeight="160"
+                                                        VerticalScrollBarVisibility="Auto"
+                                                        Text="{Binding LastCim1ValidationText, Mode=OneWay}"/>
+                                        </shared:LabeledControlPresenter>
+                                    </StackPanel>
+                                </ui:Card>
+                            </shared:LabeledControlPresenter>
                             <shared:LabeledControlPresenter 
                                 Margin="10"
                                 HeaderText="Показатели экономичности"
@@ -470,13 +503,55 @@
                                     <shared:LabeledControlPresenter HeaderText="Параметры ТЗ" HeaderFontSize="16" Margin="0,7">
                                         <ui:Card>
                                             <StackPanel>
-                                                <shared:LabeledControlPresenter HeaderText="EFmin">
+                                                <shared:LabeledControlPresenter HeaderText="EFmin" RightText="кг/с">
                                                     <ui:NumberBox Value="{Binding EFmin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </shared:LabeledControlPresenter>
-                                                <shared:LabeledControlPresenter HeaderText="ESmax">
+                                                <shared:LabeledControlPresenter HeaderText="ESmax (лимит ESpipe)" RightText="Вт">
                                                     <ui:NumberBox Value="{Binding ESmax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="ΔPmax (суммарные потери)" RightText="Па">
+                                                    <ui:NumberBox Value="{Binding DeltaPmax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Nmax (насос)" RightText="Вт">
+                                                    <ui:NumberBox Value="{Binding Nmax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Рабочее давление" RightText="Па">
+                                                    <ui:NumberBox Value="{Binding WorkingPressure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Допустимое давление" RightText="Па">
+                                                    <ui:NumberBox Value="{Binding AllowablePressure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="[σ] допускаемое напряжение" RightText="Па">
+                                                    <ui:NumberBox Value="{Binding AllowableStress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="δ фактическая толщина стенки" RightText="м">
+                                                    <ui:NumberBox Value="{Binding ActualWallThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Температура среды" RightText="°C">
+                                                    <ui:NumberBox Value="{Binding FluidTemperature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Tmax среды" RightText="°C">
+                                                    <ui:NumberBox Value="{Binding MaxFluidTemperature, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="vmax (норматив)" RightText="м/с">
+                                                    <ui:NumberBox Value="{Binding MaxVelocity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
+                                                <shared:LabeledControlPresenter HeaderText="Насос (рекомендация, текст)">
+                                                    <ui:TextBox Text="{Binding RecommendedPump, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </shared:LabeledControlPresenter>
                                             </StackPanel>
+                                        </ui:Card>
+                                    </shared:LabeledControlPresenter>
+
+                                    <shared:LabeledControlPresenter HeaderText="Отчёт ЦИМ-2" HeaderFontSize="16" Margin="0,7">
+                                        <ui:Card>
+                                            <ui:TextBox Text="{Binding Cim2FullReport, Mode=OneWay}"
+                                                        IsReadOnly="True"
+                                                        FontFamily="Consolas"
+                                                        TextWrapping="Wrap"
+                                                        AcceptsReturn="True"
+                                                        MinHeight="180"
+                                                        VerticalScrollBarVisibility="Auto"/>
                                         </ui:Card>
                                     </shared:LabeledControlPresenter>
                                     
@@ -526,8 +601,12 @@
                                         <DataGridTextColumn Header="D, м" Binding="{Binding D, StringFormat=F4}"/>
                                         <DataGridTextColumn Header="v, м/с" Binding="{Binding v, StringFormat=F4}"/>
                                         <DataGridTextColumn Header="ΔPΣ, Па" Binding="{Binding dP_total, StringFormat=F2}"/>
-                                        <DataGridTextColumn Header="ES, Вт" Binding="{Binding ES, StringFormat=F2}"/>
-                                        <DataGridCheckBoxColumn Header="isESok" Binding="{Binding isESok}" IsThreeState="False"/>
+                                        <DataGridTextColumn Header="N, Вт" Binding="{Binding PumpPower, StringFormat=F2}"/>
+                                        <DataGridTextColumn Header="ESpipe, Вт" Binding="{Binding PipelineEnergyConsumption, StringFormat=F2}"/>
+                                        <DataGridCheckBoxColumn Header="ΔPΣ" Binding="{Binding isDPtotalOk}" IsThreeState="False"/>
+                                        <DataGridCheckBoxColumn Header="N" Binding="{Binding isPumpPowerOk}" IsThreeState="False"/>
+                                        <DataGridCheckBoxColumn Header="ESpipe" Binding="{Binding isESok}" IsThreeState="False"/>
+                                        <DataGridCheckBoxColumn Header="Все ключ." Binding="{Binding isAllKeyOk}" IsThreeState="False"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </StackPanel>

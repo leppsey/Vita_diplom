@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using Isomerization.Domain.Task3;
+using Isomerization.Domain.Validation;
 using Isomerization.Shared;
 using Isomerization.UI.Services;
 using LiveChartsCore;
@@ -146,7 +147,7 @@ public class Task3ViewModel : ViewModelBase
 
     private double _esMax;
     /// <summary>
-    /// Максимальная энергоемкость
+    /// Максимальное энергопотребление трубопровода ESpipe = Q·ΔPΣ, Вт
     /// </summary>
     public double ESmax
     {
@@ -156,6 +157,83 @@ public class Task3ViewModel : ViewModelBase
             _esMax = value;
             OnPropertyChanged();
         }
+    }
+
+    private double _deltaPmax;
+    /// <summary>Максимальные суммарные потери ΔPΣ, Па (0 — проверка отключена).</summary>
+    public double DeltaPmax
+    {
+        get => _deltaPmax;
+        set { _deltaPmax = value; OnPropertyChanged(); }
+    }
+
+    private double _nmax;
+    /// <summary>Максимальная мощность насоса N, Вт (0 — отключено).</summary>
+    public double Nmax
+    {
+        get => _nmax;
+        set { _nmax = value; OnPropertyChanged(); }
+    }
+
+    private double _workingPressure;
+    /// <summary>Рабочее давление, Па.</summary>
+    public double WorkingPressure
+    {
+        get => _workingPressure;
+        set { _workingPressure = value; OnPropertyChanged(); }
+    }
+
+    private double _allowablePressure;
+    /// <summary>Допустимое давление, Па (0 — отключено).</summary>
+    public double AllowablePressure
+    {
+        get => _allowablePressure;
+        set { _allowablePressure = value; OnPropertyChanged(); }
+    }
+
+    private double _allowableStress;
+    /// <summary>Допускаемое напряжение [σ], Па (0 — расчёт δ отключён).</summary>
+    public double AllowableStress
+    {
+        get => _allowableStress;
+        set { _allowableStress = value; OnPropertyChanged(); }
+    }
+
+    private double _actualWallThickness;
+    /// <summary>Фактическая толщина стенки δ, м.</summary>
+    public double ActualWallThickness
+    {
+        get => _actualWallThickness;
+        set { _actualWallThickness = value; OnPropertyChanged(); }
+    }
+
+    private double _fluidTemperature;
+    public double FluidTemperature
+    {
+        get => _fluidTemperature;
+        set { _fluidTemperature = value; OnPropertyChanged(); }
+    }
+
+    private double _maxFluidTemperature;
+    public double MaxFluidTemperature
+    {
+        get => _maxFluidTemperature;
+        set { _maxFluidTemperature = value; OnPropertyChanged(); }
+    }
+
+    private double _maxVelocity;
+    public double MaxVelocity
+    {
+        get => _maxVelocity;
+        set { _maxVelocity = value; OnPropertyChanged(); }
+    }
+
+    private string _recommendedPump = string.Empty;
+    /// <summary>Рекомендуемое насосное оборудование (заполняется вручную или из каталога).</summary>
+    public string RecommendedPump
+    {
+        get => _recommendedPump;
+        set { _recommendedPump = value; OnPropertyChanged(); }
     }
 
     #endregion
@@ -253,6 +331,27 @@ public class Task3ViewModel : ViewModelBase
     /// </summary>
     public bool HasResult => _calculationResult != null;
 
+    public double? dP_fric => _calculationResult?.dP_fric;
+    public double? dP_local => _calculationResult?.dP_local;
+    public double? Q => _calculationResult?.Q;
+    public double? PumpPower => _calculationResult?.PumpPower;
+    public double? PipelineEnergyConsumption => _calculationResult?.PipelineEnergyConsumption;
+    public double? CalculatedWallThickness => _calculationResult?.CalculatedWallThickness;
+
+    public bool? isDPtotalOk => _calculationResult?.isDPtotalOk;
+    public bool? isPumpPowerOk => _calculationResult?.isPumpPowerOk;
+    public bool? isAllowablePressureOk => _calculationResult?.isAllowablePressureOk;
+    public bool? isWallThicknessOk => _calculationResult?.isWallThicknessOk;
+    public bool? isFluidTemperatureOk => _calculationResult?.isFluidTemperatureOk;
+    public bool? isNormativeVelocityOk => _calculationResult?.isNormativeVelocityOk;
+
+    private string _cim2FullReport = string.Empty;
+    public string Cim2FullReport
+    {
+        get => _cim2FullReport;
+        set { _cim2FullReport = value; OnPropertyChanged(); }
+    }
+
     #endregion
 
     #region Коллекция вариантов
@@ -320,60 +419,47 @@ public class Task3ViewModel : ViewModelBase
     {
         try
         {
-            var parameters = new PipeCalculationParameters
-            {
-                EF = EF,
-                EFmin = EFmin,
-                ESmax = ESmax,
-                rho = rho,
-                D = D,
-                L = L,
-                sumZeta = sumZeta,
-                lambda = lambda,
-                eta = eta
-            };
-
+            var parameters = BuildPipeParameters();
             _calculationResult = PipeMathService.Calculate(parameters);
-            
-            OnPropertyChanged(nameof(dP_total));
-            OnPropertyChanged(nameof(ES));
-            OnPropertyChanged(nameof(deltaEF));
-            OnPropertyChanged(nameof(deltaES));
-            OnPropertyChanged(nameof(isEFok));
-            OnPropertyChanged(nameof(isESok));
-            OnPropertyChanged(nameof(HasResult));
+            NotifyPipeResultChanged();
 
-            var resultText = $"Результаты расчета:\n" +
-                           $"Общая потеря давления (ΔPΣ): {dP_total:F2} Па\n" +
-                           $"Энергоемкость (ES): {ES:F2} Вт\n" +
-                           $"Разница по производительности (ΔEF): {deltaEF:F2}\n" +
-                           $"Разница по энергоемкости (ΔES): {deltaES:F2}\n" +
-                           $"Условие по производительности: {(isEFok == true ? "Выполнено" : "Не выполнено")}\n" +
-                           $"Условие по энергоемкости: {(isESok == true ? "Выполнено" : "Не выполнено")}";
+            var r = _calculationResult!.Value;
+            var v = r.Validation ?? new CalculationValidationResult();
+            var sb = new StringBuilder();
+            sb.AppendLine("Пошаговые проверки ЦИМ-2:");
+            sb.AppendLine($"1) Потери по длине ΔPₗ: {r.dP_fric:F2} Па");
+            sb.AppendLine($"2) Местные потери ΔPₘ: {r.dP_local:F2} Па");
+            sb.AppendLine($"3) Суммарные потери ΔPΣ: {r.dP_total:F2} Па — {(r.isDPtotalOk == true ? "выполнено (≤ ΔPmax)" : "не выполнено")}");
+            sb.AppendLine($"4) Мощность насоса N: {r.PumpPower:F2} Вт — {(r.isPumpPowerOk == true ? "выполнено (≤ Nmax)" : "не выполнено")}");
+            sb.AppendLine($"5) Энергопотребление ESpipe: {r.PipelineEnergyConsumption:F2} Вт — {(r.isESok == true ? "выполнено (≤ ESmax)" : "не выполнено")}");
+            sb.AppendLine($"6) Давление: рабочее {WorkingPressure:F0} Па — {(r.isAllowablePressureOk == true ? "выполнено" : "не выполнено")}");
+            sb.AppendLine(
+                $"7) Толщина стенки: δфакт = {ActualWallThickness * 1000:F2} мм, δрасч = {r.CalculatedWallThickness * 1000:F2} мм — {(r.isWallThicknessOk == true ? "выполнено" : "не выполнено")}");
+            sb.AppendLine($"8) Температура среды: {FluidTemperature:F1} °C — {(r.isFluidTemperatureOk == true ? "выполнено" : "не выполнено")}");
+            sb.AppendLine($"9) Скорость v: {r.v:F3} м/с — {(r.isNormativeVelocityOk == true ? "выполнено" : "не выполнено")}");
+            sb.AppendLine();
+            sb.AppendLine("Сводка по критериям (статусы проверок):");
+            sb.AppendLine(FormatCriterionStatusLine("Производительность (EF ≥ EFmin)", v.ProductivityStatus));
+            sb.AppendLine(FormatCriterionStatusLine("Мощность насоса (N ≤ Nmax)", v.ProcessEnergyStatus));
+            sb.AppendLine(FormatCriterionStatusLine("Суммарные потери и допустимое давление", v.PressureStatus));
+            sb.AppendLine(FormatCriterionStatusLine("Толщина стенки (δ ≥ δрасч)", v.WallThicknessStatus));
+            sb.AppendLine(FormatCriterionStatusLine("Энергопотребление трубопровода (ESpipe)", v.PipelineEnergyStatus));
+            sb.AppendLine(FormatCriterionStatusLine("Нормативы (скорость, температура)", v.NormativeStatus));
+            sb.AppendLine();
+            sb.AppendLine("Рекомендации:");
+            foreach (var line in v.Recommendations.Distinct())
+                sb.AppendLine("• " + line);
+            sb.AppendLine();
+            sb.AppendLine(
+                $"Итог по ТЗ: рекомендуемый внутренний диаметр D = {D:F4} м; толщина стенки δ ≥ {r.CalculatedWallThickness * 1000:F2} мм; " +
+                $"расчётные потери ΔPΣ = {r.dP_total:F2} Па; расчётное ESpipe = {r.PipelineEnergyConsumption:F2} Вт; насос (ориентир) N = {r.PumpPower:F2} Вт.");
+            if (!string.IsNullOrWhiteSpace(RecommendedPump))
+                sb.AppendLine($"Рекомендуемое насосное оборудование (ввод пользователя): {RecommendedPump}");
+            sb.AppendLine("Материал: подобрать по допускаемому напряжению [σ] и давлению согласно нормативной документации.");
 
-            // Добавляем подсказки, если условия не выполнены
-            var hints = new List<string>();
-            
-            if (isEFok == false)
-            {
-                hints.Add($"⚠ Производительность (EF = {EF:F2}) ниже минимума (EFmin = {EFmin:F2}).\n   Рекомендация: увеличьте EF минимум на {Math.Abs(deltaEF.Value):F2} кг/с");
-            }
-            
-            if (isESok == false)
-            {
-                hints.Add($"⚠ Энергоемкость (ES = {ES:F2} Вт) превышает максимум (ESmax = {ESmax:F2} Вт).\n   Рекомендации для уменьшения ES:\n" +
-                         $"   • Увеличьте диаметр D (наиболее эффективно)\n" +
-                         $"   • Уменьшите длину L\n" +
-                         $"   • Уменьшите сумму местных сопротивлений Σζ\n" +
-                         $"   • Увеличьте КПД насоса η");
-            }
-            
-            if (hints.Any())
-            {
-                resultText += "\n\n" + string.Join("\n\n", hints);
-            }
+            Cim2FullReport = sb.ToString();
 
-            _messageBoxService.Show(resultText, "Результаты расчета", MessageBoxButton.OK);
+            _messageBoxService.Show(sb.ToString(), "Результаты расчёта ЦИМ-2", MessageBoxButton.OK);
         }
         catch (ArgumentException ex)
         {
@@ -393,18 +479,8 @@ public class Task3ViewModel : ViewModelBase
     {
         try
         {
-            var pBase = new PipeCalculationParameters
-            {
-                EF = EF,
-                EFmin = EFmin,
-                ESmax = ESmax,
-                rho = rho,
-                L = L,
-                sumZeta = sumZeta,
-                lambda = lambda,
-                eta = eta,
-                D = 0 // Будет установлен в цикле
-            };
+            var pBase = BuildPipeParameters();
+            pBase.D = 0;
 
             var variants = PipeMathService.SweepByDiameter(pBase, Dmin, Dmax, steps);
             
@@ -454,12 +530,11 @@ public class Task3ViewModel : ViewModelBase
                 var csv = new StringBuilder();
                 
                 // Заголовки колонок
-                csv.AppendLine("D;v;dP_total;ES;isESok");
+                csv.AppendLine("D;v;dP_total;N;ESpipe;isDPok;isNok;isESok;allOk");
                 
-                // Данные
                 foreach (var variant in Variants)
                 {
-                    csv.AppendLine($"{variant.D.ToString(CultureInfo.InvariantCulture)};{variant.v.ToString(CultureInfo.InvariantCulture)};{variant.dP_total.ToString(CultureInfo.InvariantCulture)};{variant.ES.ToString(CultureInfo.InvariantCulture)};{variant.isESok}");
+                    csv.AppendLine($"{variant.D.ToString(CultureInfo.InvariantCulture)};{variant.v.ToString(CultureInfo.InvariantCulture)};{variant.dP_total.ToString(CultureInfo.InvariantCulture)};{variant.PumpPower.ToString(CultureInfo.InvariantCulture)};{variant.PipelineEnergyConsumption.ToString(CultureInfo.InvariantCulture)};{variant.isDPtotalOk};{variant.isPumpPowerOk};{variant.isESok};{variant.isAllKeyOk}");
                 }
                 
                 File.WriteAllText(dialog.FileName, csv.ToString(), Encoding.UTF8);
@@ -473,6 +548,61 @@ public class Task3ViewModel : ViewModelBase
     });
 
     #endregion
+
+    /// <summary>Ширина колонки статуса в символах (моноширинный шрифт; «Предупреждение» = 13).</summary>
+    private const int CriterionStatusColumnChars = 18;
+
+    /// <summary>Статус слева фиксированной ширины, затем критерий — чтобы в UI статусы не «скакали» из‑за длины названия.</summary>
+    private static string FormatCriterionStatusLine(string criterionName, ValidationStatus status) =>
+        "  " + status.ToRuLabelCapitalized().PadRight(CriterionStatusColumnChars) + "— " + criterionName;
+
+    private PipeCalculationParameters BuildPipeParameters()
+    {
+        return new PipeCalculationParameters
+        {
+            EF = EF,
+            EFmin = EFmin,
+            ESmax = ESmax,
+            rho = rho,
+            D = D,
+            L = L,
+            sumZeta = sumZeta,
+            lambda = lambda,
+            eta = eta,
+            DeltaPmax = DeltaPmax,
+            Nmax = Nmax,
+            WorkingPressure = WorkingPressure,
+            AllowablePressure = AllowablePressure,
+            AllowableStress = AllowableStress,
+            ActualWallThickness = ActualWallThickness,
+            FluidTemperature = FluidTemperature,
+            MaxFluidTemperature = MaxFluidTemperature,
+            MaxVelocity = MaxVelocity
+        };
+    }
+
+    private void NotifyPipeResultChanged()
+    {
+        OnPropertyChanged(nameof(dP_total));
+        OnPropertyChanged(nameof(dP_fric));
+        OnPropertyChanged(nameof(dP_local));
+        OnPropertyChanged(nameof(ES));
+        OnPropertyChanged(nameof(Q));
+        OnPropertyChanged(nameof(PumpPower));
+        OnPropertyChanged(nameof(PipelineEnergyConsumption));
+        OnPropertyChanged(nameof(CalculatedWallThickness));
+        OnPropertyChanged(nameof(deltaEF));
+        OnPropertyChanged(nameof(deltaES));
+        OnPropertyChanged(nameof(isEFok));
+        OnPropertyChanged(nameof(isESok));
+        OnPropertyChanged(nameof(isDPtotalOk));
+        OnPropertyChanged(nameof(isPumpPowerOk));
+        OnPropertyChanged(nameof(isAllowablePressureOk));
+        OnPropertyChanged(nameof(isWallThicknessOk));
+        OnPropertyChanged(nameof(isFluidTemperatureOk));
+        OnPropertyChanged(nameof(isNormativeVelocityOk));
+        OnPropertyChanged(nameof(HasResult));
+    }
 
     #region Графики
 
@@ -555,7 +685,7 @@ public class Task3ViewModel : ViewModelBase
         {
             new Axis
             {
-                Name = "ES, Вт",
+                Name = "ESpipe, Вт",
                 TextSize = 14,
                 LabelsPaint = new SolidColorPaint(SKColors.Black),
             }
@@ -571,7 +701,7 @@ public class Task3ViewModel : ViewModelBase
 
         ESLineSeries = new LineSeries<ObservablePoint>
         {
-            Name = "ES",
+            Name = "ESpipe",
             Fill = null,
             GeometryStroke = null,
             GeometryFill = null,
@@ -597,10 +727,10 @@ public class Task3ViewModel : ViewModelBase
 
         var dValues = Variants.Select(v => v.D).ToList();
         var dpTotalValues = Variants.Select(v => v.dP_total).ToList();
-        var esValues = Variants.Select(v => v.ES).ToList();
+        var espipeValues = Variants.Select(v => v.PipelineEnergyConsumption).ToList();
 
         UpdateLineSeries(DPTotalLineSeries, dValues, dpTotalValues);
-        UpdateLineSeries(ESLineSeries, dValues, esValues);
+        UpdateLineSeries(ESLineSeries, dValues, espipeValues);
 
         OnPropertyChanged(nameof(DPTotalSeries));
         OnPropertyChanged(nameof(ESSeries));

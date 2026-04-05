@@ -1,32 +1,27 @@
 using System;
-using System.Reflection.Metadata.Ecma335;
 
 namespace Isomerization.Domain.Models;
 
-/// <summary>
-/// Трубопровод
-/// </summary>
+/// <summary>Трубопровод.</summary>
 public class Pipeline
 {
     public int PipelineId { get; set; }
-    /// <summary>
-    /// дата ввода в эксплуатацию
-    /// </summary>
     public DateTime DateOfCommissioning { get; set; }
-    /// <summary>
-    /// Длина
-    /// </summary>
     public double Length { get; set; }
-    /// <summary>
-    /// Высота
-    /// </summary>
     public double Width { get; set; }
-    /// <summary>
-    /// Диаметр
-    /// </summary>  
     public double Diameter { get; set; }
-    /// <summary>
-    /// Материал
-    /// </summary>
-    public string Material { get; set; }
+    public string Material { get; set; } = string.Empty;
+
+    public double PressureLossLinear { get; set; }
+    public double PressureLossLocal { get; set; }
+    public double PressureLossTotal { get; set; }
+    public double PumpPower { get; set; }
+    public double PipelineEnergyConsumption { get; set; }
+    public double AllowablePressure { get; set; }
+    public double CalculatedWallThickness { get; set; }
+    public double ActualWallThickness { get; set; }
+    public bool IsPressureValid { get; set; }
+    public bool IsWallThicknessValid { get; set; }
+    public bool IsEnergyValid { get; set; }
+    public bool IsNormativeValid { get; set; }
 }

@@ -1,10 +1,13 @@
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
 using System.Windows;
 using Isomerization.Domain.Data;
 using Isomerization.Domain.Models;
 using Isomerization.Domain.Task1;
+using Isomerization.Domain.Validation;
 using Isomerization.Shared;
 using Isomerization.UI.Features.Researcher;
 using Isomerization.UI.Services;
@@ -144,10 +147,8 @@ public class ResearcherPageVM: ViewModelBase
         var isomerization = new DIMIsomerization()
         {
             Catalyst = SelectedCatalyst,
-            // Installation = SelectedInstallation,
             RawMaterial = SelectedRawMaterial,
             Name = $"Модель изомеризации - {DateTime.Now:G}",
-            // Consumption = SelectedInstallation.RawMaterialConsumption,
             Temp = T0,
             User = _userService.CurrentUser,
             Step = H,
@@ -157,6 +158,15 @@ public class ResearcherPageVM: ViewModelBase
             PerformanceMax = PerformanceMax,
             EnergyConsumptionMax = EnergyConsumptionMax,
             EnergyConsumptionMin = EnergyConsumptionMin,
+            Productivity = LastProcessResult?.Productivity ?? 0,
+            ProcessEnergyConsumption = LastProcessResult?.ProcessEnergyConsumption ?? 0,
+            OctaneNumber = LastProcessResult?.OctaneNumber ?? 0,
+            IsopentaneConcentration = LastProcessResult?.IsopentaneConcentration ?? 0,
+            IsomerizationDegree = LastProcessResult?.IsomerizationDegree ?? 0,
+            IsProductivityValid = LastProcessResult?.Validation.ProductivityStatus == ValidationStatus.Valid,
+            IsEnergyValid = LastProcessResult?.Validation.ProcessEnergyStatus == ValidationStatus.Valid,
+            IsOctaneValid = LastProcessResult?.Validation.OctaneStatus == ValidationStatus.Valid,
+            IsIsopentaneValid = LastProcessResult?.Validation.IsopentaneStatus == ValidationStatus.Valid,
         };
         _context.DimIsomerizations.Add(isomerization);
         _context.SaveChanges();
@@ -195,11 +205,17 @@ public class ResearcherPageVM: ViewModelBase
     public double OctaneNumberMin { get; set; } = 78;
     public MathClass MathClass { get; set; }
 
+    /// <summary>Последний полный результат проверки ЦИМ-1 (после расчёта).</summary>
+    public IsomerizationProcessResult? LastProcessResult { get; set; }
+
+    /// <summary>Текст рекомендаций и статусов для отображения на странице.</summary>
+    public string LastCim1ValidationText { get; set; } = string.Empty;
+
     private RelayCommand _calcCommand;
 
     public RelayCommand CalcCommand => _calcCommand ??= new RelayCommand(async _ =>
     {
-        var mathResults = new ConcurrentBag<(Installation Installation, MathClass Math)>();
+        var processBag = new ConcurrentBag<IsomerizationProcessResult>();
         AvailableInstallations = FindInstallations();
         if (!AvailableInstallations.Any())
         {
@@ -223,58 +239,84 @@ public class ResearcherPageVM: ViewModelBase
             };
             var math = new MathClass(calcParams);
             math.Calculate();
-            mathResults.Add((installation, math));
+            var evaluated = IsomerizationValidationService.BuildAndValidate(
+                installation,
+                math,
+                G,
+                PerformanceMin,
+                EnergyConsumptionMin,
+                EnergyConsumptionMax,
+                OctaneNumberMin);
+            processBag.Add(evaluated);
         });
 
-        bool IsResultOk(CalculationResults results)
-        {
-            return results.OKT >= OctaneNumberMin;
-        }
+        var evaluatedList = processBag.ToList();
+        var passing = evaluatedList.Where(IsomerizationValidationService.PassesSelection).ToList();
 
-        var satisfyingCalcs = mathResults.Where(x => IsResultOk(x.Math.Results)).ToList();
-
-        if (!satisfyingCalcs.Any())
+        if (!passing.Any())
         {
             IsCalculated = false;
-            _messageBoxService.Show("Установок, удовлетворяющих условиям, не найдено", "Установки не найдены", MessageBoxButton.OK);
+            LastProcessResult = null;
+            var failText = new StringBuilder();
+            failText.AppendLine("Нет установок, прошедших цепочку проверок: производительность EF → энергопотребление процесса ESproc → октановое число.");
+            failText.AppendLine();
+            foreach (var grp in evaluatedList.GroupBy(x => x.Installation.Name))
+            {
+                var r = grp.First();
+                failText.AppendLine($"— {r.Installation.Name}: EF={r.Productivity:F3} кг/с, ESproc={r.ProcessEnergyConsumption:F2}, ОКТ={r.OctaneNumber:F2}");
+                foreach (var rec in r.Validation.Recommendations.Distinct())
+                    failText.AppendLine("  • " + rec);
+                failText.AppendLine();
+            }
+            LastCim1ValidationText = failText.ToString();
+            OnPropertyChanged(nameof(LastCim1ValidationText));
+            OnPropertyChanged(nameof(LastProcessResult));
+            _messageBoxService.Show(failText.ToString(), "Проверки не пройдены", MessageBoxButton.OK);
             return;
         }
 
-        var bestCalc = satisfyingCalcs.MaxBy(x => x.Math.Results.OKT);
-        var otherCalcs = satisfyingCalcs.Except(new[] { bestCalc }).ToList();
-        MathClass = bestCalc.Math;
-        
+        var best = passing.MaxBy(x => x.OctaneNumber);
+        var otherCalcs = passing.Where(x => x.Installation.InstallationId != best.Installation.InstallationId).ToList();
+        MathClass = best.Math;
+        LastProcessResult = best;
+
+        best.Validation.Recommendations.Add(
+            $"Рекомендуемый расход G: {G:F3} кг/с; рекомендуемая температура T: {T0:F1} °C; " +
+            $"рекомендуемое время пребывания τ: {best.ResidenceTimeSeconds:F2} с; рекомендуемый реакторный блок: {best.Installation.Name}.");
+
         UpdateGraphics();
-        SelectedInstallation = bestCalc.Installation;
+        SelectedInstallation = best.Installation;
         IsCalculated = true;
         var res = MathClass.Results;
 
-
-        var bestInstallationResultText =
-            $"Самое высокое октановое число достигается с установкой {bestCalc.Installation.Name}, октановое число: {bestCalc.Math.Results.OKT:F2}\n";
-        var otherInstallationResultText = otherCalcs.Any() ? "Результаты для остальных установок:\n" : string.Empty;
-        foreach (var otherCalc in otherCalcs)
-        {
-            otherInstallationResultText +=
-                $"Установка {otherCalc.Installation.Name}, октановое число: {otherCalc.Math.Results.OKT:F2}\n";
-        }
-        
-        var answerText =
-            bestInstallationResultText +
-            otherInstallationResultText +
-            $"Выходная концентрация вещества 1: {res.CordCs.Last().C1:F2}\n" +
-            $"Выходная концентрация вещества 2: {res.CordCs.Last().C2:F2}\n" +
-            $"Выходная концентрация вещества 3: {res.CordCs.Last().C3:F2}\n" +
-            $"Выходная концентрация вещества 4: {res.CordCs.Last().C4:F2}\n";
+        var summary = new StringBuilder();
+        summary.AppendLine($"Выбрана установка: {best.Installation.Name}");
+        summary.AppendLine($"Производительность EF: {best.Productivity:F3} кг/с");
+        summary.AppendLine($"Энергопотребление процесса ESproc: {best.ProcessEnergyConsumption:F2}");
+        summary.AppendLine($"Октановое число: {best.OctaneNumber:F2}");
+        summary.AppendLine($"Концентрация изопентана (выход), %: {best.IsopentaneConcentration:F2}");
+        summary.AppendLine($"Степень изомеризации (по ключевому компоненту): {best.IsomerizationDegree:F4}");
+        summary.AppendLine();
+        summary.AppendLine("Другие подходящие установки:");
+        foreach (var o in otherCalcs)
+            summary.AppendLine($"— {o.Installation.Name}, ОКТ={o.OctaneNumber:F2}");
+        summary.AppendLine();
+        summary.AppendLine("Концентрации на выходе:");
+        summary.AppendLine($"C1…C4: {res.CordCs.Last().C1:F2}; {res.CordCs.Last().C2:F2}; {res.CordCs.Last().C3:F2}; {res.CordCs.Last().C4:F2}");
         if (res.MaterialCount == 7)
         {
-            answerText +=
-                $"Выходная концентрация вещества 5: {res.CordCs.Last().C5:F2}\n" +
-                $"Выходная концентрация вещества 6: {res.CordCs.Last().C6:F2}\n" +
-                $"Выходная концентрация вещества 7: {res.CordCs.Last().C7:F2}\n";
+            summary.AppendLine($"C5…C7: {res.CordCs.Last().C5:F2}; {res.CordCs.Last().C6:F2}; {res.CordCs.Last().C7:F2}");
         }
+        summary.AppendLine();
+        summary.AppendLine("Рекомендации:");
+        foreach (var rec in best.Validation.Recommendations.Distinct())
+            summary.AppendLine("• " + rec);
 
-        _messageBoxService.Show(answerText, "Результаты расчета", MessageBoxButton.OK);
+        LastCim1ValidationText = summary.ToString();
+        OnPropertyChanged(nameof(LastCim1ValidationText));
+        OnPropertyChanged(nameof(LastProcessResult));
+
+        _messageBoxService.Show(summary.ToString(), "Результаты расчёта ЦИМ-1", MessageBoxButton.OK);
     });
     private ObservableCollection<Installation> FindInstallations()
     {

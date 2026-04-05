@@ -57,7 +57,8 @@ public class MessageBoxService : IMessageBoxService
         mb.Owner = window;
         mb.Title = caption;
 
-        var content = new TextBlock {Text = messageBoxText, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(3)};
+        var content = new TextBlock { Text = messageBoxText, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(3) };
+        MultilineDialogTypography.ApplyMonospaceIfMultiline(content, messageBoxText);
         mb.Content = content;
         MessageBoxResult result;
         

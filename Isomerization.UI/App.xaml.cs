@@ -72,6 +72,7 @@ public partial class App : Application
         
         Container = builder.Build();
         var dbContext = Container.Resolve<IsomerizationContext>();
+        SqliteSchemaUpgrade.Apply(dbContext);
         // dbContext.Database.EnsureDeleted();
         if (dbContext.Database.EnsureCreated())
         {

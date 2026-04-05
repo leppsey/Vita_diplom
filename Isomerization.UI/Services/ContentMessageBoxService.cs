@@ -36,7 +36,8 @@ public class ContentMessageBoxService : IContentMessageBoxService
         var dialog = new ContentDialog();
         dialog.Title = caption;
 
-        var content = new TextBlock {Text = messageBoxText, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(3)};
+        var content = new TextBlock { Text = messageBoxText, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(3) };
+        MultilineDialogTypography.ApplyMonospaceIfMultiline(content, messageBoxText);
         dialog.Content = content;
         MessageBoxResult result;
         
