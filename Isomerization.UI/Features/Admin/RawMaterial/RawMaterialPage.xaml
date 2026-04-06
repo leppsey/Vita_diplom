@@ -25,7 +25,7 @@
                   ItemsSource="{Binding RawMaterials}">
             <DataGrid.Columns >
                 <DataGridTextColumn Header="Название" Binding="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
-                <DataGridTextColumn Header="Плотность, кг/м³" Binding="{Binding Path=Density, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
+                <DataGridTextColumn Header="Плотность, г/см³" Binding="{Binding Path=Density, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
                 <DataGridTextColumn Header="Теплоемкость, Дж/кг⋅℃" Binding="{Binding Path=HeatCapacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*" IsReadOnly="True" />
                 <DataGridTextColumn Header="Октановое число" Binding="{Binding Path=OctaneRating, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="Auto" IsReadOnly="True" />
                 <DataGridTemplateColumn  IsReadOnly="True" Width="Auto">

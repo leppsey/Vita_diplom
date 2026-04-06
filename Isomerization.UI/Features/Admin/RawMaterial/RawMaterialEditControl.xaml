@@ -19,7 +19,7 @@
             <shared:LabeledControlPresenter HeaderText="Название">
                 <ui:TextBox Text="{Binding  Data.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
-            <shared:LabeledControlPresenter HeaderText="Плотность" RightText="кг/м³">
+            <shared:LabeledControlPresenter HeaderText="Плотность" RightText="г/см³">
                 <ui:NumberBox Value="{Binding  Data.Density, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </shared:LabeledControlPresenter>
             <shared:LabeledControlPresenter HeaderText="Теплоемкость" RightText="Дж/кг⋅℃">

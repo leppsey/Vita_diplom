@@ -4,6 +4,7 @@ using Isomerization.UI.Features.Admin.DIMIsomerization;
 using Isomerization.UI.Features.Admin.Installation;
 using Isomerization.UI.Features.Admin.Kinetic;
 using Isomerization.UI.Features.Admin.RawMaterial;
+using Isomerization.UI.Features.Admin.Cim2;
 using Isomerization.UI.Shared;
 
 namespace Isomerization.UI.Features.Admin;
@@ -32,6 +33,16 @@ public class AllItemsEditPageVM: ViewModelBase
             {
                 Name = "Кинетики",
                 Link = nameof(KineticPage),
+            },
+            new()
+            {
+                Name = "ЦИМ-2: Справочники",
+                Link = nameof(Cim2DictionariesPage),
+            },
+            new()
+            {
+                Name = "ЦИМ-2: Трубы",
+                Link = nameof(PipelinePipesPage),
             },
         };
 }

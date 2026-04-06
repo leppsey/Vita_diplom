@@ -401,5 +401,124 @@ public class DatabaseInitializer
         };
         context.AddRange(concentrations);
         context.SaveChanges();
+
+        EnsureCim2Seed(context);
+    }
+
+    /// <summary>
+    /// Идемпотентное заполнение справочников ЦИМ-2 для существующей БД.
+    /// </summary>
+    public static void EnsureCim2Seed(IsomerizationContext context)
+    {
+        SeedPipelineCatalogs(context);
+        SeedPipelineTemplates(context);
+        SeedPipelineRules(context);
+        context.SaveChanges();
+    }
+
+    private static void SeedPipelineCatalogs(IsomerizationContext context)
+    {
+        if (!context.PipelinePipes.Any())
+        {
+            context.PipelinePipes.AddRange(new[]
+            {
+                new PipelinePipe { Name = "Труба стальная DN80", DN = 80, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.006, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/pipe_dn80.obj" },
+                new PipelinePipe { Name = "Труба стальная DN100", DN = 100, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.007, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/pipe_dn100.obj" },
+                new PipelinePipe { Name = "Труба стальная DN150", DN = 150, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.008, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/pipe_dn150.obj" },
+            });
+        }
+
+        if (!context.PipelineElbows.Any())
+        {
+            context.PipelineElbows.AddRange(new[]
+            {
+                new PipelineElbow { Name = "Отвод 45 DN80", DN = 80, Angle = 45, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/elbow45_dn80.obj" },
+                new PipelineElbow { Name = "Отвод 90 DN80", DN = 80, Angle = 90, Zeta = 0.8, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/elbow90_dn80.obj" },
+                new PipelineElbow { Name = "Отвод 90 DN100", DN = 100, Angle = 90, Zeta = 0.8, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/elbow90_dn100.obj" },
+            });
+        }
+
+        if (!context.PipelineReducers.Any())
+        {
+            context.PipelineReducers.AddRange(new[]
+            {
+                new PipelineReducer { Name = "Переход DN100x80", DNIn = 100, DNOut = 80, Zeta = 0.15, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17378", ModelPath = "resources/pipeline/reducer_100_80.obj" },
+                new PipelineReducer { Name = "Переход DN150x100", DNIn = 150, DNOut = 100, Zeta = 0.15, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17378", ModelPath = "resources/pipeline/reducer_150_100.obj" },
+            });
+        }
+
+        if (!context.PipelineValves.Any())
+        {
+            context.PipelineValves.AddRange(new[]
+            {
+                new PipelineValve { Name = "Задвижка DN80", Type = "Gate", DN = 80, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 5762", ModelPath = "resources/pipeline/valve_dn80.obj" },
+                new PipelineValve { Name = "Задвижка DN100", Type = "Gate", DN = 100, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 5762", ModelPath = "resources/pipeline/valve_dn100.obj" },
+            });
+        }
+
+        if (!context.PipelinePumps.Any())
+        {
+            context.PipelinePumps.AddRange(new[]
+            {
+                new PipelinePump { Name = "Насос НЦ-80", DN = 80, PressureIncrease = 180000, Power = 5500, Efficiency = 0.72, TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/pump_dn80.obj" },
+                new PipelinePump { Name = "Насос НЦ-100", DN = 100, PressureIncrease = 220000, Power = 7500, Efficiency = 0.75, TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/pump_dn100.obj" },
+            });
+        }
+
+        if (!context.PipelineFilters.Any())
+        {
+            context.PipelineFilters.AddRange(new[]
+            {
+                new PipelineFilter { Name = "Фильтр DN80", DN = 80, Zeta = 1.2, PressureClass = "PN16", TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/filter_dn80.obj" },
+                new PipelineFilter { Name = "Фильтр DN100", DN = 100, Zeta = 1.2, PressureClass = "PN16", TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/filter_dn100.obj" },
+            });
+        }
+    }
+
+    private static void SeedPipelineTemplates(IsomerizationContext context)
+    {
+        if (!context.PipelineTemplates.Any())
+        {
+            context.PipelineTemplates.AddRange(new[]
+            {
+                new PipelineTemplate { Name = "Базовая линия", LineType = "ReactorInletLine", HasPump = false, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_Basic_DN80.obj" },
+                new PipelineTemplate { Name = "Линия с отводом", LineType = "ReactorOutletWithElbow", HasPump = false, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_WithElbow_DN80.obj" },
+                new PipelineTemplate { Name = "Линия с переходом", LineType = "ReactorInletWithReducer", HasPump = false, HasReducer = true, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_WithReducer_DN100.obj" },
+                new PipelineTemplate { Name = "Линия с насосом", LineType = "ReactorInletWithPump", HasPump = true, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = true, SupportedDN = "80,100", Template3DPath = "resources/pipeline/templates/ReactorLine_WithPump_DN100.obj" },
+                new PipelineTemplate { Name = "Линия с насосом и отводом", LineType = "ReactorInletWithPump", HasPump = true, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = true, SupportedDN = "80,100", Template3DPath = "resources/pipeline/templates/ReactorLine_WithPumpElbow_DN100.obj" },
+                new PipelineTemplate { Name = "Выходная линия", LineType = "ReactorOutletLine", HasPump = false, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_Outlet_DN80.obj" },
+                new PipelineTemplate { Name = "Выходная линия с отводом", LineType = "ReactorOutletWithElbow", HasPump = false, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_OutletElbow_DN80.obj" },
+            });
+        }
+
+        if (!context.Pipeline3DTemplates.Any())
+        {
+            context.Pipeline3DTemplates.AddRange(new[]
+            {
+                new Pipeline3DTemplate { Name = "ReactorLine_Basic_DN80", LineType = "ReactorInletLine", SupportedDN = "80", RequiredElements = "Pipe,Valve", PreviewPath = "resources/pipeline/preview/basic_dn80.png", ModelPath = "resources/pipeline/templates/ReactorLine_Basic_DN80.obj" },
+                new Pipeline3DTemplate { Name = "ReactorLine_WithPump_DN100", LineType = "ReactorInletWithPump", SupportedDN = "100", RequiredElements = "Pipe,Filter,Pump,Valve", PreviewPath = "resources/pipeline/preview/pump_dn100.png", ModelPath = "resources/pipeline/templates/ReactorLine_WithPump_DN100.obj" },
+                new Pipeline3DTemplate { Name = "ReactorLine_WithReducer_DN150", LineType = "ReactorInletWithReducer", SupportedDN = "150", RequiredElements = "Pipe,Reducer,Valve", PreviewPath = "resources/pipeline/preview/reducer_dn150.png", ModelPath = "resources/pipeline/templates/ReactorLine_WithReducer_DN150.obj" },
+            });
+        }
+    }
+
+    private static void SeedPipelineRules(IsomerizationContext context)
+    {
+        if (context.PipelineRules.Any())
+        {
+            return;
+        }
+
+        context.PipelineRules.AddRange(new[]
+        {
+            new PipelineRule { Name = "Формировать входную и выходную линию", ConditionType = "ReactorSelected", ConditionOperator = "=", ConditionValue = "true", ActionType = "SetLineType", ActionValue = "ReactorInletLine", Priority = 10 },
+            new PipelineRule { Name = "Добавить переход при несовпадении DN", ConditionType = "DNDiffers", ConditionOperator = "=", ConditionValue = "true", ActionType = "AddElement", ActionValue = "Reducer", Priority = 20 },
+            new PipelineRule { Name = "Добавить отвод при смене направления", ConditionType = "DirectionChange", ConditionOperator = "=", ConditionValue = "true", ActionType = "AddElement", ActionValue = "Elbow", Priority = 30 },
+            new PipelineRule { Name = "Насосный узел", ConditionType = "RequiresPump", ConditionOperator = "=", ConditionValue = "true", ActionType = "AddPumpAssembly", ActionValue = "Filter,Pump,CheckValve,Valve", Priority = 40 },
+            new PipelineRule { Name = "Увеличить DN при высокой скорости", ConditionType = "Velocity", ConditionOperator = ">", ConditionValue = "2.5", ActionType = "IncreaseDN", ActionValue = "NextStandard", Priority = 50 },
+            new PipelineRule { Name = "Упростить линию при больших потерях", ConditionType = "PressureLoss", ConditionOperator = ">", ConditionValue = "250000", ActionType = "SimplifyTemplate", ActionValue = "true", Priority = 60 },
+            new PipelineRule { Name = "Заменить элемент по T/P", ConditionType = "ElementLimitExceeded", ConditionOperator = "=", ConditionValue = "true", ActionType = "ReplaceElement", ActionValue = "Compatible", Priority = 70 },
+            new PipelineRule { Name = "Рекомендовать другой DN/шаблон по энергии", ConditionType = "EnergyConsumption", ConditionOperator = ">", ConditionValue = "10000", ActionType = "RecommendAlternative", ActionValue = "DNOrTemplate", Priority = 80 },
+        });
     }
 }

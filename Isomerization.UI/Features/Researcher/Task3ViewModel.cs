@@ -115,7 +115,7 @@ public class Task3ViewModel : ViewModelBase
 
     private double _rho;
     /// <summary>
-    /// Плотность среды, кг/м³
+    /// Плотность среды, г/см³
     /// </summary>
     public double rho
     {
@@ -277,7 +277,7 @@ public class Task3ViewModel : ViewModelBase
             if (researcherVM.SelectedRawMaterial != null)
             {
                 rho = researcherVM.SelectedRawMaterial.Density;
-                _messageBoxService.Show($"Данные подтянуты из ЦИМ-1:\nEF = {EF:F2} кг/с\nρ = {rho:F2} кг/м³", "Информация", MessageBoxButton.OK);
+                _messageBoxService.Show($"Данные подтянуты из ЦИМ-1:\nEF = {EF:F2} кг/с\nρ = {rho:F2} г/см³", "Информация", MessageBoxButton.OK);
             }
             else
             {

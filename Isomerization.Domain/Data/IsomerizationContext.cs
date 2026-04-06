@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Isomerization.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Update;
@@ -11,6 +12,8 @@ namespace Isomerization.Domain.Data
     /// </summary>
     public class IsomerizationContext : DbContext
     {
+        public static string DbPath => Path.Combine(AppContext.BaseDirectory, "Membrane.db");
+
         public IsomerizationContext()
         {
             // Database.EnsureCreated();
@@ -38,13 +41,22 @@ namespace Isomerization.Domain.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<Model> Models { get; set; }
+        public virtual DbSet<PipelinePipe> PipelinePipes { get; set; }
+        public virtual DbSet<PipelineElbow> PipelineElbows { get; set; }
+        public virtual DbSet<PipelineReducer> PipelineReducers { get; set; }
+        public virtual DbSet<PipelineValve> PipelineValves { get; set; }
+        public virtual DbSet<PipelinePump> PipelinePumps { get; set; }
+        public virtual DbSet<PipelineFilter> PipelineFilters { get; set; }
+        public virtual DbSet<PipelineTemplate> PipelineTemplates { get; set; }
+        public virtual DbSet<Pipeline3DTemplate> Pipeline3DTemplates { get; set; }
+        public virtual DbSet<PipelineRule> PipelineRules { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("DataSource=Membrane.db");
+                optionsBuilder.UseSqlite($"Data Source={DbPath}");
             }
         }
         

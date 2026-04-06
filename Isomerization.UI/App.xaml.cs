@@ -6,6 +6,7 @@ using System.Windows;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Isomerization.Domain;
+using Isomerization.Domain.Cim2;
 using Isomerization.Domain.Data;
 using Isomerization.UI.Features.Researcher;
 using Isomerization.UI.Misc;
@@ -44,6 +45,8 @@ public partial class App : Application
         
         // Явная регистрация Task3ViewModel для избежания проблем с DI
         builder.RegisterType<Features.Task3ViewModel>().AsSelf();
+        // Явная регистрация ViewModel ЦИМ-2 (не оканчивается на "VM")
+        builder.RegisterType<Cim2PageViewModel>().AsSelf();
 
         #endregion
         
@@ -61,8 +64,20 @@ public partial class App : Application
         builder.RegisterInstance(new IsomerizationContext()).SingleInstance();
         builder.RegisterType<MessageBoxService>().As<IMessageBoxService>().SingleInstance();
         builder.RegisterType<ContentMessageBoxService>().As<IContentMessageBoxService>().SingleInstance();
+        builder.RegisterType<Cim2SessionService>().As<ICim2SessionService>().SingleInstance();
         builder.RegisterType<EditDialogService>().AsSelf().SingleInstance();
         builder.RegisterType<SelectDIMIsomerizationWindow>().AsSelf();
+
+        builder.RegisterType<PipelineLineTypeResolver>().AsSelf().SingleInstance();
+        builder.RegisterType<PipelineDiameterSelectionService>().AsSelf().SingleInstance();
+        builder.RegisterType<RuleEngineService>().AsSelf().SingleInstance();
+        builder.RegisterType<PipelineTemplateSelector>().AsSelf().SingleInstance();
+        builder.RegisterType<PipelineElementSelector>().AsSelf().SingleInstance();
+        builder.RegisterType<PipelineCalculationService>().AsSelf().SingleInstance();
+        builder.RegisterType<PipelineValidationService>().AsSelf().SingleInstance();
+        builder.RegisterType<PipelineRecommendationService>().AsSelf().SingleInstance();
+        builder.RegisterType<Pipeline3DTemplateSelector>().AsSelf().SingleInstance();
+        builder.RegisterType<Cim2OrchestratorService>().AsSelf().SingleInstance();
         #endregion
         
        
@@ -72,14 +87,17 @@ public partial class App : Application
         
         Container = builder.Build();
         var dbContext = Container.Resolve<IsomerizationContext>();
+        var wasCreated = dbContext.Database.EnsureCreated();
         SqliteSchemaUpgrade.Apply(dbContext);
         // dbContext.Database.EnsureDeleted();
-        if (dbContext.Database.EnsureCreated())
+        if (wasCreated)
         {
             dbContext.Database.ExecuteSqlRaw("PRAGMA journal_mode = 'delete';");
             DatabaseInitializer.Init(dbContext);
 
         }
+        // Для уже существующей БД: гарантируем, что каталоги и шаблоны ЦИМ-2 заполнены.
+        DatabaseInitializer.EnsureCim2Seed(dbContext);
         var navWindow = Container.Resolve<INavigationWindow>();
         navWindow.ShowWindow();
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using Isomerization.Domain.Data;
+using Isomerization.Domain.Cim2;
 using Isomerization.Domain.Models;
 using Isomerization.Domain.Task1;
 using Isomerization.Domain.Validation;
@@ -30,18 +31,24 @@ public class ResearcherPageVM: ViewModelBase
     private readonly IMenuService _menuService;
     private readonly IUserService _userService;
     private readonly ISnackbarService _snackbarService;
+    private readonly INavigationService _navigationService;
+    private readonly ICim2SessionService _cim2SessionService;
 
     public ResearcherPageVM(IsomerizationContext context,
         IMessageBoxService messageBoxService,
         IMenuService menuService,
         IUserService userService,
-        ISnackbarService snackbarService)
+        ISnackbarService snackbarService,
+        INavigationService navigationService,
+        ICim2SessionService cim2SessionService)
     {
         _context = context;
         _messageBoxService = messageBoxService;
         _menuService = menuService;
         _userService = userService;
         _snackbarService = snackbarService;
+        _navigationService = navigationService;
+        _cim2SessionService = cim2SessionService;
 
         RawMaterials = new ObservableCollection<RawMaterial>(_context.RawMaterials.Include(x=>x.Concentrations));
         SelectedRawMaterial = RawMaterials.FirstOrDefault();
@@ -212,6 +219,20 @@ public class ResearcherPageVM: ViewModelBase
     public string LastCim1ValidationText { get; set; } = string.Empty;
 
     private RelayCommand _calcCommand;
+    private RelayCommand _generateCim2Command;
+
+    public RelayCommand GenerateCim2Command => _generateCim2Command ??= new RelayCommand(_ =>
+    {
+        if (!IsCalculated || LastProcessResult == null || SelectedRawMaterial == null)
+        {
+            _messageBoxService.Show("Сначала выполните корректный расчет ЦИМ-1.", "ЦИМ-2", MessageBoxButton.OK);
+            return;
+        }
+
+        var cim1Result = Cim1ResultFactory.Create(LastProcessResult, G, SelectedRawMaterial.Density, T0);
+        _cim2SessionService.LastCim1Result = cim1Result;
+        _navigationService.Navigate(typeof(Cim2Page));
+    });
 
     public RelayCommand CalcCommand => _calcCommand ??= new RelayCommand(async _ =>
     {

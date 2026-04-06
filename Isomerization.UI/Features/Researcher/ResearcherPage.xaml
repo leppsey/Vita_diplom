@@ -207,13 +207,19 @@
                         <!-- </shared:LabeledControlPresenter> -->
                     </StackPanel>
                 </ui:PassiveScrollViewer>
-                <ui:Button Grid.Row="1"
-                           Width="150"
-                           Margin="0,0,35,0"
-                           HorizontalAlignment="Right"
-                           Content="Расчет"
-                           Appearance="Primary"
-                           Command="{Binding CalcCommand}"/>
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            Margin="0,0,35,0">
+                    <ui:Button Width="150"
+                               Margin="0,0,8,0"
+                               Content="Расчет"
+                               Appearance="Primary"
+                               Command="{Binding CalcCommand}"/>
+                    <ui:Button Width="180"
+                               Content="Сформировать ЦИМ-2"
+                               Command="{Binding GenerateCim2Command}"/>
+                </StackPanel>
 
             </Grid>
             <Grid Grid.Column="2" Height="{Binding ActualHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}}">
@@ -478,7 +484,7 @@
                                                                    HorizontalAlignment="Right"/>
                                                     </Grid>
                                                 </shared:LabeledControlPresenter>
-                                                <shared:LabeledControlPresenter HeaderText="ρ (плотность)" RightText="кг/м³">
+                                                <shared:LabeledControlPresenter HeaderText="ρ (плотность)" RightText="г/см³">
                                                     <ui:NumberBox Value="{Binding rho, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </shared:LabeledControlPresenter>
                                                 <shared:LabeledControlPresenter HeaderText="D (диаметр)" RightText="м">

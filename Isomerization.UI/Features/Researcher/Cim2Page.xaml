@@ -1,0 +1,142 @@
+<Page x:Class="Isomerization.UI.Features.Researcher.Cim2Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:shared="clr-namespace:Isomerization.UI.Shared"
+      xmlns:researcher="clr-namespace:Isomerization.UI.Features.Researcher"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance Type=researcher:Cim2PageViewModel}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <ui:Button Content="На главную" Command="{Binding GoHomeMenu}" Margin="0,0,8,0"/>
+            <ui:Button Content="Сформировать ЦИМ-2" Appearance="Primary" Command="{Binding RunCim2Command}"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="390"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ui:PassiveScrollViewer Grid.Column="0" Margin="0,0,10,0">
+                <StackPanel>
+                    <shared:LabeledControlPresenter HeaderText="Исходные данные" HeaderFontSize="16">
+                        <ui:Card>
+                            <StackPanel>
+                                <shared:LabeledControlPresenter HeaderText="Реактор">
+                                    <ui:TextBox IsReadOnly="True" Text="{Binding ReactorName}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="Расход, кг/с">
+                                    <ui:NumberBox Value="{Binding FlowRate}" IsReadOnly="True"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="Температура, °C">
+                                    <ui:NumberBox Value="{Binding Temperature}" IsReadOnly="True"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="Давление, кПа">
+                                    <ui:NumberBox Value="{Binding Pressure}" IsReadOnly="True"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="Плотность, г/см³">
+                                    <ui:NumberBox Value="{Binding Density}" IsReadOnly="True"/>
+                                </shared:LabeledControlPresenter>
+                            </StackPanel>
+                        </ui:Card>
+                    </shared:LabeledControlPresenter>
+
+                    <shared:LabeledControlPresenter HeaderText="Параметры ЦИМ-2" HeaderFontSize="16" Margin="0,8,0,0">
+                        <ui:Card>
+                            <StackPanel>
+                                <shared:LabeledControlPresenter HeaderText="Допустимая скорость, м/с">
+                                    <ui:NumberBox Value="{Binding AllowedVelocity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="Длина линии, м">
+                                    <ui:NumberBox Value="{Binding PipeLength, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="Макс. потери, Па">
+                                    <ui:NumberBox Value="{Binding MaxPressureLoss, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="Макс. энергопотребление, Вт">
+                                    <ui:NumberBox Value="{Binding MaxEnergyConsumption, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="КПД насоса">
+                                    <ui:NumberBox Value="{Binding Efficiency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <shared:LabeledControlPresenter HeaderText="Класс давления">
+                                    <ui:TextBox Text="{Binding PreferredPressureClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </shared:LabeledControlPresenter>
+                                <CheckBox Content="Требуется насос" IsChecked="{Binding RequiresPump, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
+                                <CheckBox Content="Требуется поворот потока" IsChecked="{Binding RequiresDirectionChange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,0,0"/>
+                            </StackPanel>
+                        </ui:Card>
+                    </shared:LabeledControlPresenter>
+                </StackPanel>
+            </ui:PassiveScrollViewer>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="260"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <shared:LabeledControlPresenter HeaderText="Блок линии" HeaderFontSize="16">
+                    <ui:Card>
+                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Elements}" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Тип" Binding="{Binding ElementType}"/>
+                                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="DN" Binding="{Binding DN}"/>
+                                <DataGridTextColumn Header="Длина, м" Binding="{Binding Length, StringFormat=F2}"/>
+                                <DataGridTextColumn Header="ζ" Binding="{Binding Zeta, StringFormat=F3}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </ui:Card>
+                </shared:LabeledControlPresenter>
+
+                <shared:LabeledControlPresenter Grid.Row="1" HeaderText="Блок расчёта" HeaderFontSize="16" Margin="0,8,0,0">
+                    <ui:Card>
+                        <WrapPanel>
+                            <TextBlock Margin="0,0,16,0" Text="{Binding Velocity, StringFormat=Скорость: {0:F3} м/с}"/>
+                            <TextBlock Margin="0,0,16,0" Text="{Binding PressureLossTotal, StringFormat=Потери: {0:F2} Па}"/>
+                            <TextBlock Margin="0,0,16,0" Text="{Binding EnergyConsumption, StringFormat=Энергия: {0:F2} Вт}"/>
+                            <TextBlock Margin="0,0,16,0" Text="{Binding PumpPower, StringFormat=Мощность: {0:F2} Вт}"/>
+                            <TextBlock Text="{Binding WallThickness, StringFormat=δрасч: {0:F5} м}"/>
+                        </WrapPanel>
+                    </ui:Card>
+                </shared:LabeledControlPresenter>
+
+                <shared:LabeledControlPresenter Grid.Row="2" HeaderText="Блок проверки" HeaderFontSize="16" Margin="0,8,0,0">
+                    <ui:Card>
+                        <StackPanel>
+                            <TextBlock FontWeight="SemiBold" Text="{Binding IsValid, StringFormat=Проходит: {0}}"/>
+                            <ui:TextBox IsReadOnly="True" Text="{Binding ViolationsText}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="65"/>
+                        </StackPanel>
+                    </ui:Card>
+                </shared:LabeledControlPresenter>
+
+                <shared:LabeledControlPresenter Grid.Row="3" HeaderText="Блок рекомендаций" HeaderFontSize="16" Margin="0,8,0,0">
+                    <ui:Card>
+                        <ui:TextBox IsReadOnly="True" Text="{Binding RecommendationsText}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="85"/>
+                    </ui:Card>
+                </shared:LabeledControlPresenter>
+
+                <shared:LabeledControlPresenter Grid.Row="4" HeaderText="Блок 3D" HeaderFontSize="16" Margin="0,8,0,0">
+                    <ui:Card>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Template3DName, StringFormat=Шаблон: {0}}"/>
+                            <TextBlock Text="{Binding Template3DPath, StringFormat=Путь: {0}}" TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </ui:Card>
+                </shared:LabeledControlPresenter>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

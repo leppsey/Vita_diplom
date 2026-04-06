@@ -8,7 +8,7 @@ public class IsomerizationContextFactory : IDesignTimeDbContextFactory<Isomeriza
     public IsomerizationContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<IsomerizationContext>();
-        optionsBuilder.UseSqlite("DataSource=Membrane.db");
+        optionsBuilder.UseSqlite($"Data Source={IsomerizationContext.DbPath}");
         return new IsomerizationContext(optionsBuilder.Options);
     }
 }

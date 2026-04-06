@@ -1,0 +1,58 @@
+<Page x:Class="Isomerization.UI.Features.Admin.Cim2.PipelinePipesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Isomerization.UI.Features.Admin.Cim2"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:shared="clr-namespace:Isomerization.UI.Shared"
+      mc:Ignorable="d"
+      d:DataContext="{d:DesignInstance local:PipelinePipesPageVM}">
+    <Grid Margin="30,30,30,0">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+        <shared:LabeledControlPresenter HeaderText="ЦИМ-2: Трубы" HeaderFontSize="24">
+            <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsReadOnly="True"
+                      RowStyle="{DynamicResource DataGridRowStyle1}"
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                      Style="{DynamicResource DataGridStyle1}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    <DataGridTextColumn Header="DN" Binding="{Binding DN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80"/>
+                    <DataGridTextColumn Header="Material" Binding="{Binding Material, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    <DataGridTextColumn Header="Roughness" Binding="{Binding Roughness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="90"/>
+                    <DataGridTextColumn Header="PressureClass" Binding="{Binding PressureClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    <DataGridTextColumn Header="Tmin" Binding="{Binding TemperatureMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                    <DataGridTextColumn Header="Tmax" Binding="{Binding TemperatureMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                    <DataGridTextColumn Header="Wall" Binding="{Binding WallThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                    <DataGridTextColumn Header="Standard" Binding="{Binding Standard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    <DataGridTextColumn Header="ModelPath" Binding="{Binding ModelPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    <DataGridTemplateColumn Width="120">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <ui:Button Icon="{ui:SymbolIcon Edit16}"
+                                               Appearance="Info"
+                                               Margin="0,0,5,0"
+                                               Command="{Binding Path=ViewModel.EditCommand, RelativeSource={RelativeSource AncestorType={x:Type local:PipelinePipesPage}}}"
+                                               CommandParameter="{Binding}"/>
+                                    <ui:Button Icon="{ui:SymbolIcon Delete16}"
+                                               Appearance="Danger"
+                                               Command="{Binding Path=ViewModel.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type local:PipelinePipesPage}}}"
+                                               CommandParameter="{Binding}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </shared:LabeledControlPresenter>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <ui:Button Content="Добавить" Appearance="Success" Icon="Add16" Command="{Binding AddCommand}" Margin="0,0,10,0"/>
+            <ui:Button Content="Сохранить изменения" Appearance="Primary" Command="{Binding SaveCommand}"/>
+        </StackPanel>
+    </Grid>
+</Page>
