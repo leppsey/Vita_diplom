@@ -231,6 +231,7 @@ public class ResearcherPageVM: ViewModelBase
 
         var cim1Result = Cim1ResultFactory.Create(LastProcessResult, G, SelectedRawMaterial.Density, T0);
         _cim2SessionService.LastCim1Result = cim1Result;
+        _cim2SessionService.ReactorModel = SelectedInstallation?.Model;
         _navigationService.Navigate(typeof(Cim2Page));
     });
 

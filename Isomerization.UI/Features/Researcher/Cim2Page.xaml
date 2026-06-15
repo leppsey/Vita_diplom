@@ -8,6 +8,9 @@
       xmlns:researcher="clr-namespace:Isomerization.UI.Features.Researcher"
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance Type=researcher:Cim2PageViewModel}">
+    <Page.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Page.Resources>
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -84,7 +87,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <shared:LabeledControlPresenter HeaderText="Блок линии" HeaderFontSize="16">
@@ -128,13 +131,27 @@
                     </ui:Card>
                 </shared:LabeledControlPresenter>
 
-                <shared:LabeledControlPresenter Grid.Row="4" HeaderText="Блок 3D" HeaderFontSize="16" Margin="0,8,0,0">
-                    <ui:Card>
-                        <StackPanel>
+                <shared:LabeledControlPresenter Grid.Row="4"
+                                                  HeaderText="Блок 3D"
+                                                  HeaderFontSize="16"
+                                                  HeaderTextPlacement="Top"
+                                                  Margin="0,8,0,0"
+                                                  Visibility="{Binding Is3DBlockVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid MinHeight="420">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Margin="0,0,0,8">
                             <TextBlock Text="{Binding Template3DName, StringFormat=Шаблон: {0}}"/>
-                            <TextBlock Text="{Binding Template3DPath, StringFormat=Путь: {0}}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Template3DPath, StringFormat=Путь: {0}}"
+                                       TextWrapping="Wrap" Opacity="0.7" FontSize="11"/>
                         </StackPanel>
-                    </ui:Card>
+                        <researcher:InstallationRenderControl Grid.Row="1"
+                                                              x:Name="RenderControl"
+                                                              Height="380"
+                                                              Model="{Binding RenderModel}"/>
+                    </Grid>
                 </shared:LabeledControlPresenter>
             </Grid>
         </Grid>

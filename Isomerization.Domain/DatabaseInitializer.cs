@@ -422,9 +422,9 @@ public class DatabaseInitializer
         {
             context.PipelinePipes.AddRange(new[]
             {
-                new PipelinePipe { Name = "Труба стальная DN80", DN = 80, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.006, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/pipe_dn80.obj" },
-                new PipelinePipe { Name = "Труба стальная DN100", DN = 100, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.007, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/pipe_dn100.obj" },
-                new PipelinePipe { Name = "Труба стальная DN150", DN = 150, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.008, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/pipe_dn150.obj" },
+                new PipelinePipe { Name = "Труба стальная DN80", DN = 80, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.006, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/1.obj" },
+                new PipelinePipe { Name = "Труба стальная DN100", DN = 100, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.007, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/2.obj" },
+                new PipelinePipe { Name = "Труба стальная DN150", DN = 150, Material = "Сталь 20", Roughness = 0.0001, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, WallThickness = 0.008, Standard = "ГОСТ 8732", ModelPath = "resources/pipeline/3.obj" },
             });
         }
 
@@ -432,9 +432,9 @@ public class DatabaseInitializer
         {
             context.PipelineElbows.AddRange(new[]
             {
-                new PipelineElbow { Name = "Отвод 45 DN80", DN = 80, Angle = 45, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/elbow45_dn80.obj" },
-                new PipelineElbow { Name = "Отвод 90 DN80", DN = 80, Angle = 90, Zeta = 0.8, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/elbow90_dn80.obj" },
-                new PipelineElbow { Name = "Отвод 90 DN100", DN = 100, Angle = 90, Zeta = 0.8, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/elbow90_dn100.obj" },
+                new PipelineElbow { Name = "Отвод 45 DN80", DN = 80, Angle = 45, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/1.obj" },
+                new PipelineElbow { Name = "Отвод 90 DN80", DN = 80, Angle = 90, Zeta = 0.8, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/2.obj" },
+                new PipelineElbow { Name = "Отвод 90 DN100", DN = 100, Angle = 90, Zeta = 0.8, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17375", ModelPath = "resources/pipeline/3.obj" },
             });
         }
 
@@ -442,8 +442,8 @@ public class DatabaseInitializer
         {
             context.PipelineReducers.AddRange(new[]
             {
-                new PipelineReducer { Name = "Переход DN100x80", DNIn = 100, DNOut = 80, Zeta = 0.15, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17378", ModelPath = "resources/pipeline/reducer_100_80.obj" },
-                new PipelineReducer { Name = "Переход DN150x100", DNIn = 150, DNOut = 100, Zeta = 0.15, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17378", ModelPath = "resources/pipeline/reducer_150_100.obj" },
+                new PipelineReducer { Name = "Переход DN100x80", DNIn = 100, DNOut = 80, Zeta = 0.15, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17378", ModelPath = "resources/pipeline/1.obj" },
+                new PipelineReducer { Name = "Переход DN150x100", DNIn = 150, DNOut = 100, Zeta = 0.15, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 17378", ModelPath = "resources/pipeline/2.obj" },
             });
         }
 
@@ -451,8 +451,8 @@ public class DatabaseInitializer
         {
             context.PipelineValves.AddRange(new[]
             {
-                new PipelineValve { Name = "Задвижка DN80", Type = "Gate", DN = 80, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 5762", ModelPath = "resources/pipeline/valve_dn80.obj" },
-                new PipelineValve { Name = "Задвижка DN100", Type = "Gate", DN = 100, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 5762", ModelPath = "resources/pipeline/valve_dn100.obj" },
+                new PipelineValve { Name = "Задвижка DN80", Type = "Gate", DN = 80, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 5762", ModelPath = "resources/pipeline/1.obj" },
+                new PipelineValve { Name = "Задвижка DN100", Type = "Gate", DN = 100, Zeta = 0.2, PressureClass = "PN16", TemperatureMin = -40, TemperatureMax = 300, Standard = "ГОСТ 5762", ModelPath = "resources/pipeline/2.obj" },
             });
         }
 
@@ -460,8 +460,8 @@ public class DatabaseInitializer
         {
             context.PipelinePumps.AddRange(new[]
             {
-                new PipelinePump { Name = "Насос НЦ-80", DN = 80, PressureIncrease = 180000, Power = 5500, Efficiency = 0.72, TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/pump_dn80.obj" },
-                new PipelinePump { Name = "Насос НЦ-100", DN = 100, PressureIncrease = 220000, Power = 7500, Efficiency = 0.75, TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/pump_dn100.obj" },
+                new PipelinePump { Name = "Насос НЦ-80", DN = 80, PressureIncrease = 180000, Power = 5500, Efficiency = 0.72, TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/3.obj" },
+                new PipelinePump { Name = "Насос НЦ-100", DN = 100, PressureIncrease = 220000, Power = 7500, Efficiency = 0.75, TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/4.obj" },
             });
         }
 
@@ -469,8 +469,8 @@ public class DatabaseInitializer
         {
             context.PipelineFilters.AddRange(new[]
             {
-                new PipelineFilter { Name = "Фильтр DN80", DN = 80, Zeta = 1.2, PressureClass = "PN16", TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/filter_dn80.obj" },
-                new PipelineFilter { Name = "Фильтр DN100", DN = 100, Zeta = 1.2, PressureClass = "PN16", TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/filter_dn100.obj" },
+                new PipelineFilter { Name = "Фильтр DN80", DN = 80, Zeta = 1.2, PressureClass = "PN16", TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/5.obj" },
+                new PipelineFilter { Name = "Фильтр DN100", DN = 100, Zeta = 1.2, PressureClass = "PN16", TemperatureMin = -20, TemperatureMax = 180, ModelPath = "resources/pipeline/6.obj" },
             });
         }
     }
@@ -481,13 +481,13 @@ public class DatabaseInitializer
         {
             context.PipelineTemplates.AddRange(new[]
             {
-                new PipelineTemplate { Name = "Базовая линия", LineType = "ReactorInletLine", HasPump = false, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_Basic_DN80.obj" },
-                new PipelineTemplate { Name = "Линия с отводом", LineType = "ReactorOutletWithElbow", HasPump = false, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_WithElbow_DN80.obj" },
-                new PipelineTemplate { Name = "Линия с переходом", LineType = "ReactorInletWithReducer", HasPump = false, HasReducer = true, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_WithReducer_DN100.obj" },
-                new PipelineTemplate { Name = "Линия с насосом", LineType = "ReactorInletWithPump", HasPump = true, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = true, SupportedDN = "80,100", Template3DPath = "resources/pipeline/templates/ReactorLine_WithPump_DN100.obj" },
-                new PipelineTemplate { Name = "Линия с насосом и отводом", LineType = "ReactorInletWithPump", HasPump = true, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = true, SupportedDN = "80,100", Template3DPath = "resources/pipeline/templates/ReactorLine_WithPumpElbow_DN100.obj" },
-                new PipelineTemplate { Name = "Выходная линия", LineType = "ReactorOutletLine", HasPump = false, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_Outlet_DN80.obj" },
-                new PipelineTemplate { Name = "Выходная линия с отводом", LineType = "ReactorOutletWithElbow", HasPump = false, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/ReactorLine_OutletElbow_DN80.obj" },
+                new PipelineTemplate { Name = "Базовая линия", LineType = "ReactorInletLine", HasPump = false, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/123456.obj" },
+                new PipelineTemplate { Name = "Линия с отводом", LineType = "ReactorOutletWithElbow", HasPump = false, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/123456.obj" },
+                new PipelineTemplate { Name = "Линия с переходом", LineType = "ReactorInletWithReducer", HasPump = false, HasReducer = true, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/1.obj" },
+                new PipelineTemplate { Name = "Линия с насосом", LineType = "ReactorInletWithPump", HasPump = true, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = true, SupportedDN = "80,100", Template3DPath = "resources/pipeline/templates/123456.obj" },
+                new PipelineTemplate { Name = "Линия с насосом и отводом", LineType = "ReactorInletWithPump", HasPump = true, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = true, SupportedDN = "80,100", Template3DPath = "resources/pipeline/templates/1.obj" },
+                new PipelineTemplate { Name = "Выходная линия", LineType = "ReactorOutletLine", HasPump = false, HasReducer = false, HasElbow = false, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/1.obj" },
+                new PipelineTemplate { Name = "Выходная линия с отводом", LineType = "ReactorOutletWithElbow", HasPump = false, HasReducer = false, HasElbow = true, HasValve = true, HasFilter = false, SupportedDN = "80,100,150", Template3DPath = "resources/pipeline/templates/1.obj" },
             });
         }
 
@@ -495,9 +495,9 @@ public class DatabaseInitializer
         {
             context.Pipeline3DTemplates.AddRange(new[]
             {
-                new Pipeline3DTemplate { Name = "ReactorLine_Basic_DN80", LineType = "ReactorInletLine", SupportedDN = "80", RequiredElements = "Pipe,Valve", PreviewPath = "resources/pipeline/preview/basic_dn80.png", ModelPath = "resources/pipeline/templates/ReactorLine_Basic_DN80.obj" },
-                new Pipeline3DTemplate { Name = "ReactorLine_WithPump_DN100", LineType = "ReactorInletWithPump", SupportedDN = "100", RequiredElements = "Pipe,Filter,Pump,Valve", PreviewPath = "resources/pipeline/preview/pump_dn100.png", ModelPath = "resources/pipeline/templates/ReactorLine_WithPump_DN100.obj" },
-                new Pipeline3DTemplate { Name = "ReactorLine_WithReducer_DN150", LineType = "ReactorInletWithReducer", SupportedDN = "150", RequiredElements = "Pipe,Reducer,Valve", PreviewPath = "resources/pipeline/preview/reducer_dn150.png", ModelPath = "resources/pipeline/templates/ReactorLine_WithReducer_DN150.obj" },
+                new Pipeline3DTemplate { Name = "ReactorLine_Basic_DN80", LineType = "ReactorInletLine", SupportedDN = "80", RequiredElements = "Pipe,Valve", PreviewPath = "resources/pipeline/preview/basic_dn80.png", ModelPath = "resources/pipeline/templates/1.obj" },
+                new Pipeline3DTemplate { Name = "ReactorLine_WithPump_DN100", LineType = "ReactorInletWithPump", SupportedDN = "100", RequiredElements = "Pipe,Filter,Pump,Valve", PreviewPath = "resources/pipeline/preview/pump_dn100.png", ModelPath = "resources/pipeline/templates/1.obj" },
+                new Pipeline3DTemplate { Name = "ReactorLine_WithReducer_DN150", LineType = "ReactorInletWithReducer", SupportedDN = "150", RequiredElements = "Pipe,Reducer,Valve", PreviewPath = "resources/pipeline/preview/reducer_dn150.png", ModelPath = "resources/pipeline/templates/1.obj" },
             });
         }
     }

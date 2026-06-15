@@ -82,6 +82,9 @@
     <None Update="resources\Cubemap_Grandcanyon.dds">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="resources\pipeline\**\*">
+  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+</None>
   </ItemGroup>
 
   <ItemGroup>

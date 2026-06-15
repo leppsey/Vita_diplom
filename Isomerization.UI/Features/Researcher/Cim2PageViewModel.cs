@@ -3,8 +3,11 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using Isomerization.Domain.Cim2;
+using Isomerization.Domain.Data;
+using Isomerization.Domain.Models;
 using Isomerization.Shared;
 using Isomerization.UI.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace Isomerization.UI.Features.Researcher;
 
@@ -14,17 +17,20 @@ public class Cim2PageViewModel : ViewModelBase
     private readonly ICim2SessionService _session;
     private readonly IMessageBoxService _messageBoxService;
     private readonly IMenuService _menuService;
+    private readonly IsomerizationContext _context;
 
     public Cim2PageViewModel(
         Cim2OrchestratorService orchestrator,
         ICim2SessionService session,
         IMessageBoxService messageBoxService,
-        IMenuService menuService)
+        IMenuService menuService,
+        IsomerizationContext context)
     {
         _orchestrator = orchestrator;
         _session = session;
         _messageBoxService = messageBoxService;
         _menuService = menuService;
+        _context = context;
         Elements = new ObservableCollection<PipelineElement>();
     }
 
@@ -50,6 +56,10 @@ public class Cim2PageViewModel : ViewModelBase
     public string RecommendationsText { get; set; } = string.Empty;
     public string Template3DName { get; set; } = string.Empty;
     public string Template3DPath { get; set; } = string.Empty;
+    public Model? RenderModel { get; private set; }
+    public bool Is3DBlockVisible { get; private set; }
+
+    public event EventHandler? RenderModelChanged;
 
     public bool RequiresPump { get; set; }
     public bool RequiresDirectionChange { get; set; }
@@ -68,6 +78,7 @@ public class Cim2PageViewModel : ViewModelBase
         var cim1 = _session.LastCim1Result;
         if (cim1 == null)
         {
+            ClearRenderModel();
             return;
         }
 
@@ -76,12 +87,62 @@ public class Cim2PageViewModel : ViewModelBase
         Temperature = cim1.Temperature;
         Pressure = cim1.PressureKPa;
         Density = cim1.DensityGsm3;
+        Apply3DFromCim2Result(_session.LastCim2Result);
         OnPropertyChanged(nameof(ReactorName));
         OnPropertyChanged(nameof(FlowRate));
         OnPropertyChanged(nameof(Temperature));
         OnPropertyChanged(nameof(Pressure));
         OnPropertyChanged(nameof(Density));
         OnPropertyChanged(nameof(HasCim1Input));
+    }
+
+    private void Apply3DFromCim2Result(Cim2Result? cim2Result)
+    {
+        if (cim2Result == null || string.IsNullOrWhiteSpace(cim2Result.Template3DName))
+        {
+            ClearRenderModel();
+            return;
+        }
+
+        var template = _context.Pipeline3DTemplates
+            .AsNoTracking()
+            .FirstOrDefault(t => t.Name == cim2Result.Template3DName);
+
+        if (template == null && !string.IsNullOrWhiteSpace(cim2Result.Template3DPath))
+        {
+            template = _context.Pipeline3DTemplates
+                .AsNoTracking()
+                .FirstOrDefault(t => t.ModelPath == cim2Result.Template3DPath);
+        }
+
+        if (template == null || string.IsNullOrWhiteSpace(template.ModelPath))
+        {
+            ClearRenderModel();
+            return;
+        }
+
+        Template3DName = template.Name;
+        Template3DPath = template.ModelPath;
+        RenderModel = new Model
+        {
+            ObjPath = template.ModelPath.Replace('\\', '/'),
+        };
+        Is3DBlockVisible = true;
+
+        OnPropertyChanged(nameof(Template3DName));
+        OnPropertyChanged(nameof(Template3DPath));
+        OnPropertyChanged(nameof(RenderModel));
+        OnPropertyChanged(nameof(Is3DBlockVisible));
+        RenderModelChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void ClearRenderModel()
+    {
+        RenderModel = null;
+        Is3DBlockVisible = false;
+        OnPropertyChanged(nameof(RenderModel));
+        OnPropertyChanged(nameof(Is3DBlockVisible));
+        RenderModelChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private RelayCommand _goHomeMenu;
@@ -134,8 +195,9 @@ public class Cim2PageViewModel : ViewModelBase
             ? "Нарушений не обнаружено."
             : string.Join("\n", result.Line.ValidationResult.Violations);
         RecommendationsText = string.Join("\n", result.Recommendations);
-        Template3DName = result.TemplateName;
+        Template3DName = result.Template3DName;
         Template3DPath = result.Template3DPath;
+        Apply3DFromCim2Result(result);
 
         OnPropertyChanged(nameof(Elements));
         OnPropertyChanged(nameof(SelectedDn));

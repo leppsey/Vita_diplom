@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using Isomerization.Domain.Models;
@@ -11,20 +10,23 @@ public partial class InstallationRenderControl : UserControl, IViewWithVM<Instal
     public InstallationRenderControl()
     {
         ViewModel = App.GetService<InstallationRenderControlVM>();
-        DataContext = ViewModel;
         InitializeComponent();
+        RootGrid.DataContext = ViewModel;
     }
 
     public InstallationRenderControlVM ViewModel { get; set; }
     
-    public static readonly DependencyProperty ModelProperty = DependencyProperty.RegisterAttached(
+    public static readonly DependencyProperty ModelProperty = DependencyProperty.Register(
         nameof(Model), typeof(Model), typeof(InstallationRenderControl), new FrameworkPropertyMetadata(
             null,
             new PropertyChangedCallback(PropertyChangedCallback)));
 
     private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {
-        Debug.WriteLine(e.NewValue);
+        if (d is InstallationRenderControl control)
+        {
+            control.ViewModel.Model = e.NewValue as Model;
+        }
     }
 
     public Model Model

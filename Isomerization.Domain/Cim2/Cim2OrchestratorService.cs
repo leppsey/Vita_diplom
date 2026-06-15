@@ -81,6 +81,7 @@ public class Cim2OrchestratorService
         {
             Line = line,
             TemplateName = template.Name,
+            Template3DName = template3d.Name,
             Template3DPath = template3d.ModelPath,
             Recommendations = new List<string>(line.Recommendations)
         };
