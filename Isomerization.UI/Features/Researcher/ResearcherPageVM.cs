@@ -317,7 +317,7 @@ public class ResearcherPageVM: ViewModelBase
         summary.AppendLine($"Энергопотребление процесса ESproc: {best.ProcessEnergyConsumption:F2}");
         summary.AppendLine($"Октановое число: {best.OctaneNumber:F2}");
         summary.AppendLine($"Концентрация изопентана (выход), %: {best.IsopentaneConcentration:F2}");
-        summary.AppendLine($"Степень изомеризации (по ключевому компоненту): {best.IsomerizationDegree:F4}");
+        //summary.AppendLine($"Степень изомеризации (по ключевому компоненту): {best.IsomerizationDegree:F4}");
         summary.AppendLine();
         summary.AppendLine("Другие подходящие установки:");
         foreach (var o in otherCalcs)

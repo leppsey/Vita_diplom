@@ -218,7 +218,7 @@ public class Cim2PageViewModel : ViewModelBase
         sb.AppendLine($"DN: {SelectedDn}");
         sb.AppendLine($"v: {Velocity:F3} м/с");
         sb.AppendLine($"ΔPΣ: {PressureLossTotal:F2} Па");
-        sb.AppendLine($"Энергопотребление: {EnergyConsumption:F2} Вт");
+        sb.AppendLine($"Энергопотребление: {EnergyConsumption:F2} кВт");
         sb.AppendLine($"Проверка: {(IsValid ? "пройдена" : "не пройдена")}");
         _messageBoxService.Show(sb.ToString(), "Результат ЦИМ-2", MessageBoxButton.OK);
     });

@@ -170,7 +170,7 @@ public class InstallationRenderControlVM : ViewModelBase
                 continue;
             }
 
-            if (isPipelineTemplate)
+            if (true || isPipelineTemplate)
             {
                 m.Material = new PhongMaterialCore
                 {

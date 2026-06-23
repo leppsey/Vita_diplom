@@ -125,7 +125,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="resources\1\" />
     <Folder Include="resources\2\" />
     <Folder Include="resources\3\" />
   </ItemGroup>

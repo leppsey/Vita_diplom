@@ -496,8 +496,8 @@ public class DatabaseInitializer
             context.Pipeline3DTemplates.AddRange(new[]
             {
                 new Pipeline3DTemplate { Name = "ReactorLine_Basic_DN80", LineType = "ReactorInletLine", SupportedDN = "80", RequiredElements = "Pipe,Valve", PreviewPath = "resources/pipeline/preview/basic_dn80.png", ModelPath = "resources/pipeline/templates/1.obj" },
-                new Pipeline3DTemplate { Name = "ReactorLine_WithPump_DN100", LineType = "ReactorInletWithPump", SupportedDN = "100", RequiredElements = "Pipe,Filter,Pump,Valve", PreviewPath = "resources/pipeline/preview/pump_dn100.png", ModelPath = "resources/pipeline/templates/1.obj" },
-                new Pipeline3DTemplate { Name = "ReactorLine_WithReducer_DN150", LineType = "ReactorInletWithReducer", SupportedDN = "150", RequiredElements = "Pipe,Reducer,Valve", PreviewPath = "resources/pipeline/preview/reducer_dn150.png", ModelPath = "resources/pipeline/templates/1.obj" },
+                new Pipeline3DTemplate { Name = "ReactorLine_WithPump_DN100", LineType = "ReactorInletWithPump", SupportedDN = "100", RequiredElements = "Pipe,Filter,Pump,Valve", PreviewPath = "resources/pipeline/preview/pump_dn100.png", ModelPath = "resources/pipeline/templates/2.obj" },
+                new Pipeline3DTemplate { Name = "ReactorLine_WithReducer_DN150", LineType = "ReactorInletWithReducer", SupportedDN = "150", RequiredElements = "Pipe,Reducer,Valve", PreviewPath = "resources/pipeline/preview/reducer_dn150.png", ModelPath = "resources/pipeline/templates/3.obj" },
             });
         }
     }

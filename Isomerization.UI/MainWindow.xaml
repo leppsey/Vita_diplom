@@ -33,7 +33,7 @@
         </ui:NavigationView>
         <ContentPresenter x:Name="RootContentDialog" Grid.Row="1" Grid.RowSpan="2" />
         <ui:TitleBar
-            Title="Программный комплекс для технологического проектирования установок изомеризации"
+            Title="Интеллектуальная система для технологического проектирования установок изомеризации"
             Grid.Row="0"
             Icon="pack://application:,,,/Assets/applicationIcon-256.png" />
         <Menu Grid.Row="1" Visibility="{Binding IsMenuEnabled, Converter = {StaticResource BooleanToVisibilityConverter}}">
