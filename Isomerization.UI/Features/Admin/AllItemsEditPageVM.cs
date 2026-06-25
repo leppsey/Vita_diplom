@@ -36,8 +36,14 @@ public class AllItemsEditPageVM: ViewModelBase
             },
             new()
             {
-                Name = "ЦИМ-2: Справочники",
+                Name = "ЦИМ-2: Трубопроводные элементы",
                 Link = nameof(Cim2DictionariesPage),
+            },
+            new()
+            {
+                Name = "ЦИМ-2: Правила проектирования",
+                Description = "Конструктор правил трубопроводных линий и симулятор",
+                Link = nameof(PipelineRulesPage),
             },
             new()
             {

@@ -12,5 +12,9 @@ public class Cim2ExecutionContext
     public bool RequiresElbow { get; set; }
     public bool RequiresPumpAssembly { get; set; }
     public bool SimplifyTemplate { get; set; }
+    public bool RequiresCompatibleElements { get; set; }
+    public double PressureLossTotal { get; set; }
+    public double EnergyConsumption { get; set; }
+    public bool ElementLimitExceeded { get; set; }
     public List<string> RuleRecommendations { get; } = new();
 }

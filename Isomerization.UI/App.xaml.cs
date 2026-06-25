@@ -47,6 +47,8 @@ public partial class App : Application
         builder.RegisterType<Features.Task3ViewModel>().AsSelf();
         // Явная регистрация ViewModel ЦИМ-2 (не оканчивается на "VM")
         builder.RegisterType<Cim2PageViewModel>().AsSelf();
+        builder.RegisterType<Features.Admin.Cim2.PipelineRulesPageVM>().AsSelf();
+        builder.RegisterType<Features.Admin.Cim2.PipelineRuleEditControlVM>().AsSelf();
 
         #endregion
         
@@ -71,6 +73,7 @@ public partial class App : Application
         builder.RegisterType<PipelineLineTypeResolver>().AsSelf().SingleInstance();
         builder.RegisterType<PipelineDiameterSelectionService>().AsSelf().SingleInstance();
         builder.RegisterType<RuleEngineService>().AsSelf().SingleInstance();
+        builder.RegisterType<PipelineRuleSimulationService>().AsSelf().SingleInstance();
         builder.RegisterType<PipelineTemplateSelector>().AsSelf().SingleInstance();
         builder.RegisterType<PipelineElementSelector>().AsSelf().SingleInstance();
         builder.RegisterType<PipelineCalculationService>().AsSelf().SingleInstance();

@@ -185,32 +185,6 @@
                     </StackPanel>
                 </Grid>
             </TabItem>
-
-            <TabItem Header="Правила">
-                <Grid><Grid.RowDefinitions><RowDefinition/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
-                    <DataGrid Grid.Row="0" IsReadOnly="True"
-                              ItemsSource="{Binding Rules}" AutoGenerateColumns="False"
-                              RowStyle="{DynamicResource DataGridRowStyle1}"
-                              ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
-                              CellStyle="{DynamicResource DataGridCellStyle1}"
-                              Style="{DynamicResource DataGridStyle1}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Название" Binding="{Binding Name, Mode=TwoWay}" Width="*"/>
-                            <DataGridTextColumn Header="Тип условия" Binding="{Binding ConditionType, Mode=TwoWay}" Width="130"/>
-                            <DataGridTextColumn Header="Оператор" Binding="{Binding ConditionOperator, Mode=TwoWay}" Width="80"/>
-                            <DataGridTextColumn Header="Значение условия" Binding="{Binding ConditionValue, Mode=TwoWay}" Width="130"/>
-                            <DataGridTextColumn Header="Тип действия" Binding="{Binding ActionType, Mode=TwoWay}" Width="120"/>
-                            <DataGridTextColumn Header="Значение действия" Binding="{Binding ActionValue, Mode=TwoWay}" Width="140"/>
-                            <DataGridTextColumn Header="Приоритет" Binding="{Binding Priority, Mode=TwoWay}" Width="80"/>
-                            <DataGridCheckBoxColumn Header="Вкл." Binding="{Binding IsEnabled, Mode=TwoWay}" Width="60"/>
-                            <DataGridTemplateColumn Width="120"><DataGridTemplateColumn.CellTemplate><DataTemplate><StackPanel Orientation="Horizontal"><ui:Button Icon="{ui:SymbolIcon Edit16}" Appearance="Info" Margin="0,0,5,0" Command="{Binding Path=ViewModel.EditRuleCommand, RelativeSource={RelativeSource AncestorType={x:Type local:Cim2DictionariesPage}}}" CommandParameter="{Binding}"/><ui:Button Icon="{ui:SymbolIcon Delete16}" Appearance="Danger" Command="{Binding Path=ViewModel.DeleteRuleCommand, RelativeSource={RelativeSource AncestorType={x:Type local:Cim2DictionariesPage}}}" CommandParameter="{Binding}"/></StackPanel></DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="0,8,0,0">
-                        <ui:Button Content="Добавить правило" Appearance="Success" Icon="Add16" Command="{Binding AddRuleCommand}"/>
-                    </StackPanel>
-                </Grid>
-            </TabItem>
         </TabControl>
     </Grid>
 </Page>

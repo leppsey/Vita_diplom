@@ -4,6 +4,8 @@ namespace Isomerization.Domain.Cim2;
 
 public class Cim2OrchestratorService
 {
+    private const int MaxRuleIterations = 3;
+
     private readonly PipelineLineTypeResolver _lineTypeResolver;
     private readonly PipelineDiameterSelectionService _diameterSelectionService;
     private readonly RuleEngineService _ruleEngineService;
@@ -52,20 +54,47 @@ public class Cim2OrchestratorService
             RequiresPumpAssembly = request.RequiresPump
         };
 
-        _ruleEngineService.ApplyRules(executionContext);
-
-        var template = _templateSelector.Select(executionContext.LineType, executionContext.SelectedDn, executionContext.SimplifyTemplate);
-        var elements = _elementSelector.BuildElements(template, executionContext);
-
-        var line = new PipelineLine
+        PipelineLine line = null!;
+        for (var iteration = 0; iteration < MaxRuleIterations; iteration++)
         {
-            Name = template.Name,
-            LineType = executionContext.LineType,
-            Elements = elements
-        };
+            if (iteration == 0)
+            {
+                _ruleEngineService.ApplyRules(executionContext, PipelineRulePhase.PreCalculation);
+            }
 
-        line.CalculationResult = _calculationService.Calculate(line, request);
-        line.ValidationResult = _validationService.Validate(line, request);
+            var template = _templateSelector.Select(executionContext.LineType, executionContext.SelectedDn, executionContext.SimplifyTemplate);
+            var elements = _elementSelector.BuildElements(template, executionContext);
+
+            line = new PipelineLine
+            {
+                Name = template.Name,
+                LineType = executionContext.LineType,
+                Elements = elements
+            };
+
+            line.CalculationResult = _calculationService.Calculate(line, request);
+            line.ValidationResult = _validationService.Validate(line, request);
+
+            executionContext.PressureLossTotal = line.CalculationResult.PressureLossTotal;
+            executionContext.EnergyConsumption = line.CalculationResult.EnergyConsumption;
+            executionContext.ElementLimitExceeded = line.ValidationResult.Violations.Exists(x =>
+                x.Contains("температур", System.StringComparison.OrdinalIgnoreCase));
+
+            var selectedDnBefore = executionContext.SelectedDn;
+            var simplifyBefore = executionContext.SimplifyTemplate;
+            var compatibleBefore = executionContext.RequiresCompatibleElements;
+
+            _ruleEngineService.ApplyRules(executionContext, PipelineRulePhase.PostCalculation);
+
+            var needsRebuild = executionContext.SelectedDn != selectedDnBefore
+                               || executionContext.SimplifyTemplate != simplifyBefore
+                               || executionContext.RequiresCompatibleElements != compatibleBefore;
+
+            if (!needsRebuild)
+            {
+                break;
+            }
+        }
 
         var recommendations = _recommendationService.BuildRecommendations(line, request);
         if (executionContext.RuleRecommendations.Count > 0)
@@ -80,7 +109,7 @@ public class Cim2OrchestratorService
         return new Cim2Result
         {
             Line = line,
-            TemplateName = template.Name,
+            TemplateName = line.Name,
             Template3DName = template3d.Name,
             Template3DPath = template3d.ModelPath,
             Recommendations = new List<string>(line.Recommendations)
