@@ -11,6 +11,7 @@ public partial class Cim2Page : INavigableView<Cim2PageViewModel>
         DataContext = ViewModel;
         InitializeComponent();
         ViewModel.RenderModelChanged += (_, _) => ApplyRenderModel();
+        ViewModel.RequestReset3DView += (_, _) => RenderControl.ResetView();
         Loaded += OnLoaded;
     }
 

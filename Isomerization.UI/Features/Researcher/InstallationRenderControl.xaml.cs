@@ -38,4 +38,9 @@ public partial class InstallationRenderControl : UserControl, IViewWithVM<Instal
             ViewModel.Model = value;
         }
     }
+
+    public void ResetView()
+    {
+        ViewModel.ResetViewToBounds();
+    }
 }

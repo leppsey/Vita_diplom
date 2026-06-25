@@ -8,28 +8,39 @@
       xmlns:shared="clr-namespace:Isomerization.UI.Shared"
       mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:PipelinePipesPageVM}">
-    <Grid Margin="30,30,30,0">
+    <Grid Margin="24">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
-            <RowDefinition Height="70" />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <shared:LabeledControlPresenter HeaderText="ЦИМ-2: Трубы" HeaderFontSize="24">
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,12">
+            <TextBlock Text="ЦИМ-2: Трубы"
+                       FontSize="24"
+                       FontWeight="SemiBold"/>
+            <TextBlock Text="Справочник типовых труб для автоматического формирования линий."
+                       Margin="0,4,0,0"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+        </StackPanel>
+
+        <shared:LabeledControlPresenter Grid.Row="1" HeaderText="Список труб" HeaderTextPlacement="Top">
             <DataGrid ItemsSource="{Binding Items}" AutoGenerateColumns="False" IsReadOnly="True"
                       RowStyle="{DynamicResource DataGridRowStyle1}"
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                       CellStyle="{DynamicResource DataGridCellStyle1}"
                       Style="{DynamicResource DataGridStyle1}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Name" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                     <DataGridTextColumn Header="DN" Binding="{Binding DN, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="80"/>
-                    <DataGridTextColumn Header="Material" Binding="{Binding Material, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                    <DataGridTextColumn Header="Roughness" Binding="{Binding Roughness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="90"/>
-                    <DataGridTextColumn Header="PressureClass" Binding="{Binding PressureClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
-                    <DataGridTextColumn Header="Tmin" Binding="{Binding TemperatureMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
-                    <DataGridTextColumn Header="Tmax" Binding="{Binding TemperatureMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
-                    <DataGridTextColumn Header="Wall" Binding="{Binding WallThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
-                    <DataGridTextColumn Header="Standard" Binding="{Binding Standard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
-                    <DataGridTextColumn Header="ModelPath" Binding="{Binding ModelPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    <DataGridTextColumn Header="Материал" Binding="{Binding Material, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    <DataGridTextColumn Header="Шероховатость" Binding="{Binding Roughness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110"/>
+                    <DataGridTextColumn Header="Класс давления" Binding="{Binding PressureClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120"/>
+                    <DataGridTextColumn Header="T min" Binding="{Binding TemperatureMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                    <DataGridTextColumn Header="T max" Binding="{Binding TemperatureMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="70"/>
+                    <DataGridTextColumn Header="Толщина стенки" Binding="{Binding WallThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110"/>
+                    <DataGridTextColumn Header="Стандарт" Binding="{Binding Standard, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
+                    <DataGridTextColumn Header="Путь к 3D модели" Binding="{Binding ModelPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="*"/>
                     <DataGridTemplateColumn Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -50,9 +61,10 @@
                 </DataGrid.Columns>
             </DataGrid>
         </shared:LabeledControlPresenter>
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <ui:Button Content="Добавить" Appearance="Success" Icon="Add16" Command="{Binding AddCommand}" Margin="0,0,10,0"/>
-            <ui:Button Content="Сохранить изменения" Appearance="Primary" Command="{Binding SaveCommand}"/>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,12,0,0">
+            <ui:Button Content="Добавить трубу" Appearance="Success" Icon="Add16" Command="{Binding AddCommand}" Margin="0,0,10,0"/>
+            <ui:Button Content="Сохранить изменения" Appearance="Primary" Icon="Save24" Command="{Binding SaveCommand}"/>
         </StackPanel>
     </Grid>
 </Page>

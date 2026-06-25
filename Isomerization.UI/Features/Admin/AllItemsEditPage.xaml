@@ -4,14 +4,191 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:Isomerization.UI.Features.Admin"
-      mc:Ignorable="d"
       xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      mc:Ignorable="d"
       d:DataContext="{d:DesignInstance local:AllItemsEditPageVM}"
-      xmlns:shared="clr-namespace:Isomerization.UI.Shared"
-      Title="AllItemsEditPage">
-    <Grid Margin="150">
-        <shared:GalleryNavigationPresenter ItemsSource="{Binding NavigationCards}">
-            
-        </shared:GalleryNavigationPresenter>
-    </Grid>
+      Title="Панель инженера по знаниям">
+    <Page.Resources>
+        <local:DashboardStatusKindToBackgroundConverter x:Key="StatusBgConverter"/>
+        <local:DashboardStatusKindToForegroundConverter x:Key="StatusFgConverter"/>
+        <local:DashboardStatusKindToBorderConverter x:Key="StatusBorderConverter"/>
+
+        <DataTemplate x:Key="StatusBadgeTemplate" DataType="{x:Type local:DashboardSectionCard}">
+            <Border Padding="8,3"
+                    CornerRadius="4"
+                    Background="{Binding StatusKind, Converter={StaticResource StatusBgConverter}}"
+                    BorderBrush="{Binding StatusKind, Converter={StaticResource StatusBorderConverter}}"
+                    BorderThickness="1">
+                <TextBlock Text="{Binding StatusText}"
+                           FontSize="11"
+                           FontWeight="SemiBold"
+                           Foreground="{Binding StatusKind, Converter={StaticResource StatusFgConverter}}"/>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="SectionCardTemplate" DataType="{x:Type local:DashboardSectionCard}">
+            <ui:Button Margin="0,0,10,10"
+                       Width="320"
+                       Padding="0"
+                       HorizontalContentAlignment="Stretch"
+                       VerticalContentAlignment="Stretch"
+                       Background="Transparent"
+                       BorderThickness="0"
+                       Command="{Binding DataContext.NavigateSectionCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                       CommandParameter="{Binding}"
+                       Opacity="{Binding IsNavigable, Converter={x:Static local:KnowledgeDashboardConverters.NavigableOpacityConverter}}">
+                <ui:Card Padding="14" MinHeight="118">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Width="40" Height="40"
+                                CornerRadius="8"
+                                Margin="0,0,12,0"
+                                Background="{DynamicResource SystemFillColorNeutralBackgroundBrush}">
+                            <ui:SymbolIcon Symbol="{Binding Icon}"
+                                           FontSize="18"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                        </Border>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"
+                                       TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Description}"
+                                       Margin="0,4,0,0"
+                                       FontSize="12"
+                                       TextWrapping="Wrap"
+                                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            <TextBlock Text="{Binding MetadataText}"
+                                       Margin="0,8,0,0"
+                                       FontSize="11"
+                                       Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" VerticalAlignment="Top" Margin="8,0,0,0">
+                            <ContentControl Content="{Binding}"
+                                            ContentTemplate="{StaticResource StatusBadgeTemplate}"
+                                            Margin="0,0,0,8"/>
+                            <ui:SymbolIcon Symbol="ChevronRight20"
+                                           HorizontalAlignment="Right"
+                                           Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                        </StackPanel>
+                    </Grid>
+                </ui:Card>
+            </ui:Button>
+        </DataTemplate>
+    </Page.Resources>
+
+    <ui:PassiveScrollViewer Padding="24,16,24,24">
+        <StackPanel MaxWidth="1400" HorizontalAlignment="Stretch">
+            <TextBlock Text="{Binding SystemTitle}"
+                       FontSize="12"
+                       Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                       TextWrapping="Wrap"/>
+
+            <TextBlock Text="{Binding PanelTitle}"
+                       Margin="0,6,0,0"
+                       FontSize="24"
+                       FontWeight="SemiBold"/>
+            <TextBlock Text="{Binding PanelSubtitle}"
+                       Margin="0,4,0,12"
+                       FontSize="13"
+                       TextWrapping="Wrap"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+
+            <WrapPanel Margin="0,0,0,14">
+                <ui:Button Content="Добавить правило"
+                           Margin="0,0,8,8"
+                           Appearance="Primary"
+                           Icon="{ui:SymbolIcon Add24}"
+                           Command="{Binding AddRuleCommand}"/>
+                <ui:Button Content="Открыть симулятор правил"
+                           Margin="0,0,8,8"
+                           Icon="{ui:SymbolIcon Play24}"
+                           Command="{Binding OpenSimulatorCommand}"/>
+            </WrapPanel>
+
+            <ItemsControl ItemsSource="{Binding StatusCards}" Margin="0,0,0,18">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="4"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type local:DashboardStatusCard}">
+                        <ui:Card Margin="0,0,8,0" Padding="14">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Title}"
+                                           FontSize="12"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                <TextBlock Text="{Binding Value}"
+                                           Margin="0,4,0,0"
+                                           FontSize="22"
+                                           FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Caption}"
+                                           Margin="0,4,0,0"
+                                           FontSize="11"
+                                           TextWrapping="Wrap"
+                                           Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                            </StackPanel>
+                        </ui:Card>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <StackPanel>
+                <ItemsControl ItemsSource="{Binding SectionGroups}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type local:DashboardSectionGroup}">
+                            <StackPanel Margin="0,0,0,16">
+                                <TextBlock Text="{Binding Title}"
+                                           FontSize="16"
+                                           FontWeight="SemiBold"
+                                           Margin="0,0,0,10"/>
+                                <ItemsControl ItemsSource="{Binding Cards}"
+                                              ItemTemplate="{StaticResource SectionCardTemplate}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <ui:Card Padding="16" Margin="0,4,0,0" MaxWidth="520" HorizontalAlignment="Left">
+                    <StackPanel>
+                        <TextBlock Text="Основные действия"
+                                   FontSize="15"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,12"/>
+                        <ItemsControl ItemsSource="{Binding WorkflowSteps}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel Margin="0,0,0,8" LastChildFill="True">
+                                        <TextBlock DockPanel.Dock="Left"
+                                                   Text="•"
+                                                   Margin="0,0,8,0"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <TextBlock Text="{Binding}"
+                                                   TextWrapping="Wrap"
+                                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ui:Card>
+            </StackPanel>
+        </StackPanel>
+    </ui:PassiveScrollViewer>
 </Page>

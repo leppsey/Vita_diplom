@@ -247,6 +247,11 @@ public class InstallationRenderControlVM : ViewModelBase
             orthCam.Width = maxWidth;
         }
     }
+
+    public void ResetViewToBounds()
+    {
+        FocusCameraToScene();
+    }
 }
 
 public class AttachedNodeViewModel : ObservableObject

@@ -10,27 +10,64 @@
       d:DataContext="{d:DesignInstance Type=researcher:Cim2PageViewModel}">
     <Page.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <Style x:Key="Cim2LineHeaderToolTipStyle" TargetType="ToolTip">
+            <Setter Property="MaxWidth" Value="360"/>
+        </Style>
+        <Style x:Key="Cim2LineEllipsisCellStyle" TargetType="TextBlock">
+            <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+        </Style>
+        <Style x:Key="MetricCardStyle" TargetType="ui:Card">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="0,0,8,8"/>
+            <Setter Property="Background" Value="{DynamicResource CardBackgroundFillColorDefaultBrush}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding StatusText}" Value="Допустимо">
+                    <Setter Property="BorderBrush" Value="#3A8A5A"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding StatusText}" Value="Близко к пределу">
+                    <Setter Property="BorderBrush" Value="#A7892D"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding StatusText}" Value="Нарушение">
+                    <Setter Property="BorderBrush" Value="#B0413E"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
-    <Grid Margin="20">
+    <Grid Margin="16">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-            <ui:Button Content="На главную" Command="{Binding GoHomeMenu}" Margin="0,0,8,0"/>
-            <ui:Button Content="Сформировать ЦИМ-2" Appearance="Primary" Command="{Binding RunCim2Command}"/>
-        </StackPanel>
+        <Grid Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <ui:Button Content="На главную" Command="{Binding GoHomeMenu}" Margin="0,0,8,0"/>
+                <ui:Button Content="Сохранить расчет" Command="{Binding SaveCalculationCommand}" Margin="0,0,8,0"/>
+                <ui:Button Content="Сохранить вариант линии" Command="{Binding SaveVariantCommand}" Margin="0,0,8,0"/>
+                <ui:Button Content="Экспорт в Excel" Command="{Binding ExportExcelCommand}" Margin="0,0,8,0"/>
+                <ui:Button Content="Сформировать отчет ЦИМ-2" Command="{Binding BuildReportCommand}"/>
+            </StackPanel>
+            <ui:InfoBar Grid.Column="1"
+                        Title="Статус"
+                        Message="{Binding OverallStatusText}"
+                        Severity="Informational"
+                        IsClosable="False"/>
+        </Grid>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="390"/>
+                <ColumnDefinition Width="420"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <ui:PassiveScrollViewer Grid.Column="0" Margin="0,0,10,0">
                 <StackPanel>
-                    <shared:LabeledControlPresenter HeaderText="Исходные данные" HeaderFontSize="16">
+                    <shared:LabeledControlPresenter HeaderText="Технологические параметры" HeaderFontSize="16">
                         <ui:Card>
                             <StackPanel>
                                 <shared:LabeledControlPresenter HeaderText="Реактор">
@@ -52,7 +89,7 @@
                         </ui:Card>
                     </shared:LabeledControlPresenter>
 
-                    <shared:LabeledControlPresenter HeaderText="Параметры ЦИМ-2" HeaderFontSize="16" Margin="0,8,0,0">
+                    <shared:LabeledControlPresenter HeaderText="Ограничения ТЗ" HeaderFontSize="16" Margin="0,8,0,0">
                         <ui:Card>
                             <StackPanel>
                                 <shared:LabeledControlPresenter HeaderText="Допустимая скорость, м/с">
@@ -73,84 +110,385 @@
                                 <shared:LabeledControlPresenter HeaderText="Класс давления">
                                     <ui:TextBox Text="{Binding PreferredPressureClass, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </shared:LabeledControlPresenter>
-                                <CheckBox Content="Требуется насос" IsChecked="{Binding RequiresPump, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,6,0,0"/>
-                                <CheckBox Content="Требуется поворот потока" IsChecked="{Binding RequiresDirectionChange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,4,0,0"/>
                             </StackPanel>
                         </ui:Card>
                     </shared:LabeledControlPresenter>
+
+                    <shared:LabeledControlPresenter HeaderText="Дополнительные требования" HeaderFontSize="16" Margin="0,8,0,0">
+                        <ui:Card>
+                            <StackPanel>
+                                <CheckBox Content="Требуется насос"
+                                          IsChecked="{Binding RequiresPump, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          Margin="0,4,0,0"/>
+                                <CheckBox Content="Требуется поворот потока"
+                                          IsChecked="{Binding RequiresDirectionChange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                          Margin="0,6,0,0"/>
+                            </StackPanel>
+                        </ui:Card>
+                    </shared:LabeledControlPresenter>
+
+                    <ui:Button Content="Сформировать ЦИМ-2"
+                               Appearance="Primary"
+                               Command="{Binding RunCim2Command}"
+                               HorizontalAlignment="Stretch"
+                               Margin="0,12,0,0"/>
                 </StackPanel>
             </ui:PassiveScrollViewer>
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="260"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="300"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <shared:LabeledControlPresenter HeaderText="Блок линии" HeaderFontSize="16">
+                <shared:LabeledControlPresenter HeaderText="Результаты расчета" HeaderFontSize="16">
+                    <ItemsControl ItemsSource="{Binding MetricCards}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ui:Card Style="{StaticResource MetricCardStyle}" Width="210">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}" FontWeight="SemiBold"/>
+                                        <TextBlock Margin="0,6,0,0"
+                                                   FontSize="18"
+                                                   FontWeight="Bold"
+                                                   Text="{Binding ValueText}"/>
+                                        <TextBlock Text="{Binding Unit}" Opacity="0.8"/>
+                                        <TextBlock Margin="0,4,0,0"
+                                                   Text="{Binding LimitText, StringFormat=Ограничение: {0}}"
+                                                   Opacity="0.8"/>
+                                        <TextBlock Margin="0,2,0,0"
+                                                   Text="{Binding StatusText}"
+                                                   FontWeight="SemiBold"/>
+                                    </StackPanel>
+                                </ui:Card>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </shared:LabeledControlPresenter>
+
+                <shared:LabeledControlPresenter Grid.Row="1" HeaderText="Состав трубопроводной линии" HeaderFontSize="16" Margin="0,8,0,0">
                     <ui:Card>
-                        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Elements}" IsReadOnly="True">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <DataGrid Grid.Row="0"
+                                      AutoGenerateColumns="False"
+                                      ItemsSource="{Binding ElementRows}"
+                                      SelectedItem="{Binding SelectedElementRow, Mode=TwoWay}"
+                                      IsReadOnly="True"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                      RowStyle="{DynamicResource DataGridRowStyle1}"
+                                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                                      Style="{DynamicResource DataGridStyle1}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Index}" Width="44" MinWidth="44">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="№" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.Index}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Element.ElementType}" Width="100" MinWidth="90">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="Тип" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.ElementType}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource Cim2LineEllipsisCellStyle}">
+                                                <Setter Property="ToolTip" Value="{Binding Element.ElementType}"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Element.Name}"
+                                                        Width="150"
+                                                        MinWidth="120"
+                                                        MaxWidth="180">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="Наименование" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.ElementName}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource Cim2LineEllipsisCellStyle}">
+                                                <Setter Property="ToolTip" Value="{Binding Element.Name}"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Element.DN}" Width="56" MinWidth="56">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="DN" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.Dn}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Element.Length, StringFormat=F2}" Width="80" MinWidth="80">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="Длина, м" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.Length}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding Element.Zeta, StringFormat=F3}" Width="64" MinWidth="64">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="ζ, —" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.Zeta}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding LossPressure, StringFormat=F1}" Width="88" MinWidth="88">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="Потери, Па" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.LossPressure}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding LossSharePercent, StringFormat=F1}" Width="72" MinWidth="72">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="Доля, %" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.LossShare}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                    </DataGridTextColumn>
+                                    <DataGridTextColumn Binding="{Binding StatusText}" Width="100" MinWidth="90">
+                                        <DataGridTextColumn.Header>
+                                            <TextBlock Text="Статус" ToolTipService.ShowDuration="12000">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource Cim2LineHeaderToolTipStyle}">
+                                                        <TextBlock Text="{x:Static researcher:Cim2LineColumnHelp.Status}" TextWrapping="Wrap"/>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                            </TextBlock>
+                                        </DataGridTextColumn.Header>
+                                        <DataGridTextColumn.ElementStyle>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource Cim2LineEllipsisCellStyle}">
+                                                <Setter Property="ToolTip" Value="{Binding StatusText}"/>
+                                            </Style>
+                                        </DataGridTextColumn.ElementStyle>
+                                    </DataGridTextColumn>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <TextBlock Grid.Row="1" Margin="0,8,0,0"
+                                       FontWeight="SemiBold"
+                                       Text="{Binding ElementRows.Count, StringFormat=Элементов в линии: {0}}"/>
+                            <TextBlock Grid.Row="2" Margin="0,4,0,0"
+                                       Text="{Binding PressureLossTotal, StringFormat=Σ потерь: {0:F2} Па}"/>
+                        </Grid>
+                    </ui:Card>
+                </shared:LabeledControlPresenter>
+
+                <TabControl Grid.Row="2" Margin="0,8,0,0">
+                    <TabItem Header="Проверка требований ТЗ">
+                        <Grid Margin="8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <ui:InfoBar Grid.Row="0"
+                                        IsClosable="False"
+                                        Title="Общий статус"
+                                        Message="{Binding OverallStatusText}"
+                                        Severity="Informational"/>
+                            <DataGrid Grid.Row="1"
+                                      Margin="0,8,0,0"
+                                      AutoGenerateColumns="False"
+                                      ItemsSource="{Binding ConstraintChecks}"
+                                      IsReadOnly="True"
+                                      RowStyle="{DynamicResource DataGridRowStyle1}"
+                                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                                      Style="{DynamicResource DataGridStyle1}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Параметр" Binding="{Binding Parameter}" Width="*"/>
+                                    <DataGridTextColumn Header="Расчетное" Binding="{Binding Actual}" Width="110"/>
+                                    <DataGridTextColumn Header="Допустимое" Binding="{Binding Limit}" Width="130"/>
+                                    <DataGridTextColumn Header="Условие" Binding="{Binding Condition}" Width="130"/>
+                                    <DataGridTextColumn Header="Результат" Binding="{Binding Result}" Width="100"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </TabItem>
+
+                    <TabItem Header="Сработавшие правила">
+                        <DataGrid Margin="8"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding RuleTraceRows}"
+                                  IsReadOnly="True"
+                                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                                  Style="{DynamicResource DataGridStyle1}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Тип" Binding="{Binding ElementType}"/>
-                                <DataGridTextColumn Header="Наименование" Binding="{Binding Name}"/>
-                                <DataGridTextColumn Header="DN" Binding="{Binding DN}"/>
-                                <DataGridTextColumn Header="Длина, м" Binding="{Binding Length, StringFormat=F2}"/>
-                                <DataGridTextColumn Header="ζ" Binding="{Binding Zeta, StringFormat=F3}"/>
+                                <DataGridTextColumn Header="Код" Binding="{Binding RuleCode}" Width="70"/>
+                                <DataGridTextColumn Header="Условие" Binding="{Binding Condition}" Width="*"/>
+                                <DataGridTextColumn Header="Результат" Binding="{Binding Result}" Width="110"/>
+                                <DataGridTextColumn Header="Рекомендация" Binding="{Binding Recommendation}" Width="2*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </ui:Card>
-                </shared:LabeledControlPresenter>
+                    </TabItem>
 
-                <shared:LabeledControlPresenter Grid.Row="1" HeaderText="Блок расчёта" HeaderFontSize="16" Margin="0,8,0,0">
-                    <ui:Card>
-                        <WrapPanel>
-                            <TextBlock Margin="0,0,16,0" Text="{Binding Velocity, StringFormat=Скорость: {0:F3} м/с}"/>
-                            <TextBlock Margin="0,0,16,0" Text="{Binding PressureLossTotal, StringFormat=Потери: {0:F2} Па}"/>
-                            <TextBlock Margin="0,0,16,0" Text="{Binding EnergyConsumption, StringFormat=Энергия: {0:F2} Вт}"/>
-                            <TextBlock Margin="0,0,16,0" Text="{Binding PumpPower, StringFormat=Мощность: {0:F2} Вт}"/>
-                            <TextBlock Text="{Binding WallThickness, StringFormat=δрасч: {0:F5} м}"/>
-                        </WrapPanel>
-                    </ui:Card>
-                </shared:LabeledControlPresenter>
+                    <TabItem Header="Рекомендации">
+                        <ui:Card Margin="8">
+                            <ui:TextBox IsReadOnly="True"
+                                        Text="{Binding RecommendationsText}"
+                                        AcceptsReturn="True"
+                                        TextWrapping="Wrap"
+                                        MinHeight="220"/>
+                        </ui:Card>
+                    </TabItem>
 
-                <shared:LabeledControlPresenter Grid.Row="2" HeaderText="Блок проверки" HeaderFontSize="16" Margin="0,8,0,0">
-                    <ui:Card>
-                        <StackPanel>
-                            <TextBlock FontWeight="SemiBold" Text="{Binding IsValid, StringFormat=Проходит: {0}}"/>
-                            <ui:TextBox IsReadOnly="True" Text="{Binding ViolationsText}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="65"/>
-                        </StackPanel>
-                    </ui:Card>
-                </shared:LabeledControlPresenter>
+                    <TabItem Header="Сравнение вариантов">
+                        <DataGrid Margin="8"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding AlternativeOptions}"
+                                  IsReadOnly="True"
+                                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                                  Style="{DynamicResource DataGridStyle1}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="DN" Binding="{Binding Dn}" Width="70"/>
+                                <DataGridTextColumn Header="Скорость, м/с" Binding="{Binding Velocity, StringFormat=F3}" Width="110"/>
+                                <DataGridTextColumn Header="Потери, Па" Binding="{Binding PressureLoss, StringFormat=F0}" Width="110"/>
+                                <DataGridTextColumn Header="Энергия, Вт" Binding="{Binding EnergyConsumption, StringFormat=F2}" Width="110"/>
+                                <DataGridTextColumn Header="Мощность, Вт" Binding="{Binding PumpPower, StringFormat=F2}" Width="110"/>
+                                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100"/>
+                                <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
 
-                <shared:LabeledControlPresenter Grid.Row="3" HeaderText="Блок рекомендаций" HeaderFontSize="16" Margin="0,8,0,0">
-                    <ui:Card>
-                        <ui:TextBox IsReadOnly="True" Text="{Binding RecommendationsText}" AcceptsReturn="True" TextWrapping="Wrap" MinHeight="85"/>
-                    </ui:Card>
-                </shared:LabeledControlPresenter>
+                    <TabItem Header="Журнал расчетов">
+                        <DataGrid Margin="8"
+                                  AutoGenerateColumns="False"
+                                  ItemsSource="{Binding JournalEntries}"
+                                  IsReadOnly="True"
+                                  RowStyle="{DynamicResource DataGridRowStyle1}"
+                                  ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                                  CellStyle="{DynamicResource DataGridCellStyle1}"
+                                  Style="{DynamicResource DataGridStyle1}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Дата/время" Binding="{Binding Timestamp, StringFormat=dd.MM.yyyy HH:mm:ss}" Width="140"/>
+                                <DataGridTextColumn Header="Реактор" Binding="{Binding Reactor}" Width="*"/>
+                                <DataGridTextColumn Header="Расход" Binding="{Binding FlowRate, StringFormat=F3}" Width="90"/>
+                                <DataGridTextColumn Header="DN" Binding="{Binding Dn}" Width="70"/>
+                                <DataGridTextColumn Header="Скорость" Binding="{Binding Velocity, StringFormat=F3}" Width="90"/>
+                                <DataGridTextColumn Header="Потери" Binding="{Binding PressureLoss, StringFormat=F0}" Width="90"/>
+                                <DataGridTextColumn Header="Энергия" Binding="{Binding Energy, StringFormat=F2}" Width="90"/>
+                                <DataGridTextColumn Header="Статус" Binding="{Binding Status}" Width="100"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </TabItem>
+                </TabControl>
 
-                <shared:LabeledControlPresenter Grid.Row="4"
+                <shared:LabeledControlPresenter Grid.Row="3"
                                                   HeaderText="Блок 3D"
                                                   HeaderFontSize="16"
                                                   HeaderTextPlacement="Top"
                                                   Margin="0,8,0,0"
                                                   Visibility="{Binding Is3DBlockVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <Grid MinHeight="420">
+                    <Grid MinHeight="{Binding RenderBlockMinHeight}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Margin="0,0,0,8">
-                            <TextBlock Text="{Binding Template3DName, StringFormat=Шаблон: {0}}"/>
-                            <TextBlock Text="{Binding Template3DPath, StringFormat=Путь: {0}}"
-                                       TextWrapping="Wrap" Opacity="0.7" FontSize="11"/>
-                        </StackPanel>
+                        <Grid Grid.Row="0" Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="{Binding Template3DName, StringFormat=Шаблон: {0}}"/>
+                                <TextBlock Text="{Binding FormationStatusText, StringFormat=Статус: {0}}" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding ElementsCount, StringFormat=Элементов: {0}}"/>
+                                <TextBlock Text="{Binding ActiveRulesText}" Opacity="0.8"/>
+                                <TextBlock Text="{Binding Template3DPath, StringFormat=Путь: {0}}"
+                                           TextWrapping="Wrap" Opacity="0.7" FontSize="11"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+                                <ui:Button Command="{Binding Toggle3DExpandCommand}"
+                                           Appearance="Secondary"
+                                           Margin="0,0,8,0">
+                                    <ui:Button.Style>
+                                        <Style TargetType="ui:Button">
+                                            <Setter Property="Content" Value="Развернуть"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Is3DExpanded}" Value="True">
+                                                    <Setter Property="Content" Value="Свернуть"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ui:Button.Style>
+                                </ui:Button>
+                                <ui:Button Content="Полноэкранный просмотр"
+                                           Command="{Binding Open3DInWindowCommand}"
+                                           Appearance="Primary"
+                                           Margin="0,0,8,0"/>
+                                <ui:Button Content="Сбросить вид"
+                                           Command="{Binding Reset3DViewCommand}"
+                                           Appearance="Secondary"
+                                           Margin="0,0,8,0"/>
+                                <ui:Button Content="Показать параметры элементов"
+                                           Command="{Binding ToggleElementParamsCommand}"
+                                           Appearance="Secondary"/>
+                            </StackPanel>
+                        </Grid>
                         <researcher:InstallationRenderControl Grid.Row="1"
                                                               x:Name="RenderControl"
-                                                              Height="380"
+                                                              Height="{Binding RenderViewportHeight}"
                                                               Model="{Binding RenderModel}"/>
+                        <ui:TextBox Grid.Row="2"
+                                    Margin="0,8,0,0"
+                                    Visibility="{Binding ShowElementParameters, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                    IsReadOnly="True"
+                                    AcceptsReturn="True"
+                                    TextWrapping="Wrap"
+                                    Text="{Binding SelectedElementDetails, Mode=OneWay}"
+                                    MinHeight="100"/>
                     </Grid>
                 </shared:LabeledControlPresenter>
             </Grid>
